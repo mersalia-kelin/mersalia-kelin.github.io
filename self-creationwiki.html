@@ -14,7 +14,6 @@
     }
     .nav{
       background-color: slategrey;
-      margin: 10px;
     }
     label{
     color: gray;
@@ -44,34 +43,51 @@
       width: 300px;
     }
     .news{
-      overflow: hidden;
+      /* overflow: hidden; */
       padding-bottom: 30px;
     }
+    .hots{
+      top: 700px;
+      left: 1200px;
+      background-color: aqua; 
+      width: 80px;
+      overflow: hidden;
+      padding-bottom: 30px;
+      position: absolute;
+    }
     .before{
+      width: 275px;
       height: 150px;
       background-color: rgba(100, 148, 237, 0.7);
-      float: left;
+      /* float: left; */
       padding-left: 80px;
       padding-right: 80px;
-      border: 3px double;
+      border: 3px double darkcyan;
+    }
+    .middle{
+      width: 50px;
+      height: 50px;
+      background-color: rgba(100, 148, 237);
+      border: 3px double darkcyan;
+      z-index: 1;
     }
     .after{
-      background-color: aqua;
+      background-color: rgb(151, 255, 255);
       position: fixed;
       right: 0;
       bottom: 200px;
-      padding: 30px;
+      padding: 10px;
       border: 3px solid;
     }
     p{
-    color: black;
-    font-size: 16px;
-    line-height: 40px;
+      color: black;
+      font-size: 16px;
+      line-height: 40px;
     }
     li{
-    color: darkred;
-    font-size: 18px;
-    padding: 10px;
+      color: darkred;
+      font-size: 18px;
+      padding: 10px;
     }
     ul{
       background-color: rgba(105, 105, 105, 0.5);
@@ -87,15 +103,35 @@
       border-color: rgba(105, 105, 105);
       border-width: 0 2px 2px 0;
     }
+    .title{
+      color: khaki;
+      font-size: 30px;
+      font-weight: 900;
+    }
+    .zz{
+      font-size: 15px;
+    }
     .end{
       background-color: slategrey;
       height: 100px;
     }
     #holder:hover{
-      background-color: gray;
+      background-color: white;
+    }
+    ol:hover{
+      background-color: rgb(105, 105, 105);
+    }
+    ul:hover{
+      background-color: rgb(105, 105, 105);
     }
     .x:hover{
-      background-color: goldenrod;
+      background-color: darkgoldenrod;
+    }
+    .before:hover{
+      border: 10px double darkcyan;
+    }
+    .middle:hover{
+      background-color: rgb(64, 82, 150);
     }
   </style>
 
@@ -151,46 +187,131 @@
       </ul>
     </div>
   </div>
-  <div class="news">
-      <div class="before">
-        <img src="1.png" alt="暂无内容">
-        <span>
-          <p><a href="#" target="_blank" class="x">预留网址</a></p>
-          <p>预留窗口网址</p>
-        </span>
-      </div>
-      <div class="before">
-        <img src="1.png" alt="暂无内容">
-        <span>
-          <p><a href="#" target="_blank" class="x">预留网址</a></p>
-          <p>预留窗口网址</p>
-        </span>
-      </div>
-      <div class="before">
-        <img src="1.png" alt="暂无内容">
-        <span>
-          <p><a href="#" target="_blank" class="x">预留网址</a></p>
-          <p>预留窗口网址</p>
-        </span>
-      </div>
-      <div class="before">
-        <img src="1.png" alt="暂无内容">
-        <span>
-          <p><a href="#" target="_blank" class="x">预留网址</a></p>
-          <p>预留窗口网址</p>
-        </span>
-      </div>
-      <div class="after">
-        <div>
-          <span>
-            <p>工具定位测试</p>
-          </span>
-        </div>
-      </div>
+  <div class="hots">
+    <center>
+      <h2 style="color: darkred;">工具栏</h2>
+      <p class="middle">
+        预留
+      </p>
+      <p class="middle">
+        预留
+      </p>
+      <p class="middle">
+        预留
+      </p>
+      <p class="middle">
+        预留
+      </p>
+      <p class="middle">
+        预留
+      </p>
+      <p class="middle">
+        预留
+      </p>
+    </center>
   </div>
+  <div class="news">
+    <h2 class="title">最新动态</h2>
+    <hr>
+      <button class="before">
+        <img src="1.png" alt="暂无内容">
+        <span>
+          <p><a href="#" target="_blank">预留网址</a></p>
+          <p class="z">预留窗口网址</p>
+        </span>
+      </button>
+      <button class="before">
+        <img src="1.png" alt="暂无内容">
+        <span>
+          <p><a href="#" target="_blank">预留网址</a></p>
+          <p class="z">预留窗口网址</p>
+        </span>
+      </button>
+      <button class="before">
+        <img src="1.png" alt="暂无内容">
+        <span>
+          <p><a href="#" target="_blank">预留网址</a></p>
+          <p class="z">预留窗口网址</p>
+        </span>
+      </button>
+      <button class="before">
+        <img src="1.png" alt="暂无内容">
+        <span>
+          <p><a href="#" target="_blank">预留网址</a></p>
+          <p class="z">预留窗口网址</p>
+        </span>
+      </button>
+      <button class="before">
+        <img src="1.png" alt="暂无内容">
+        <span>
+          <p><a href="#" target="_blank">预留网址</a></p>
+          <p class="z">预留窗口网址</p>
+        </span>
+      </button>
+      <button class="before">
+        <img src="1.png" alt="暂无内容">
+        <span>
+          <p><a href="#" target="_blank">预留网址</a></p>
+          <p class="z">预留窗口网址</p>
+        </span>
+      </button>
+      <button class="before">
+        <img src="1.png" alt="暂无内容">
+        <span>
+          <p><a href="#" target="_blank">预留网址</a></p>
+          <p class="z">预留窗口网址</p>
+        </span>
+      </button>
+      <button class="before">
+        <img src="1.png" alt="暂无内容">
+        <span>
+          <p><a href="#" target="_blank">预留网址</a></p>
+          <p class="z">预留窗口网址</p>
+        </span>
+      </button>
+      <!-- <div class="after">
+        <center>
+          <p>工具栏</p>
+        </center>
+        <div class="top-btn">
+            <button>返回顶部</button>
+        </div> -->
+      </div>
 
-
-
+  </div>
+  <div class="news">
+    <h2 class="title">热门作品</h2>
+    <hr>
+      <button class="before">
+        <img src="1.png" alt="暂无内容">
+        <span>
+          <p><a href="#" target="_blank">预留网址</a></p>
+          <p class="z">预留窗口网址</p>
+        </span>
+      </button>
+      <button class="before">
+        <img src="1.png" alt="暂无内容">
+        <span>
+          <p><a href="#" target="_blank">预留网址</a></p>
+          <p class="z">预留窗口网址</p>
+        </span>
+      </button>
+      <button class="before">
+        <img src="1.png" alt="暂无内容">
+        <span>
+          <p><a href="#" target="_blank">预留网址</a></p>
+          <p class="z">预留窗口网址</p>
+        </span>
+      </button>
+      <button class="before">
+        <img src="1.png" alt="暂无内容">
+        <span>
+          <p><a href="#" target="_blank">预留网址</a></p>
+          <p class="z">预留窗口网址</p>
+        </span>
+      </button>
+  </div>
+  </div>
 
   <div class="end">
     <span>
