@@ -1,0 +1,26 @@
+/* p{
+    color: black;
+    font-size: 16px;
+  }
+li{
+    color: red;
+    font-size: 28px;
+} */
+.nav{
+    background-color: slategrey;
+    margin: 10px;
+  }
+  label{
+  color: gray;
+  }
+  .content{
+    background-color: darkturquoise;
+    opacity: 0.8;
+    background-size: cover;
+    color: mintcream;
+    border: 3px dotted white;
+  }
+  .end{
+    background-color: slategrey;
+    height: 100px;
+  }
