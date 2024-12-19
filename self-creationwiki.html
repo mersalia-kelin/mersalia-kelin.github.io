@@ -20,8 +20,7 @@
     color: gray;
     }
     .content{
-      background-color: darkturquoise;
-      opacity: 0.8;
+      background-color: rgba(0, 206, 209, 0.8);
       background-size: cover;
       color: mintcream;
       border: 3px dotted white;
@@ -50,17 +49,17 @@
     }
     .before{
       height: 150px;
-      background-color: cornflowerblue;
+      background-color: rgba(100, 148, 237, 0.7);
       float: left;
       padding-left: 80px;
       padding-right: 80px;
       border: 3px double;
-      opacity: 0.7;
     }
     .after{
-      height: 30px;
       background-color: aqua;
-      float: right;
+      position: fixed;
+      right: 0;
+      bottom: 200px;
       padding: 30px;
       border: 3px solid;
     }
@@ -75,19 +74,17 @@
     padding: 10px;
     }
     ul{
-      background-color: dimgray;
-      opacity: 0.5;
+      background-color: rgba(105, 105, 105, 0.5);
       width: 260px;
       border-style: solid;
-      border-color: black;
+      border-color: rgba(105, 105, 105);
       border-width: 0 2px 2px 0;
     }
     ol{
-      background-color: dimgrey;
-      opacity: 0.5;
+      background-color: rgba(105, 105, 105, 0.5);
       width: 260px;
       border-style: solid;
-      border-color: black;
+      border-color: rgba(105, 105, 105);
       border-width: 0 2px 2px 0;
     }
     .end{
@@ -183,11 +180,13 @@
           <p>预留窗口网址</p>
         </span>
       </div>
-      <!-- <div class="after">
-        <span>
-          <p>浮动测试</p>
-        </span>
-      </div> -->
+      <div class="after">
+        <div>
+          <span>
+            <p>工具定位测试</p>
+          </span>
+        </div>
+      </div>
   </div>
 
 
