@@ -44,7 +44,7 @@
       display: inline-block;
     }
     .news{
-      /* overflow: hidden; */
+      overflow: hidden;
       padding-bottom: 30px;
     }
     .hots{
@@ -60,8 +60,8 @@
       height: 150px;
       background-color: rgba(100, 148, 237, 0.7);
       /* float: left; */
-      padding-left: 80px;
-      padding-right: 80px;
+      padding-left: 60px;
+      padding-right: 60px;
       border: 3px double darkcyan;
     }
     .middle{
@@ -79,32 +79,16 @@
       padding: 10px;
       border: 3px solid;
     }
-    p{
+    /* p{
       color: black;
       font-size: 16px;
       line-height: 40px;
-    }
+    } */
     li{
       color: darkred;
       font-size: 18px;
       padding: 10px;
     }
-    /* ul{
-      background-color: rgba(105, 105, 105, 0.5);
-      width: 260px;
-      border-style: solid;
-      border-color: rgba(105, 105, 105);
-      border-width: 0 2px 2px 0;
-      display: none;
-    }
-    ol{
-      background-color: rgba(105, 105, 105, 0.5);
-      width: 260px;
-      border-style: solid;
-      border-color: rgba(105, 105, 105);
-      border-width: 0 2px 2px 0;
-      display: none;
-    } */
     #expand1{
       background-color: rgba(105, 105, 105, 0.5);
       width: 260px;
@@ -134,6 +118,11 @@
       font-size: 30px;
       font-weight: 900;
     }
+    .z{
+      font-size: 10px;
+      color: lightslategrey;
+      line-height: 1;
+    }
     .zz{
       font-size: 15px;
     }
@@ -144,12 +133,6 @@
     #holder:hover{
       background-color: white;
     }
-    /* ol:hover{
-      background-color: rgb(105, 105, 105);
-    }
-    ul:hover{
-      background-color: rgb(105, 105, 105);
-    } */
     #expand1:hover{
       background-color: rgb(105, 105, 105);
     }
@@ -172,19 +155,24 @@
 
 </head>
 <body>
+  <!-- <div style="width: 100px; height: 100px; background-color: blue; position: absolute; right: 0px;"></div> -->
   <div class="nav">
     <p>
       <button>
         首页
       </button>
-      <a href="#" target="_blank" id="holder">主要页面</a> <a href="#" target="_blank" id="holder">站点工具</a> <a href="#" target="_blank" id="holder">随机页面</a> 
-      <form action="/s" method="get" target="_blank">
+      <a href="#" target="_blank" id="holder">主要页面</a> 
+      <a href="#" target="_blank" id="holder">站点工具</a> 
+      <a href="#" target="_blank" id="holder">随机页面</a> 
+      <form action="/search" method="get" target="_blank">
         <label>搜索</label>
         <input name="key" type="text" placeholder="在这里发现更多宇宙" maxlength="30">
         <input type="submit" value="🔍">
       </form>
     </p>
+    <h1 style="color: red;">↑↑↑上方尚未开发完毕，请勿尝试!!!</h1>
   </div>
+
   <div class="content">
     <h2 style="font-size: 26px;">王国保卫战同人自创维基</h2>
     <i>欢迎加入王国保卫战同人自创维基交流群——1169576263</i>
@@ -202,7 +190,7 @@
           <li>暂无收录</li>
           <b style="font-size: 20px; color: black;">文创作品</b>
           <!-- <li><a href="#" target="_self" class="x">KingdomRush: Annex</a></li> -->
-          <li><a href="/self-creationwiki/hegemony.html" target="_self" class="x">KingdomRush: Hegemony</a></li>
+          <li><a href="/self-creationwiki/hegemony.html" target="_self" class="x">王国保卫战：清统</a></li>
           <!-- <li><a href="#" target="_self" class="x">KingdomRush: Riffer</a></li>
           <li><a href="#" target="_self" class="x">KingdomRush: Echosapphire</a></li> -->
         </ul>
@@ -274,85 +262,57 @@
   <div class="hots">
     <center>
       <h2 style="color: darkred;">工具栏</h2>
-      <p class="middle">
-        预留
-      </p>
-      <p class="middle">
-        预留
-      </p>
-      <p class="middle">
-        预留
-      </p>
-      <p class="middle">
-        预留
-      </p>
-      <p class="middle">
-        预留
-      </p>
-      <p class="middle">
-        预留
-      </p>
+      <div style="border: 1px solid black;">
+        <div style="border-bottom: 1px solid black;">
+          <p class="middle">
+            预留
+          </p>
+      </div>
+      <div style="border-bottom: 1px solid black;">
+        <p class="middle">
+          预留
+        </p>
+        </div>
+        <div style="border-bottom: 1px solid black;">
+          <p class="middle">
+            预留
+          </p>
+        </div>
+    </div>
     </center>
   </div>
+
   <div class="news">
     <h2 class="title">最新动态</h2>
     <hr>
-      <button class="before">
-        <img src="1.png" alt="暂无内容">
-        <span>
-          <p><a href="#" target="_blank">预留网址</a></p>
-          <p class="z">预留窗口网址</p>
-        </span>
-      </button>
-      <button class="before">
-        <img src="1.png" alt="暂无内容">
-        <span>
-          <p><a href="#" target="_blank">预留网址</a></p>
-          <p class="z">预留窗口网址</p>
-        </span>
-      </button>
-      <button class="before">
-        <img src="1.png" alt="暂无内容">
-        <span>
-          <p><a href="#" target="_blank">预留网址</a></p>
-          <p class="z">预留窗口网址</p>
-        </span>
-      </button>
-      <button class="before">
-        <img src="1.png" alt="暂无内容">
-        <span>
-          <p><a href="#" target="_blank">预留网址</a></p>
-          <p class="z">预留窗口网址</p>
-        </span>
-      </button>
-      <button class="before">
-        <img src="1.png" alt="暂无内容">
-        <span>
-          <p><a href="#" target="_blank">预留网址</a></p>
-          <p class="z">预留窗口网址</p>
-        </span>
-      </button>
-      <button class="before">
-        <img src="1.png" alt="暂无内容">
-        <span>
-          <p><a href="#" target="_blank">预留网址</a></p>
-          <p class="z">预留窗口网址</p>
-        </span>
-      </button>
-      <button class="before">
-        <img src="1.png" alt="暂无内容">
-        <span>
-          <p><a href="#" target="_blank">预留网址</a></p>
-          <p class="z">预留窗口网址</p>
-        </span>
-      </button>
-      <button class="before">
-        <img src="1.png" alt="暂无内容">
-        <span>
-          <p><a href="#" target="_blank">预留网址</a></p>
-          <p class="z">预留窗口网址</p>
-        </span>
-      </button>
+      <a href="/self-creationwiki/hegemony.html" target="_blank">
+        <button class="before">
+          <div>
+            <img src="hegemony.jpg" alt="暂无内容" width="100%" height="100%">
+          </div>
+          <div>
+              <span>
+              <b style="color: white;">王国保卫战：清统</b>
+              <p class="z">https://mersalia-kelin.github.io/self-creationwiki/hegemony.html</p>
+            </span>
+          </div>
+        </button>
+      </a>
+      <!-- <a href="#" target="_blank">
+        <button class="before">
+          <div>
+            <img src="1.jpg" alt="暂无内容" width="100%" height="100%">
+          </div>
+          <div>
+              <span>
+              <b style="color: white;">预留网址</b>
+              <p class="z">预留窗口地址</p>
+            </span>
+          </div>
+        </button>
+      </a> -->
+
+
       <!-- <div class="after">
         <center>
           <p>工具栏</p>
