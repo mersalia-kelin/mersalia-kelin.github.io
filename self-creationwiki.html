@@ -48,7 +48,6 @@
     }
     .hots{
       right:  10px;
-      top: 690px;
       background-color: white; 
       width: 80px;
       overflow: hidden;
@@ -89,12 +88,13 @@
       font-size: 18px;
       padding: 10px;
     }
-    ul{
+    /* ul{
       background-color: rgba(105, 105, 105, 0.5);
       width: 260px;
       border-style: solid;
       border-color: rgba(105, 105, 105);
       border-width: 0 2px 2px 0;
+      display: none;
     }
     ol{
       background-color: rgba(105, 105, 105, 0.5);
@@ -102,6 +102,31 @@
       border-style: solid;
       border-color: rgba(105, 105, 105);
       border-width: 0 2px 2px 0;
+      display: none;
+    } */
+    #expand1{
+      background-color: rgba(105, 105, 105, 0.5);
+      width: 260px;
+      border-style: solid;
+      border-color: rgba(105, 105, 105);
+      border-width: 0 2px 2px 0;
+      display: none;
+    }
+    #expand2{
+      background-color: rgba(105, 105, 105, 0.5);
+      width: 260px;
+      border-style: solid;
+      border-color: rgba(105, 105, 105);
+      border-width: 0 2px 2px 0;
+      display: none;
+    } 
+    #expand3{
+      background-color: rgba(105, 105, 105, 0.5);
+      width: 260px;
+      border-style: solid;
+      border-color: rgba(105, 105, 105);
+      border-width: 0 2px 2px 0;
+      display: none;
     }
     .title{
       color: khaki;
@@ -118,10 +143,19 @@
     #holder:hover{
       background-color: white;
     }
-    ol:hover{
+    /* ol:hover{
       background-color: rgb(105, 105, 105);
     }
     ul:hover{
+      background-color: rgb(105, 105, 105);
+    } */
+    #expand1:hover{
+      background-color: rgb(105, 105, 105);
+    }
+    #expand2:hover{
+      background-color: rgb(105, 105, 105);
+    }
+    #expand3:hover{
       background-color: rgb(105, 105, 105);
     }
     .x:hover{
@@ -156,37 +190,71 @@
     <hr>
   </div>
   <div style="margin-left: 20px;" class="flat">
-    <div class="tag">
+    <div class="tag" onclick="toggleExpand1()">
       <h3 class="a">自创作品集</h3>
-      <ul>
-        <b style="font-size: 20px; color: black;">改版作品</b>
-        <li>暂无收录</li>
-        <b style="font-size: 20px; color: black;">文创作品</b>
-        <!-- <li><a href="#" target="_self" class="x">KingdomRush: Annex</a></li> -->
-        <li><a href="/self-creationwiki/hegemony.html" target="_self" class="x">KingdomRush: Hegemony</a></li>
-        <!-- <li><a href="#" target="_self" class="x">KingdomRush: Riffer</a></li>
-        <li><a href="#" target="_self" class="x">KingdomRush: Echosapphire</a></li> -->
-      </ul>
+      <div id="expand1">
+        <ul>
+          <b style="font-size: 20px; color: black;">改版作品</b>
+          <li>暂无收录</li>
+          <b style="font-size: 20px; color: black;">文创作品</b>
+          <!-- <li><a href="#" target="_self" class="x">KingdomRush: Annex</a></li> -->
+          <li><a href="/self-creationwiki/hegemony.html" target="_self" class="x">KingdomRush: Hegemony</a></li>
+          <!-- <li><a href="#" target="_self" class="x">KingdomRush: Riffer</a></li>
+          <li><a href="#" target="_self" class="x">KingdomRush: Echosapphire</a></li> -->
+        </ul>
+      </div>
     </div>
-    <div class="tag">
+    <div class="tag" onclick="toggleExpand2()">
       <h3 class="a">分类标签</h3>
-      <ol>
-        <li><a href="/tower" target="_self" class="x">防御塔</a></li>
-        <li><a href="/hero" target="_self" class="x">英雄</a></li>
-        <li><a href="/enemy" target="_self" class="x">敌人</a></li>
-        <li><a href="/tech" target="_self" class="x">科技树（暂未开放）</a></li>
-        <li><a href="/prop" target="_self" class="x">道具（暂未开放）</a></li>
-        <li><a href="/syst" target="_self" class="x">游戏机制（暂未开放）</a></li>
-        <li><a href="/draw" target="_self" class="x">画廊（暂未开放）</a></li>
-      </ol>
+      <div id="expand2">
+        <ol>
+          <li><a href="/tower" target="_self" class="x">防御塔</a></li>
+          <li><a href="/hero" target="_self" class="x">英雄</a></li>
+          <li><a href="/enemy" target="_self" class="x">敌人</a></li>
+          <li><a href="/tech" target="_self" class="x">科技树（暂未开放）</a></li>
+          <li><a href="/prop" target="_self" class="x">道具（暂未开放）</a></li>
+          <li><a href="/syst" target="_self" class="x">游戏机制（暂未开放）</a></li>
+          <li><a href="/draw" target="_self" class="x">画廊（暂未开放）</a></li>
+        </ol>
+      </div>
     </div>
-    <div class="tag">
+    <div class="tag" onclick="toggleExpand3()">
       <h3 class="a">自创作者主页（暂未开放）</h3>
-      <ul>
-        <li><a href="/mersaliakelin" target="_self" class="x">弥赛莉娅·克莱茵</a></li>
-      </ul>
+      <div id="expand3">
+        <ul>
+          <li><a href="/mersaliakelin" target="_self" class="x">弥赛莉娅·克莱茵</a></li>
+        </ul>
+      </div>
     </div>
   </div>
+
+  <script>
+    function toggleExpand1(){
+      let expand1 = document.getElementById("expand1");
+          if (expand1.style.display === "none") {
+              expand1.style.display = "block";
+          } else {
+              expand1.style.display = "none";
+          }
+    }
+    function toggleExpand2(){
+      let expand2 = document.getElementById("expand2");
+          if (expand2.style.display === "none") {
+              expand2.style.display = "block";
+          } else {
+              expand2.style.display = "none";
+          }
+    }
+    function toggleExpand3(){
+      let expand3 = document.getElementById("expand3");
+          if (expand3.style.display === "none") {
+              expand3.style.display = "block";
+          } else {
+              expand3.style.display = "none";
+          }
+    }
+  </script>
+
   <div class="hots">
     <center>
       <h2 style="color: darkred;">工具栏</h2>
