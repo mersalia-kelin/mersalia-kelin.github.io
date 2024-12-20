@@ -41,6 +41,7 @@
       border-right: 2.5px solid darkgray;
       border-bottom: 2.5px solid darkgray;
       width: 300px;
+      display: inline-block;
     }
     .news{
       /* overflow: hidden; */
@@ -191,7 +192,10 @@
   </div>
   <div style="margin-left: 20px;" class="flat">
     <div class="tag" onclick="toggleExpand1()">
-      <h3 class="a">自创作品集</h3>
+      <p>
+        <h3 class="a">自创作品集</h3>
+        <span id="change1">[展开]</span>
+      </p>
       <div id="expand1">
         <ul>
           <b style="font-size: 20px; color: black;">改版作品</b>
@@ -205,7 +209,10 @@
       </div>
     </div>
     <div class="tag" onclick="toggleExpand2()">
-      <h3 class="a">分类标签</h3>
+      <p>
+        <h3 class="a">分类标签</h3>
+        <span id="change2">[展开]</span>
+      </p>
       <div id="expand2">
         <ol>
           <li><a href="/tower" target="_self" class="x">防御塔</a></li>
@@ -219,7 +226,10 @@
       </div>
     </div>
     <div class="tag" onclick="toggleExpand3()">
-      <h3 class="a">自创作者主页（暂未开放）</h3>
+      <p>
+        <h3 class="a">自创作者主页（暂未开放）</h3>
+        <span id="change3">[展开]</span>
+      </p>
       <div id="expand3">
         <ul>
           <li><a href="/mersaliakelin" target="_self" class="x">弥赛莉娅·克莱茵</a></li>
@@ -233,24 +243,30 @@
       let expand1 = document.getElementById("expand1");
           if (expand1.style.display === "none") {
               expand1.style.display = "block";
+              document.getElementById("change1").innerHTML = "[折叠]";
           } else {
               expand1.style.display = "none";
+              document.getElementById("change1").innerHTML = "[展开]";
           }
     }
     function toggleExpand2(){
       let expand2 = document.getElementById("expand2");
           if (expand2.style.display === "none") {
               expand2.style.display = "block";
+              document.getElementById("change2").innerHTML = "[折叠]";
           } else {
               expand2.style.display = "none";
+              document.getElementById("change2").innerHTML = "[展开]";
           }
     }
     function toggleExpand3(){
       let expand3 = document.getElementById("expand3");
           if (expand3.style.display === "none") {
               expand3.style.display = "block";
+              document.getElementById("change3").innerHTML = "[折叠]";
           } else {
               expand3.style.display = "none";
+              document.getElementById("change3").innerHTML = "[展开]";
           }
     }
   </script>
