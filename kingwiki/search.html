@@ -91,7 +91,7 @@
     <script>
       // 示例数据
       const data = [
-        { title: '哥布林', content: 'https://mersalia-kelin.github.io//kingwiki/enemy' },
+        { title: '王国保卫战：清统', content: 'https://mersalia-kelin.github.io/kingwiki/self-creationwiki/hegemony.html' },
         { title: '文章2', content: '这是文章2的内容' },
         { title: '文章3', content: '这是文章3的内容' },
       ];
@@ -104,26 +104,26 @@
       // 监听搜索表单的提交事件
       IntersearchForm.addEventListener('submit', function (event) {
         const row = document.createElement('tr');
-            const titleCell = document.createElement('td');
-            const contentCell = document.createElement('td');
-            titleCell.textContent = result.title;
-            //contentCell.textContent = result.content;
-                // 检查content是否为URL，并创建相应的DOM元素
-            if (/^(https?:\/\/[^\s/$.?#].[^\s]*$)/i.test(result.content)) {
-              // 如果content是URL，则创建一个链接
-              const link = document.createElement('a');
-              link.href = result.content;
-              link.textContent = result.content.replace(/^(https?:\/\/[^\/]+)/, (match) => match.split('/')[2].split('.')[0]); // 可选：显示更简洁的链接文本（例如，只显示域名的第一部分）
-              // 或者，如果您想显示完整的URL作为链接文本，请使用：
-              // link.textContent = result.content;
-              contentCell.appendChild(link);
-            } else {
-              // 如果content不是URL，则直接显示文本
-              contentCell.textContent = result.content;
-            }
-            row.appendChild(titleCell);
-            row.appendChild(contentCell);
-            resultsBody.appendChild(row);
+        const titleCell = document.createElement('td');
+        const contentCell = document.createElement('td');
+        titleCell.textContent = result.title;
+        //contentCell.textContent = result.content;
+            // 检查content是否为URL，并创建相应的DOM元素
+        if (/^(https?:\/\/[^\s/$.?#].[^\s]*$)/i.test(result.content)) {
+          // 如果content是URL，则创建一个链接
+          const link = document.createElement('a');
+          link.href = result.content;
+          link.textContent = result.content.replace(/^(https?:\/\/[^\/]+)/, (match) => match.split('/')[2].split('.')[0]); // 可选：显示更简洁的链接文本（例如，只显示域名的第一部分）
+          // 或者，如果您想显示完整的URL作为链接文本，请使用：
+          // link.textContent = result.content;
+          contentCell.appendChild(link);
+        } else {
+          // 如果content不是URL，则直接显示文本
+          contentCell.textContent = result.content;
+          }
+        row.appendChild(titleCell);
+        row.appendChild(contentCell);
+        resultsBody.appendChild(row);
       })
       searchForm.addEventListener('submit', function (event) {
           event.preventDefault(); // 阻止表单默认提交行为
