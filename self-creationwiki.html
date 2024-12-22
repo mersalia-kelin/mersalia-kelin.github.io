@@ -15,8 +15,8 @@
     .nav{
       background-color: slategrey;
     }
-    label{
-    color: gray;
+    .slt{
+    color: white;
     }
     .content{
       background-color: rgba(0, 206, 209, 0.8);
@@ -157,20 +157,23 @@
 <body>
   <!-- <div style="width: 100px; height: 100px; background-color: blue; position: absolute; right: 0px;"></div> -->
   <div class="nav">
-    <p>
+    <div style="display: inline-block;">
       <button>
         首页
       </button>
-      <a href="#" target="_blank" id="holder">主要页面</a> 
-      <a href="#" target="_blank" id="holder">站点工具</a> 
-      <a href="#" target="_blank" id="holder">随机页面</a> 
-      <form action="/search" method="get" target="_blank">
-        <label>搜索</label>
-        <input name="key" type="text" placeholder="在这里发现更多宇宙" maxlength="30">
+      <div style="display: inline-block;">
+        <!-- <a href="#" target="_blank" id="holder">主要页面</a> 
+        <a href="#" target="_blank" id="holder">站点工具</a>  -->
+        <a href="#" target="_blank" id="holder">随机页面</a> 
+      </div>
+    </div>
+    <div style="display: inline-block; position: absolute; right: 10px;">
+      <form id="IntersearchForm" action="/search" method="get" target="_blank">
+        <label class="slt">搜索</label>
+        <input id="IntersearchInput" name="key" type="text" placeholder="在这里发现更多宇宙" maxlength="30">
         <input type="submit" value="🔍">
       </form>
-    </p>
-    <h1 style="color: red;">↑↑↑上方尚未开发完毕，请勿尝试!!!</h1>
+    </div>
   </div>
 
   <div class="content">

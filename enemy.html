@@ -26,21 +26,32 @@
           background-color: slategrey;
           height: 100px;
         }
+        .slt{
+          color: white;
+          }
     </style>
 </head>
 <body>
     <div class="nav">
-        <p>
-          <button>
-            首页
-          </button>
-          <a href="#" target="_blank" id="holder">主要页面</a> <a href="#" target="_blank" id="holder">站点工具</a> <a href="#" target="_blank" id="holder">随机页面</a> 
-          <form action="/s" method="get" target="_blank">
-            <label>搜索</label>
-            <input name="key" type="text" placeholder="在这里发现更多宇宙" maxlength="30">
-            <input type="submit" value="🔍">
-          </form>
-        </p>
+      <div style="display: inline-block;">
+        <button>
+          首页
+        </button>
+        <div style="display: inline-block;">
+          <!-- <a href="#" target="_blank" id="holder">主要页面</a> 
+          <a href="#" target="_blank" id="holder">站点工具</a>  -->
+          <a href="#" target="_blank" id="holder">随机页面</a> 
+        </div>
+      </div>
+      <div style="display: inline-block; position: absolute; right: 10px;">
+        <form id="IntersearchForm" action="/search" method="get" target="_blank">
+          <label  class="slt">搜索</label>
+          <input id="IntersearchInput" name="key" type="text" placeholder="在这里发现更多宇宙" maxlength="30">
+          <input type="submit" value="🔍">
+        </form>
+      </div>
+      <hr>
+      </div>
       </div>
       <div class="content">
         <h2 style="font-size: 26px;">自创敌人项目一览</h2>
