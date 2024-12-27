@@ -76,24 +76,22 @@
         <input type="text" id="searchInput" name="searchInput">
         <button type="submit">搜索</button>
       </form>
-      <table id="resultsTable"  border="3" style="background-color: gray;">
-          <thead style="background-color: darkgray;">
-            <tr>
-              <th>标题</th>
-              <th>内容</th>
-            </tr>
-          </thead>
-        <tbody id="resultsBody"  style="background-color: burlywood;">
-        </tbody>
-      </table>    
+      <br>
+      <div style="background-color: gray; color: lightgray; font-size: 25px;">搜索结果</div>
+      <ul id="resultsTable" style="background-color: gray;">
+          <li style="background-color: darkgray;">
+        <ul id="resultsBody"  style="background-color: burlywood; font-size: 20px; margin: 20px;">
+        </ul>
+      </ul>    
     </div>
 
     <script>
       // 示例数据
       const data = [
-        { title: '王国保卫战：清统', content: 'https://mersalia-kelin.github.io/kingwiki/self-creationwiki/hegemony.html' },
+        { title: '文章1', content: '这是文章1的内容' },
         { title: '文章2', content: '这是文章2的内容' },
         { title: '文章3', content: '这是文章3的内容' },
+        { title: '王国保卫战：清统', content: 'https://mersalia-kelin.github.io/kingwiki/self-creationwiki/hegemony.html' },
       ];
       // 获取DOM元素
       const IntersearchForm = document.getElementById('IntersearchForm');
@@ -103,9 +101,9 @@
       const resultsBody = document.getElementById('resultsBody');
       // 监听搜索表单的提交事件
       IntersearchForm.addEventListener('submit', function (event) {
-        const row = document.createElement('tr');
-        const titleCell = document.createElement('td');
-        const contentCell = document.createElement('td');
+        const row = document.createElement('li');
+        const titleCell = document.createElement('li');
+        const contentCell = document.createElement('span');
         titleCell.textContent = result.title;
         //contentCell.textContent = result.content;
             // 检查content是否为URL，并创建相应的DOM元素
@@ -135,9 +133,9 @@
           resultsBody.innerHTML = '';
           // 将搜索结果显示在表格中
           results.forEach(result => {
-            const row = document.createElement('tr');
-            const titleCell = document.createElement('td');
-            const contentCell = document.createElement('td');
+            const row = document.createElement('li');
+            const titleCell = document.createElement('li');
+            const contentCell = document.createElement('span');
             titleCell.textContent = result.title;
             //contentCell.textContent = result.content;
                 // 检查content是否为URL，并创建相应的DOM元素
