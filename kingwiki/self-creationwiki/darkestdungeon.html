@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="home page.css">
     <style>
         body{
-          background-image: url(背景.jpg);
+          width: 100%;
+          background-color: rgb(40, 40, 40);
         }
         .nav{
           background-color: slategrey;
@@ -41,6 +42,38 @@
         .slt{
           color: white;
           }
+        .wenben{
+          margin: auto;
+          padding: 36px;
+          width: 100%;
+          color: rgb(209, 209, 209);
+          background-color: rgba(35, 35, 35, 0.7);
+        }
+        .wenben h3,h4{
+          width: 240px;
+          background-color: rgba(93, 91, 91, 0.4);
+        }
+        .wenben u{
+          font-size: 18px;
+          width: 240px;
+          background-color: rgba(93, 91, 91, 0.4);
+        }
+        .font-green{
+          color: chartreuse;
+          background-color: rgba(95, 160, 125, 0.511);
+        }
+        .font-yellow{
+          color: rgb(238, 255, 0);
+          background-color: rgba(160, 158, 95, 0.511);
+        }
+        .font-black{
+          color: rgb(137, 137, 137);
+          background-color: rgba(0, 0, 0, 0.511);
+        }
+        .font-red{
+          color: rgb(207, 65, 65);
+          background-color: rgba(130, 37, 37, 0.511);
+        }
     </style>
 </head>
 <body>
@@ -72,20 +105,21 @@
       </div>
     </div>
 
-    <div>
+    <div class="wenben">
       <h3>观看指南</h3>
       <p>
-        如果你想看得懂且看得爽我的新自创系列！我建议你在阅读其他之前阅读这个！
-        <br>所有作战关卡的第一个敌人都为复杂版，会写清楚所有该写的，如果你看得懂第一个敌人，你大概就可以看懂后续的简化版敌人。
+        <u>如果你想看得懂且看得爽我的新自创系列！我建议你在阅读其他之前阅读这个！</u>
+        <br>所有作战关卡的第一个敌人都为复杂版，会写清楚所有该写的，
+        <br>如果你看得懂第一个敌人，你大概就可以看懂后续的简化版敌人。
       </p>
-      <h4>1:类型</h4>
+      <h4>类型</h4>
       <p>
-        如邪祟、野兽、猪人
+        如<span class="font-yellow">邪祟、野兽、猪人</span>
       <br>-是敌人的所属种类，部分友方单位可以根据敌人类型获得加成 或 给予不同的附加效果。
       </p>
-      <h4>2:压力机制(全新)</h4>
+      <h4>压力机制(全新)</h4>
       <p>
-        -每个友方单位都拥有压力值，初始为200(100)，每到压力量总和的一半都将进行一次压力判定，该过程名为爆压。
+        -每个友方单位都拥有压力值，<span class="font-green">初始为200(100)</span>，每到压力量总和的一半都将进行一次压力判定，<span class="font-yellow">该过程名为爆压</span>。
         <p>
           <b>-压力的简化文本表现？</b>
           <p>
@@ -100,12 +134,12 @@
           <p>
             <u>-如何减压？</u>
             <br>-部分英雄和部分防御塔的特性可以进行有效减压。
-            <br>-当友方单位长期不接敌时，压力会在一段时间内缓慢恢复(3%/s)，此效果被称为回压。
+            <br>-当友方单位长期不接敌时，压力会在一段时间内<span class="font-green">缓慢恢复(3%/s)</span>，<span class="font-yellow">此效果被称为回压</span>。
           </p>
           <p>
             <u>-兵营的压力量达到顶峰？</u>
             <br>-若拥有压力附着的正面效果，则消除此效果，重新开始增减压力值。
-            <br>-若拥有压力附着的负面效果，该友方单位将受到极其严重的心力衰竭！将立即扣除90%的生命，获得持续极久的虚弱。
+            <br>-若拥有压力附着的负面效果，该友方单位将受到极其严重的心力衰竭！将立即<span class="font-red">扣除90%的生命</span>，获得持续极久的虚弱。
           </p>
           <p>
             <u>-防御塔的压力量达到顶峰？</u>
@@ -116,7 +150,7 @@
       </p>
       <h4>3:压力伤害</h4>
       <p>
-        -压力伤害是直接影响压力值的伤害，一般表现为扣除目标的压力值，令其爆压或心力衰竭。
+        -<span class="font-black">压力伤害</span>是直接影响压力值的伤害，一般表现为扣除目标的压力值，令其爆压或心力衰竭。
       </p>
       <h4>4:持续伤害效果(DOT)</h4>
       <p>
@@ -137,10 +171,10 @@
         </p>
         <p>
           <u>-目前已出现过的DOT效果。</u>
-          <br>·恐惧: 每秒受到压力伤害。
-          <br>·灼烧: 每秒受到炮击伤害。
-          <br>·腐蚀: 每秒受到法术伤害。
-          <br>·流血: 每秒受到物理伤害。
+          <br><span  class="font-black">·恐惧: 每秒受到压力伤害。</span>
+          <br><span  class="font-yellow">·灼烧: 每秒受到炮击伤害。</span>
+          <br><span class="font-green">·腐蚀: 每秒受到法术伤害。</span>
+          <br><span class="font-red">·流血: 每秒受到物理伤害。</span>
         </p>
         <p>
           <u>-目前已出现过的压力条件:</u>
@@ -160,7 +194,7 @@
               <br>
               <i style="font-size: small;">身披绿色头蓬的土匪火枪手，从他们的营地溃退逃亡至此，会利用手上的老式火枪向敌人泼洒廉价弹片。</i>
               <br>
-              <a href="/kingwiki/darkestdungeon/bandit-firelock.html">https://mersalia-kelin.github.io/kingwiki/darkestdungeon/bandit-firelock.html</a>
+              <a href="/kingwiki/darkestdungeon/bandit-firelock.html" style="font-size: small;">https://mersalia-kelin.github.io/kingwiki/darkestdungeon/bandit-firelock.html</a>
             </p>
           </li>
           </ul>
@@ -172,7 +206,7 @@
               <br>
               <i style="font-size: small;">吭哧吭哧...身上满是钢铁防护着的十字军，相信着赤忱的内心与手中的长剑。</i>
               <br>
-              <a href="/kingwiki/darkestdungeon/Reynauld.html">https://mersalia-kelin.github.io/kingwiki/darkestdungeon/Reynauld.html</a>
+              <a href="/kingwiki/darkestdungeon/Reynauld.html" style="font-size: small;">https://mersalia-kelin.github.io/kingwiki/darkestdungeon/Reynauld.html</a>
             </p>
             </li>
           </ul>
