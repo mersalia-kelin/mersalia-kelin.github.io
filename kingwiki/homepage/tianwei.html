@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王国保卫战同人自创维基|天未的主页</title>
+
+    <style>
+        body{
+            background-color: rgba(225, 225, 225, 0.7);
+        }
+        .funct{
+            position: fixed;
+            background-color: rgba(255, 255, 255, 0.6);
+            border: 1px solid gray;
+            height: 60px;
+            width: 100%;
+            z-index: 100;
+        }
+        .funct:hover{
+            background-color: white;
+        }
+        .back{
+            width: 60px; 
+            height: 60px; 
+            border: 0;
+            background-color: rgba(225, 225, 225, 0);
+        }
+        .back:hover{
+            width: 64px;
+            height: 64px;
+            left: calc(0 - 2px);
+            top: calc(0 - 2px);
+        }
+        .cover{
+            background-color: black;
+            height: 300px;
+        }
+        .head{
+            /* background-color: hwb(from color h w b); */
+            background-color: white;
+            width: 100px;
+            height: 100px;
+            position: relative;
+            left: calc(50% - 50px);
+            top: 100px;
+            display: grid;
+            place-items: center;
+            color: white;
+        }
+        .resume{
+            padding-left: 20px;
+            background-color: white;
+        }
+        .before{
+            width: 275px;
+            height: 150px;
+            background-color: rgba(225, 225, 225, 0.7);
+            /* float: left; */
+            padding-left: 60px;
+            padding-right: 60px;
+            border: 3px double;
+        }
+        .before:hover{
+            border: 4px solid;
+        }
+        .z{
+            font-size: 10px;
+            color: lightslategrey;
+            line-height: 1;
+        }
+        .choose{
+            padding: 0;
+            list-style: none;
+        }
+        .choose li{
+            display: inline;
+            margin: 10px;
+            /* border: 1px solid;
+            padding-left: 50px;
+            padding-right: 50px; */
+        }
+        #expand1, #expand2, #expand3{
+            width: 100px;
+            height: 30px;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="funct">
+        <div>
+        <button onclick="redirectToPage()" class="back"><img src="home.png" alt="图片加载失败" width="100%" height="100%" style="opacity: 0.6;"></button>
+        </div>
+    </div>
+
+    <script>
+        function redirectToPage(){
+            window.location.href = 'https://mersalia-kelin.github.io/kingwiki/self-creationwiki.html';
+        }
+    </script>
+
+    <div class="cover">
+        <div class="head">
+            <img src="天未.jpg" alt="暂无图片" width="100%" height="100%">
+            <span>
+                <p>天未</p>
+            </span>
+        </div>
+    </div>
+
+    <div class="resume">
+        <h3>个人简介</h3>
+        <p>神秘用户，暂无简介哦~</p>
+    </div>
+
+    <hr>
+
+    <div class="resume">
+    <ul class="choose">
+        <span>作品类型</span>
+        <li>
+            <select name="expand1" id="expand1">
+                <option value="all">全部</option>
+                <option value="chn">改版作品</option>
+                <option value="txt">文创作品</option>
+            </select>
+        </li>
+        <span>标签类型</span>
+        <li>
+            <select name="expand2" id="expand2">
+                <option value="all">全部</option>
+                <option value="tower">防御塔</option>
+                <option value="hero">英雄</option>
+                <option value="enemy">敌人</option>
+                <option value="level">关卡</option>
+            </select>
+        </li>
+        <span>作品系列</span>
+        <li>
+            <select name="expand3" id="expand3">
+                <option value="all">全部</option>
+            </select>
+        </li>
+    </ul>
+    </div>
+    <hr>
+    <div class="resume">
+        <div class="shop-item txt hero">
+            <span>
+                <a href="/kingwiki/all/blood.html" style="font-size: 30px;" target="_blank">嗜血鬼--布拉德(战士)</a>
+                <p>生活在血色山谷中的异类，虽然是人类外表，但性格疯狂，喜欢吸食血液。</p>
+                <p><a href="/kingwiki/all/blood.html">https://mersalia-kelin.github.io/kingwiki/all/blood.html</a></p>
+            </span>
+            <hr>
+        </div>
+    </div>
+
+    <script>
+        // 获取所有的下拉列表
+        const selects = document.querySelectorAll('.choose select');
+        // 获取所有内容块
+        const shopItems = document.querySelectorAll('.shop-item');
+        function updateDisplay() {
+        // 存储选中的类名（不包括"all"）
+        const selectedClasses = [];
+        let hasSelection = false; // 标记是否有非"all"的选项被选
+ 
+        // 遍历下拉列表，收集选中的类名
+        selects.forEach(select => {
+            const value = select.value;
+            if (value !== 'all') {
+                hasSelection = true; // 标记有非"all"的选项被选中
+                selectedClasses.push(value); // 添加选中的类名到数组
+            }
+        });
+            
+         // 遍历内容块，根据选中的类名更新显示状态
+        shopItems.forEach(item => {
+            // 如果没有选择任何非"all"的选项，则显示所有内容块
+            if (!hasSelection) {
+                item.style.display = 'block';
+            } else {
+                // 否则，只有当内容块包含所有选中的类名时才显示它
+                const shouldShow = selectedClasses.every(cls => item.classList.contains(cls));
+                item.style.display = shouldShow ? 'block' : 'none';
+            }
+        });
+    }
+ 
+    // 为每个下拉列表添加事件监听器
+    selects.forEach(select => {
+        select.addEventListener('change', updateDisplay);
+    });
+ 
+    // 初始化显示状态（可选，但推荐在页面加载时调用一次以确保正确的初始状态）
+    updateDisplay();
+    </script>
+
+    <div>
+        <center>
+            <p>已经到底了哦~</p>
+        </center>
+    </div>
+
+</body>
+</html>
