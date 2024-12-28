@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王国保卫战同人自创维基|自创展示网站|王国保卫战：溪环</title>
+    <link rel="stylesheet" href="home page.css">
+    <style>
+        body{
+          width: 100%;
+        }
+        .nav{
+          background-color: slategrey;
+        }
+        label{
+          color: gray;
+        }
+        .content{
+          background-color: darkturquoise;
+          opacity: 0.8;
+          background-size: cover;
+          color: mintcream;
+          border: 3px dotted white;
+        }
+        .end{
+          background-color: slategrey;
+          height: 100px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .slt{
+          color: white;
+          }
+        .text h3{
+          background-color: rgba(0, 206, 209, 0.4);
+          margin: 0;
+          border-bottom: 1px solid;
+          width: 150px;
+        }
+        .text h4{
+          background-color: rgba(0, 206, 209, 0.4);
+          margin: 0;
+          border-bottom: 1px solid;
+          width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+      <div style="display: inline-block;">
+        <button>
+          首页
+        </button>
+        <div style="display: inline-block;">
+          <!-- <a href="#" target="_blank" id="holder">主要页面</a> 
+          <a href="#" target="_blank" id="holder">站点工具</a>  -->
+          <a href="#" target="_blank" id="holder">随机页面</a> 
+        </div>
+      </div>
+      <div style="display: inline-block; position: absolute; right: 10px;">
+        <form id="IntersearchForm" action="/kingwiki/search" method="get" target="_blank">
+          <label class="slt">搜索</label>
+          <input id="IntersearchInput" name="key" type="text" placeholder="在这里发现更多宇宙" maxlength="30">
+          <input type="submit" value="🔍">
+        </form>
+      </div>
+      <hr>
+      </div>
+      <div class="content">
+        <center>
+        <h2 style="font-size: 26px;">王国保卫战：溪环</h2>
+        <h2 style="font-size: 20px;">KingdomRush: Riffer</h2>
+        </center>
+        <hr>
+      </div>
+    </div>
+
+    <div class="text">
+      <div>
+        <div style="height: 25px; width: 5px; background-color: black; display: inline-block;"></div>
+        <h1 style="display: inline-block;">战斗机制介绍</h1>
+      </div>
+      <h3>玩家等级</h3>
+      <p>
+        通过击杀敌人、提前开启波次和金币直接升级，给予玩家经验。
+        <br>玩家达到一定等级后，解锁更多玩家功能，如解锁“战时策略卡片”。
+      </p>
+      <h3>战争迷雾</h3>
+      <p>
+        开局时，除了玩家大本营周围的区域全都有战争迷雾，玩家无法在迷雾中发现敌人，也不可在迷雾中建造防御塔。
+        <br>通过建造防御塔或移动守军探索后探明地图，但防御塔拆除或是守军离开后迷雾会重现。
+      </p>
+      <h3>建造防御塔</h3>
+      <p>
+        本自创取消了塔位限制，只要在固定范围内，可以按照玩家需求拜访防御塔。
+        <br>但是，玩家可建造的防御塔数量有上限，到达上限后不可再建造防御塔。
+        <br>玩家等级提升后，能够增加防御塔上限。
+      </p>
+      <h3>防御塔卡槽</h3>
+      <p>
+        每个防御塔都会拥有固定的卡槽位放置“战术部队卡片”或“扩展道具卡片”
+        <br>正常情况下，1 级防御塔拥有0个槽位；2级有1个，3级拥有2个。以此类推，每增加1级，提升2个卡槽。至多提升至6级，有5个卡槽。
+        <i><h4>-战术部队</h4></i>
+        <p>
+          在第一波次开局前，玩家屏幕下方会额外增加8个张卡片，每张卡片对应一支额外的守军部队。
+          <br>玩家可以根据卡片的花色，拖动到对应的防御塔上，便可增加防御塔的攻击炮口或新的守军。
+          <br>玩家等级提升后，会增加新的卡片，当波次结束后，便可进行摆放。此外，击杀第三方势力后，也会有几率掉落特殊卡片。
+        </p>
+        <i><h4>-扩展道具</h4></i>
+        <p>
+          通过第三方势力掉落或者大本营购买获得。装备道具的防御塔将会获得基础数值提升或是额外的被动技能，或是一次性手动技能。
+        </p>
+      </p>
+      <h3>传奇技能</h3>
+      <p>
+        防御塔升级到 4 级后，解锁自带的手动技能。释放技能后，防御塔会得到短暂的加强，或是释放一次强力的效果。
+      </p>
+      <h3>超级武器</h3>
+      <p>
+        代替原版的战术技能和英雄。玩家可以建造心仪的超级武器，在场上生成新的英雄或得到新的“战时策略卡片”（即手动技能）。
+        <br>正常情况下，每场限制最多3个超级武器。玩家需要根据自身需求平衡英雄和战术技能。
+      </p>
+      <h3>副戍建筑</h3>
+      <p>
+        部署副戍建筑后，防御塔能获得额外的能力。
+        <br>副戍建筑是可以建立在道路上的特殊建筑，玩家可以选择在目标地点建造需要的副戍建筑，再安排对应类型的防御塔与之绑定，使防御塔更大地发挥自身能力。
+        <br>例如，通过建造要塞，并绑定一个兵营，可以使兵营的守军享受额外的集结点范围，但复活后仍然在兵营复活。
+        <br>建造简易发射架，炮塔可以利用其他防御塔的位置进行攻击，但弹药量仅为 6 枚，需要保证炮塔到发射架之间运输线的安全。
+      </p>
+    </div>
+
+    <div>
+      <br>
+      <ul id="resultsTable" style="background-color: rgba(128, 128, 128, 0.7);">
+          <li style="background-color: darkgray; font-size: 25px; color: darkblue;">防御塔</li>
+          <ul id="resultsBody"  style="background-color: burlywood; font-size: 20px; margin: 20px;">
+          </ul>
+
+          <li style="background-color: darkgray; font-size: 25px; color: darkblue;">英雄</li>
+          <ul id="resultsBody"  style="background-color: burlywood; font-size: 20px; margin: 20px;">
+          </ul>
+
+          <li style="background-color: darkgray; font-size: 25px; color: darkblue;">敌人</li>
+          <ul id="resultsBody"  style="background-color: burlywood; font-size: 20px; margin: 20px;">
+          </ul>
+
+          <li style="background-color: darkgray; font-size: 25px; color: darkblue;">关卡</li>
+          <ul id="resultsBody"  style="background-color: burlywood; font-size: 20px; margin: 20px;">
+          </ul>
+        </ul>
+      </ul>    
+    </div>
+
+    <div class="end">
+        <span>
+          <p>友情链接： 
+          <a href="https://kingdomrush.huijiwiki.com/wiki/%E9%A6%96%E9%A1%B5" target="_blank">王国保卫战中文Wiki</a>
+          </p>
+        </span>
+      </div>
+</body>
+</html>
