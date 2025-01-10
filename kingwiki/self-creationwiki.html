@@ -15,6 +15,7 @@
         }
         * {
         font-family: 'Times New Roman', Times, serif;
+        box-sizing: border-box;
         }
         .search{
             margin-top: 30px; 
@@ -85,13 +86,11 @@
             display: block;
         }
 
-        #bod{
+        .bod_bottom{
             display: flex;
             flex-wrap: nowrap;
-            height: 100vh;
         }
         .left{
-            background-color: white;
             border-top: 4px solid #575757;
             border-left: 4px solid #575757;
             flex: 2;
@@ -99,14 +98,12 @@
             border-bottom-left-radius: 15px;
         }
         .middle{
-            background-color: white;
             border-top: 4px solid #575757;
             /* border-left: 4px solid #575757;
             border-right: 4px solid #575757; */
             flex: 6;
         }
         .right{
-            background-color: white;
             border-top: 4px solid #575757;
             border-right: 4px solid #575757;
             flex: 1;
@@ -136,8 +133,11 @@
         }
         .list li{
             border-bottom: 1px solid white;
-            margin-right: 50px;
-            margin-top: 20px;
+            margin-right: 20px;
+            margin-top: 20px; 
+        }
+        .middle .list{
+            background-color: rgba(0, 0, 0, 0);
         }
         .context{
             width: 250px;
@@ -166,7 +166,7 @@
         }
         .in-text{
             color: white;
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: rgba(0, 0, 0, 0.25);
             display: block;
             font-size: 16px;
             height: 20px;
@@ -187,9 +187,25 @@
         .end{
         background-color: #eaeaea;
         height: 100px;
-        margin-top: 20px;
+        margin-top: 30px;
         padding-top: 20px;
         line-height: 5px;
+        }
+
+        .maskbg{
+            position: absolute;
+            top: 220px;
+            left: 0;
+            z-index: -1;
+            width: 100%;
+            height: 118vh;
+            /* background: url(https://p1.music.126.net/2OyyivDKfscFi1cpcYW_MQ==/109951169025204258.jpg?param=34y34)
+            no-repeat center center; */
+            background-size: cover;
+            background-attachment: fixed;
+            /* 模糊 */
+            filter: blur(50px);
+            transition: all 1s;
         }
     </style>
 </head>
@@ -223,6 +239,7 @@
                     <li><a href="/kingwiki/self-creationwiki/riffer.html" target="_self" class="x">王国保卫战：溪环</a></li>
                     <li><a href="/kingwiki/self-creationwiki/darkestdungeon.html" target="_self" class="x">Kingdom Rush & Darkest Dungeon</a></li>
                     <li><a href="/kingwiki/self-creationwiki/Dorothea.html" target="_self" class="x">王国保卫战：铎尔希亚</a></li>
+                    <li><a href="/kingwiki/self-creationwiki/Warhammer.html" target="_self" class="x">王国保卫战：战锤史诗</a></li>
                 </ul>
             </li>
             <li class="dropdown">
@@ -237,86 +254,105 @@
         </ul>
     </nav>
 
-    <div>
-        <hr>
-        <h2 style="font-size: 26px;">王国保卫战同人自创维基</h2>
-        <i>欢迎加入王国保卫战同人自创维基交流群——1169576263</i>
-        <hr>
-    </div>
-
     <div id="bod">
-        <div class="left">
-            <h2 class="title">最新动态</h2>
-            <div class="list">
-                <ul style="list-style-type: decimal;">
-                    <li><a href="/kingwiki/Dorothea/AlchemyWorkshop.html">4级炮塔 炼金工坊</a></li>
-                    <li><a href="/kingwiki/Dorothea/GaludanImmolator.html">迦鲁丹献祭者</a></li>
-                    <li><a href="/kingwiki/Dorothea/GiantDragon.html">小BOSS-巨龙</a></li>
-                    <li><a href="/kingwiki/Dorothea/DragonAssassin.html">龙裔刺客</a></li>
-                    <li><a href="/kingwiki/Dorothea/Pheretima.html">地龙</a></li>
-                    <li><a href="/kingwiki/Dorothea/Rilca.html">兽人冠军-利尔卡（Rilca）</a></li>
-                    <li><a href="/kingwiki/Dorothea/FurySpiritMage.html">4级法塔 怒灵法师</a></li>
-                    <li><a href="/kingwiki/Dorothea/Gordon.html">小BOSS-迦鲁丹单于哥瑞丹</a></li>
-                    <li><a href="/kingwiki/Dorothea/GaludaDragonJiashi.html">迦鲁丹龙甲士</a></li>
-                    <li><a href="/kingwiki/Dorothea/GaludanDragoon.html">迦鲁丹龙骑兵</a></li>
-                </ul>
-            </div>
+        <div>
+            <hr>
+            <h2 style="font-size: 26px;">王国保卫战同人自创维基</h2>
+            <i>欢迎加入王国保卫战同人自创维基交流群——1169576263</i>
+            <hr>
         </div>
-
-        <div class="middle">
-            <h2 class="title">系列作品</h2>   
-            <div class="list" style="width: 95%; background-color: white;">     
-                <a href="/kingwiki/self-creationwiki/Dorothea.html" target="_blank">
-                    <button class="context" id="Dorothea" 
-                    style="background-image: url(铎尔希亚.png); ">
-                        <b class="in-text">王国保卫战：铎尔希亚</b>
-                    </button>
-                </a>
-                <a href="/kingwiki/self-creationwiki/darkestdungeon.html" target="_blank">
-                    <button class="context" id="darkestdungeon" 
-                    style="background-image: url(1.jpg); ">
-                        <b class="in-text">Kingdom Rush & Darkest Dungeon</b>
-                    </button>
-                </a>
-                <a href="/kingwiki/self-creationwiki/hegemony.html" target="_blank">
-                    <button class="context" id="hegemony" 
-                    style="background-image: url(hegemony.jpg); ">
-                        <b class="in-text">王国保卫战：清统</b>
-                    </button>
-                </a>
-                <button class="context"></button>
-                <button class="context"></button>
-                <button class="context"></button>
-                <button class="context"></button>
-                <button class="context"></button>
-                <button class="context"></button>
-                <button class="context"></button>
-                <button class="context"></button>
-                <button class="context"></button>
+        <div class="bod_bottom">
+            <div class="left">
+                <h2 class="title">最新动态</h2>
+                <div class="list">
+                    <ul style="list-style-type: decimal;">
+                        <li><a href="/kingwiki/Warhammer/Galdehan.html">沙漠苏丹-加尔德罕</a></li>
+                        <li><a href="/kingwiki/Warhammer/Cameleer.html">骆驼骑兵</a></li>
+                        <li><a href="/kingwiki/Warhammer/Berserker.html">狂战士</a></li>
+                        <li><a href="/kingwiki/Warhammer/Mummy.html">木乃伊</a></li>
+                        <li><a href="/kingwiki/Warhammer/DesertGhost.html">沙漠幽魂</a></li>
+                        <li><a href="/kingwiki/Warhammer/DesertWarrior.html">沙漠勇士</a></li>
+                        <li><a href="/kingwiki/Warhammer/Vulture.html">兀鹫</a></li>
+                        <li><a href="/kingwiki/Warhammer/DesertLogbowman.html">沙漠长弓手</a></li>
+                        <li><a href="/kingwiki/Warhammer/DesertFighter.html">沙漠战士</a></li>
+                        <li><a href="/kingwiki/Warhammer/WarHound.html">战争猎犬</a></li>
+                        <li><a href="/kingwiki/Dorothea/AlchemyWorkshop.html">4级炮塔 炼金工坊</a></li>
+                        <li><a href="/kingwiki/Dorothea/GaludanImmolator.html">迦鲁丹献祭者</a></li>
+                        <li><a href="/kingwiki/Dorothea/GiantDragon.html">小BOSS-巨龙</a></li>
+                        <li><a href="/kingwiki/Dorothea/DragonAssassin.html">龙裔刺客</a></li>
+                        <li><a href="/kingwiki/Dorothea/Pheretima.html">地龙</a></li>
+                        <li><a href="/kingwiki/Dorothea/Rilca.html">兽人冠军-利尔卡（Rilca）</a></li>
+                        <li><a href="/kingwiki/Dorothea/FurySpiritMage.html">4级法塔 怒灵法师</a></li>
+                        <li><a href="/kingwiki/Dorothea/Gordon.html">小BOSS-迦鲁丹单于哥瑞丹</a></li>
+                        <li><a href="/kingwiki/Dorothea/GaludaDragonJiashi.html">迦鲁丹龙甲士</a></li>
+                        <li><a href="/kingwiki/Dorothea/GaludanDragoon.html">迦鲁丹龙骑兵</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    
-        <div class="right">
-            <h2 class="title">目录</h2>
-            <p style="font-size: 10px; text-align: center;">点击定位到系列作品位置</p>
-            <div class="list">
-                <ul class="keyword">
-                    <li>
-                        <a href="#hegemony">
-                            王国保卫战：清统
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#darkestdungeon">
-                            Kingdom Rush & Darkest Dungeon
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#Dorothea">
-                            王国保卫战：铎尔希亚
-                        </a>
-                    </li>
-                </ul>
+            <div class="middle">
+                <h2 class="title">系列作品</h2>   
+                <div class="list" style="width: 95%;">   
+                    <a href="/kingwiki/self-creationwiki/Warhammer.html" target="_blank">
+                        <button class="context" id="Dorothea" 
+                        style="background-image: url(战锤史诗.png); ">
+                            <b class="in-text">王国保卫战：战锤史诗</b>
+                        </button>
+                    </a>  
+                    <a href="/kingwiki/self-creationwiki/Dorothea.html" target="_blank">
+                        <button class="context" id="Dorothea" 
+                        style="background-image: url(铎尔希亚.png); ">
+                            <b class="in-text">王国保卫战：铎尔希亚</b>
+                        </button>
+                    </a>
+                    <a href="/kingwiki/self-creationwiki/darkestdungeon.html" target="_blank">
+                        <button class="context" id="darkestdungeon" 
+                        style="background-image: url(1.jpg); ">
+                            <b class="in-text">Kingdom Rush & Darkest Dungeon</b>
+                        </button>
+                    </a>
+                    <a href="/kingwiki/self-creationwiki/hegemony.html" target="_blank">
+                        <button class="context" id="hegemony" 
+                        style="background-image: url(hegemony.jpg); ">
+                            <b class="in-text">王国保卫战：清统</b>
+                        </button>
+                    </a>
+                    <button class="context"></button>
+                    <button class="context"></button>
+                    <button class="context"></button>
+                    <button class="context"></button>
+                    <button class="context"></button>
+                    <button class="context"></button>
+                    <button class="context"></button>
+                    <button class="context"></button>
+                </div>
+            </div>
+            <div class="right">
+                <h2 class="title">目录</h2>
+                <p style="font-size: 10px; text-align: center; margin-bottom: 2px;">点击定位到系列作品位置</p>
+                <div class="list">
+                    <ul class="keyword">
+                        <li>
+                            <a href="#hegemony">
+                                王国保卫战：清统
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#darkestdungeon">
+                                Kingdom Rush & Darkest Dungeon
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#Dorothea">
+                                王国保卫战：铎尔希亚
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#Warhammer">
+                                王国保卫战：战锤史诗
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -332,5 +368,8 @@
             <a href="https://tieba.baidu.com/f?ie=utf-8&kw=%E7%9A%87%E5%AE%B6%E5%AE%88%E5%8D%AB%E5%86%9B" target="_blank">皇家守卫军吧</a>
             </p>
       </div>
+
+    <!-- 页面背景 -->
+    <div class="maskbg"></div>
 </body>
 </html>
