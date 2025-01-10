@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王国保卫战同人自创维基|自创展示网站|王国保卫战：战锤史诗</title>
+    <link rel="stylesheet" href="./css style/home page.css">
+    <link rel="shortcut icon" type="/wikipedia.ico" href="../wikipedia.ico">
+
+    <style>
+        html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%; 
+        }
+        * {
+        font-family: 'Times New Roman', Times, serif;
+        box-sizing: border-box;
+        }
+        .search{
+            margin-top: 30px; 
+            margin-right: 30px; 
+            float: right;
+                    input{
+                        &:first-child{
+                            box-sizing: border-box;
+                            width: 270px;
+                            height: 32px;
+                            padding: 0 4px;
+                            border: 3px solid #333;
+                        }
+                        &:last-child{
+                            width: 48px;
+                            height: 32px;
+                            color: #fff;
+                            background-color: #333;
+                            border: none;
+                        }
+                        &::-webkit-input-placeholder{
+                            color: #333;
+                        }
+                    }
+        }
+
+        nav {
+            background-color: #333;
+        }  
+        .menu {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .menu li{
+            float: inline-start;
+        }
+        .menu li a, .submenu li a ,.menu li span{
+            display: block;
+            color: white;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .menu li a:hover,.menu li span:hover, .dropdown:hover .dropbtn {
+            background-color: #111;
+        }
+
+        .end{
+        background-color: #eaeaea;
+        height: 100px;
+        margin-top: -19px;
+        padding-top: 20px;
+        line-height: 5px;
+        }
+
+        .maskbg{
+            position: absolute;
+            top: 220px;
+            left: 0;
+            z-index: -1;
+            width: 100%;
+            height: 118vh;
+            background: url(战锤史诗.png)
+            no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+            /* 模糊 */
+            filter: blur(2px);
+            transition: all 1s;
+        }
+
+        .content{
+          background-color: sienna;
+          opacity: 0.8;
+          background-size: cover;
+          color: mintcream;
+          border: 3px solid silver;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .slt{
+          color: white;
+          }
+        .abstract{
+            background-color: rgba(160, 81, 45, 0.8);
+          border: 3px solid silver;
+        }
+        .world{
+          margin-inline: 20px; 
+          text-indent: 32px; 
+          color: mintcream;
+        }
+        #resultsBody li{
+          padding-top: 16px;
+          padding-bottom: 16px;
+        }
+        #resultsBody li:hover{
+          background-color: rgb(186, 149, 101);
+        }
+        #resultsBody li a{
+          color: #111;
+          display: block;
+          text-decoration: none;
+        }
+        #resultsBody li i{
+          font-size: small;
+        }
+    </style>
+</head>
+<body>
+    <div style="background-color: #eaeaea; overflow: hidden;">
+        <header>
+            <h1 style="float: left;">
+                <a href="#">
+                    <img src="../Rushlogo.png" alt="图片无法显示" style="width: 175px; margin: 0 0 0 45px;">
+                </a>
+            </h1>
+            <div class="search">
+                <form  id="IntersearchForm" action="/kingwiki/search" method="get" target="_blank">
+                    <input id="IntersearchInput" name="keyword" type="text" placeholder="在WIKI中搜索" maxlength="30">
+                    <input type="submit" id="IntersearchInput" value="🔍">
+                </form>
+            </div>
+        </header>
+    </div>
+    
+    <nav>
+      <ul class="menu">
+          <li><a href="/kingwiki/self-creationwiki.html">首页</a></li>
+          <li><a href="/kingwiki/self-creationwiki/Warhammer.html">自创首页</a></li>
+      </ul>
+  </nav>
+
+    <div class="content">
+        <center>
+          <h2 style="font-size: 26px;">王国保卫战：战锤史诗 </h2>
+        </center>
+        <hr>
+      </div>
+
+      <br>
+
+      <div class="abstract">
+        <div class="world">
+          <p>本篇故事发生的时间线，是初代之后、二代之前。</p>
+            <p>对卫兹南反击战结束后，战锤要塞百废待兴，而沙漠游牧民却又趁机会作乱，试图染指利尼维亚；为了稳定南方，王国决定派兵去解决问题，此时一个浑身铠甲、戴着红色围巾的少年来到战锤要塞的废墟，声称他可以帮助王国解决沙漠的问题；而在遥远的瓦拉杜勒，一场针对王国的阴谋则在悄然酝酿着……</p>
+        </div>
+        <hr>
+      </div>
+  
+      <div>
+        <br>
+        <ul id="resultsTable" style="background-color: rgba(128, 128, 128, 0.7);">
+            <li style="background-color: darkgray; font-size: 25px; color: darkblue;">防御塔</li>
+            <ul id="resultsBody"  style="background-color: burlywood; font-size: 20px; margin: 20px;">
+              <!-- <li>
+                <p>1级箭塔 弓兵塔
+                <br>
+                <i  style="font-size: small;">地方兵团临时组建的弓手，有总比没有强。</i>
+                <br>
+                <a href="/kingwiki/Dorothea/DorotheaArcher.html"  style="font-size: small;">https://mersalia-kelin.github.io/kingwiki/Dorothea/DorotheaArcher.html</a>
+              </p>
+              </li> -->
+            </ul>
+  
+            <li style="background-color: darkgray; font-size: 25px; color: darkblue;">英雄</li>
+            <ul id="resultsBody"  style="background-color: burlywood; font-size: 20px; margin: 20px;">
+              <!-- <li>
+                <p>佣兵战士-格拉沃（Gravo）
+                <br>
+                <i  style="font-size: small;">铎尔希亚王国最负盛名的佣兵战士，以强大的力量与精湛的剑术闻名，相传他以双刀战胜过精灵剑客。</i>
+                <br>
+                <a href="/kingwiki/Dorothea/Gravo.html"  style="font-size: small;">https://mersalia-kelin.github.io/kingwiki/Dorothea/Gravo.html</a>
+              </p>
+              </li> -->
+            </ul>
+  
+            <li style="background-color: darkgray; font-size: 25px; color: darkblue;">敌人</li>
+            <ul id="resultsBody"  style="background-color: burlywood; font-size: 20px; margin: 20px;">
+              <li>
+                <a href="/kingwiki/Warhammer/DesertBandits.html">沙漠匪徒
+                <br>
+                <i  style="font-size: small;">这些匪徒是低劣的盗贼，享受着劫掠的快感</i>
+                </a>
+              </li>
+              <li>
+                <a href="/kingwiki/Warhammer/Mercenary.html">雇佣兵
+                <br>
+                <i  style="font-size: small;">游荡于沙漠中的佣兵战士，拥有精良的铠甲</i>
+                </a>
+              </li>
+              <li>
+                <a href="/kingwiki/Warhammer/DesertHound.html">沙漠猎犬
+                <br>
+                <i  style="font-size: small;">迅速且狡诈的凶残生物，能灵活闪避攻击</i>
+                </aa>
+              </li>
+              <li>
+                <a href="/kingwiki/Warhammer/WarHound.html">战争猎犬
+                <br>
+                <i  style="font-size: small;">迅捷且狡猾的野兽，嗜血的它往往能成为士兵与法师的最大困扰</i>
+                </a>
+              </li>
+              </li>
+              <li>
+                <a href="/kingwiki/Warhammer/DesertFighter.html">沙漠战士
+                <br>
+                <i  style="font-size: small;">沙漠中的蛮子，铠甲十分精良，可以轻松突破防线</i>
+                </a>
+              </li>
+              <li>
+                <a href="/kingwiki/Warhammer/DesertLogbowman.html">沙漠长弓手
+                <br>
+                <i>来自沙漠的长弓手，擅长弯弓射箭，对士兵造成严重威胁</i>
+                </a>
+              </li>
+              <li>
+                <a href="/kingwiki/Warhammer/Vulture.html">
+                  兀鹫
+                  <br>
+                <i>原本是沙漠中的食腐者，经过游牧民的训练成为了可怕猎手</i>
+                </a>
+              </li>
+              <li>
+                <a href="/kingwiki/Warhammer/DesertWarrior.html">
+                  沙漠勇士
+                <br>
+                <i>拥有最完美的战技的战士。只有真正的战士才能在冷静的状态下狂化</i>
+                </a>
+              </li>
+              <li>
+                <a href="/kingwiki/Warhammer/DesertGhost.html">
+                  沙漠幽魂
+                <br>
+                <i>通常作为黑暗军队的统率，所到之处尽是死亡与腐败</i>
+                </a>
+              </li>
+              <li>
+                <a href="/kingwiki/Warhammer/Mummy.html">
+                  木乃伊
+                <br>
+                <i>曾是伟大勇士的尸体，又再一次活了过来</i>
+                </a>
+              </li>
+              <li>
+                <a href="/kingwiki/Warhammer/Berserker.html">
+                  狂战士
+                  <br>
+                  <i>攻击如狂风般迅猛，是为狂战士</i>
+                </a>
+              </li>
+              <li>
+                <a href="/kingwiki/Warhammer/Cameleer.html">
+                  骆驼骑兵
+                  <br>
+                  <i>骆驼是沙漠中最常见的驮畜，在沙漠中它甚至比战马还要强大许多</i>
+                </a>
+              </li>
+              <li>
+                <a href="/kingwiki/Warhammer/Galdehan.html">
+                  沙漠苏丹-加尔德罕
+                  <br>
+                  <i>沙漠中最强大游牧部落的首领，在歼灭最大的“刺头”德塔克部落后，他妄图统一整个沙漠，并染指利尼维亚</i>
+                </a>
+              </li>
+            </ul>
+  
+            <!-- <li style="background-color: darkgray; font-size: 25px; color: darkblue;">关卡</li>
+            <ul id="resultsBody"  style="background-color: burlywood; font-size: 20px; margin: 20px;">
+              <li>
+                <p>王国保卫战：战锤史诗 关卡
+                <br>
+                <br>
+                <a href="/kingwiki/Dorothea/Dorothea-level.html"  style="font-size: small;">https://mersalia-kelin.github.io/kingwiki/Dorothea/Dorothea-level.html</a>
+              </p>
+              </li>
+            </ul> -->
+        </ul>    
+      </div>
+
+    <div class="end">
+          <p>友情链接： 
+          <a href="https://kingdomrush.huijiwiki.com/wiki/%E9%A6%96%E9%A1%B5" target="_blank">王国保卫战中文Wiki</a>
+          </p>
+          <p><span style="color: #eaeaea;">友情链接： </span>
+            <a href="https://kingdomrushtd.fandom.com/wiki/Kingdom_Rush_Wiki" target="_blank">王国保卫战英文wiki</a>
+            </p>
+          <p><span style="color: #eaeaea;">友情链接： </span>
+            <a href="https://tieba.baidu.com/f?ie=utf-8&kw=%E7%9A%87%E5%AE%B6%E5%AE%88%E5%8D%AB%E5%86%9B" target="_blank">皇家守卫军吧</a>
+            </p>
+      </div>
+
+    <!-- 页面背景 -->
+    <div class="maskbg"></div>
+</body>
+</html>
