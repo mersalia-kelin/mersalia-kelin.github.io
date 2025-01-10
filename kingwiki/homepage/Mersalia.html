@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>王国保卫战同人自创维基|沙沟与湖的主页</title>
+    <link rel="shortcut icon" type="/wikipedia.ico" href="wikipedia.ico">
 
     <style>
         body{
@@ -19,18 +20,6 @@
         }
         .funct:hover{
             background-color: white;
-        }
-        .back{
-            width: 60px; 
-            height: 60px; 
-            border: 0;
-            background-color: rgba(225, 225, 225, 0);
-        }
-        .back:hover{
-            width: 64px;
-            height: 64px;
-            left: calc(0 - 2px);
-            top: calc(0 - 2px);
         }
         .cover{
             background-color: black;
@@ -85,6 +74,30 @@
             height: 30px;
         }
 
+        .back{
+            width: 60px; 
+            height: 60px; 
+            border: 0;
+            background-color: rgba(225, 225, 225, 0);
+        }
+        .icon:hover{
+            width: 60px;
+            height: 60px;
+            left: calc(0 - 5px);
+            top: calc(0 - 5px);
+        }
+        .icon{
+            width: 50px; 
+            height: 50px; 
+            background-size: contain;
+            background-repeat: no-repeat; 
+            display: inline-block;
+            margin: 8px 3px 2px 2px;
+            cursor: pointer;
+        }
+        .arrow_back{
+            background-image: url(arrow_back.ico);
+        }
     </style>
 
 </head>
@@ -92,7 +105,7 @@
 
     <div class="funct">
         <div>
-        <button onclick="redirectToPage()" class="back"><img src="home.png" alt="图片加载失败" width="100%" height="100%" style="opacity: 0.6;"></button>
+        <button onclick="redirectToPage()" class="back"><span class="arrow_back icon" style="opacity: 30%;"></span></button>
         </div>
     </div>
 
