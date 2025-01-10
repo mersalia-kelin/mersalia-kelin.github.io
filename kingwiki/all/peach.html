@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王国保卫战同人自创维基|自创展示网站|英雄|桃子</title>
+    <link rel="stylesheet" href="./css style/home page.css">
+    <link rel="shortcut icon" type="/wikipedia.ico" href="../wikipedia.ico">
+
+    <style>
+        html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%; 
+        }
+        * {
+        font-family: 'Times New Roman', Times, serif;
+        box-sizing: border-box;
+        }
+        .search{
+            margin-top: 30px; 
+            margin-right: 30px; 
+            float: right;
+                    input{
+                        &:first-child{
+                            box-sizing: border-box;
+                            width: 270px;
+                            height: 32px;
+                            padding: 0 4px;
+                            border: 3px solid #333;
+                        }
+                        &:last-child{
+                            width: 48px;
+                            height: 32px;
+                            color: #fff;
+                            background-color: #333;
+                            border: none;
+                        }
+                        &::-webkit-input-placeholder{
+                            color: #333;
+                        }
+                    }
+        }
+
+        nav {
+            background-color: #333;
+        }  
+        .menu {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .menu li{
+            float: inline-start;
+        }
+        .menu li a, .submenu li a ,.menu li span{
+            display: block;
+            color: white;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .menu li a:hover,.menu li span:hover, .dropdown:hover .dropbtn {
+            background-color: #111;
+        }
+
+        .end{
+        background-color: #eaeaea;
+        height: 100px;
+        margin-top: 10px;
+        padding-top: 20px;
+        line-height: 5px;
+        }
+
+        .maskbg{
+            position: absolute;
+            top: 120px;
+            left: 0;
+            z-index: -1;
+            width: 100%;
+            height: 118vh;
+            background: url(1.jpg)
+            no-repeat center center;
+            background-size: cover;
+            background-attachment: fixed;
+            /* 模糊 */
+            filter: blur(2px);
+            transition: all 1s;
+        }
+
+        .content{
+          background-color: sienna;
+          opacity: 0.8;
+          background-size: cover;
+          color: mintcream;
+          border: 3px solid silver;
+        }
+        table {
+            width: 100%;
+            /* border-collapse: collapse; */
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        /* th {
+            background-color: #f2f2f2;
+        } */
+        .slt{
+          color: white;
+          }
+        .abstract{
+            background-color: rgba(160, 81, 45, 0.8);
+          border: 3px solid silver;
+        }
+        .world{
+          margin-inline: 20px; 
+          text-indent: 32px; 
+          color: mintcream;
+        }
+
+        .picture{
+          background-color: white; 
+          width: 25%;
+          aspect-ratio: 1/1; 
+          border: 3px solid; 
+          float: right; 
+          margin-right: 1%;
+          margin-top: 100px;
+          display: flex; 
+          justify-content: center; 
+          align-items: center;
+        }
+        .skill_background{
+          background-color: darkgray; 
+          border: 3px double gray;
+        }
+        .skill_content{
+          background-color: burlywood; 
+          border-top: 3px double gray; 
+          border-bottom: 3px double gray;
+        }
+        /* .head{
+          color: mintcream;
+            background-color: rgba(160, 81, 45, 0.8);
+          } */
+    </style>
+</head>
+<body>
+    <div style="background-color: #eaeaea; overflow: hidden;">
+        <header>
+            <h1 style="float: left;">
+                <a href="#">
+                    <img src="../Rushlogo.png" alt="图片无法显示" style="width: 175px; margin: 0 0 0 45px;">
+                </a>
+            </h1>
+            <div class="search">
+                <form  id="IntersearchForm" action="/kingwiki/search" method="get" target="_blank">
+                    <input id="IntersearchInput" name="keyword" type="text" placeholder="在WIKI中搜索" maxlength="30">
+                    <input type="submit" id="IntersearchInput" value="🔍">
+                </form>
+            </div>
+        </header>
+    </div>
+    
+    <nav>
+        <ul class="menu">
+            <li><a href="/kingwiki/self-creationwiki.html">首页</a></li>
+        </ul>
+    </nav>
+
+        <br>
+
+        <br>
+        <div class="picture">
+          <img src="peach.jpg" alt="暂无图片" width="100%">
+        </div>
+      
+        <h1 class="head">桃子</h1>
+        <div style="background-color: rgba(0, 0, 0, 0.4); width: 70%; color: white;">
+          <i>"</i>
+              <p style="margin-left: 20px; margin-right: 20px;">
+                看起来是一个小萝莉，其实已经是一名高中生。不喜欢被人误认为是小学生。超能力战士队的新成员，就连（对战时）走路都很悠然自得，是拳皇系列里从未有过的天然系少女角色。和外表不同的是，拥有一身专业的武术设定和华丽的超能力。
+              </p>
+            <div style="width: 100%; display: flex; justify-content: end;">
+              <i style="padding-right: 10px;">"</i>
+            </div>
+        </div>
+      
+        <div style="display: inline-block;">
+          <h1 class="head">基础数据</h1>
+          <table border="3" style="background-color: gray;">
+            <tr style="background-color: darkgray;">
+              <th>  生命  </th>
+              <th>脱战回血<p>（每秒）</p></th>
+              <th>近战伤害</th>
+              <th>远程伤害</th>
+              <th>  攻速  <p>（近;远）</p></th>
+              <th>伤害类型<p>（近;远）</p></th>
+              <th>  射程  </th>
+              <th>  护甲  </th>
+              <th>  移速  </th>
+              <th>复活时间</th>
+            </tr>
+            <tr style="background-color: burlywood; height: 90px;">
+              <td>430</td>
+              <td>27</td>
+              <td>28~37</td>
+              <td>无</td>
+              <td>0.8/s;无</td>
+              <td>物理</td>
+              <td>无</td>
+              <td>0</td>
+              <td>中</td>
+              <td>30s</td>
+            </tr>
+            <tr>
+          </table>
+      </div>
+
+      <div>
+        <h3>被动</h3>
+        <div class="skill_background">
+            <p>桃子超能力！</p>
+            <div class="skill_content">
+              <p>
+                施展必杀技时在脚下展开领域技【超能力领域】领域开启时受到单次伤害不会超过生命上限25%，受击时消耗1能量值给进入领域的单位恢复10点生命，受到致命伤害时消耗40点超能量值恢复一半生命且释放小技能时获得一枚音符:do(获得15%的双抗) re（提高15%治疗量和受治疗量）mi(提高30%普攻伤害) fa（提高自己30%技能伤害)so(受击时恢复10点生命) la(30%造成完美攻击！)xi音符()，当音符集齐时该效果释加至靠近领域的防御塔。
+              </p>
+            </div>
+        </div>
+
+      <h3 class="head">技能</h3>
+      <div class="skill_background">
+        <p>回旋踢</p>
+        <div class="skill_content">
+          <p>
+            对周围敌人造成75的物理伤害，使周围敌人眩晕4秒。
+          </p>
+          <p>cd15</p>
+        </div>
+        <p>桃子攻击</p>
+        <div class="skill_content">
+          <p>
+            对单体造成75x3的物理伤害
+          </p>
+          <p>cd14</p>
+        </div>
+        <p>凤凰箭</p>
+        <div class="skill_content">
+          <p>
+            对单体造成75的魔法伤害
+          </p>
+          <p>cd5</p>
+        </div>
+        <p>念力驱散</p>
+        <div class="skill_content">
+          <p>
+            技能命中敌人时驱散目标持有的护甲。
+          </p>
+          <p>cd5</p>
+        </div>
+        <p>必杀技 桃子的哆来咪之歌</p>
+        <div class="skill_content">
+          <p>
+            对单体造成500+25%生命上限的魔法伤害，为全体恢复自身最大攻击x10的血量，为全体所有非兵营定位防御塔施加【热情】下次技能攻击造成的伤害翻倍！对己方所有兵营施加【热血】:每次攻击附带自身生命上限50%的真实伤害，持续12秒。
+          </p>
+          <p>
+            音符集齐时立即施展必杀技 变成星星桑吧！~⭐
+          </p>
+          <p>
+            对直线造成80魔法伤害并减速目标95%持续7秒并施加50%的易伤持续6秒。对目标造成弱化:攻击降低65%
+          </p>
+          <p>cd5</p>
+        </div>
+      </div> 
+    </div> 
+    </div>
+
+    <div class="end">
+          <p>友情链接： 
+          <a href="https://kingdomrush.huijiwiki.com/wiki/%E9%A6%96%E9%A1%B5" target="_blank">王国保卫战中文Wiki</a>
+          </p>
+          <p><span style="color: #eaeaea;">友情链接： </span>
+            <a href="https://kingdomrushtd.fandom.com/wiki/Kingdom_Rush_Wiki" target="_blank">王国保卫战英文wiki</a>
+            </p>
+          <p><span style="color: #eaeaea;">友情链接： </span>
+            <a href="https://tieba.baidu.com/f?ie=utf-8&kw=%E7%9A%87%E5%AE%B6%E5%AE%88%E5%8D%AB%E5%86%9B" target="_blank">皇家守卫军吧</a>
+            </p>
+      </div>
+
+    <!-- 页面背景 -->
+    <div class="maskbg"></div>
+</body>
+</html>
