@@ -4,148 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>王国保卫战同人自创维基|自创展示网站|英雄|桃子</title>
-    <link rel="stylesheet" href="./css style/home page.css">
+    <link rel="stylesheet" href="./all.css">
     <link rel="shortcut icon" type="/wikipedia.ico" href="../wikipedia.ico">
-
-    <style>
-        html, body {
-        margin: 0;
-        padding: 0;
-        height: 100%; 
-        }
-        * {
-        font-family: 'Times New Roman', Times, serif;
-        box-sizing: border-box;
-        }
-        .search{
-            margin-top: 30px; 
-            margin-right: 30px; 
-            float: right;
-                    input{
-                        &:first-child{
-                            box-sizing: border-box;
-                            width: 270px;
-                            height: 32px;
-                            padding: 0 4px;
-                            border: 3px solid #333;
-                        }
-                        &:last-child{
-                            width: 48px;
-                            height: 32px;
-                            color: #fff;
-                            background-color: #333;
-                            border: none;
-                        }
-                        &::-webkit-input-placeholder{
-                            color: #333;
-                        }
-                    }
-        }
-
-        nav {
-            background-color: #333;
-        }  
-        .menu {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
-        .menu li{
-            float: inline-start;
-        }
-        .menu li a, .submenu li a ,.menu li span{
-            display: block;
-            color: white;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-        .menu li a:hover,.menu li span:hover, .dropdown:hover .dropbtn {
-            background-color: #111;
-        }
-
-        .end{
-        background-color: #eaeaea;
-        height: 100px;
-        margin-top: 10px;
-        padding-top: 20px;
-        line-height: 5px;
-        }
-
-        .maskbg{
-            position: absolute;
-            top: 120px;
-            left: 0;
-            z-index: -1;
-            width: 100%;
-            height: 118vh;
-            background: url(1.jpg)
-            no-repeat center center;
-            background-size: cover;
-            background-attachment: fixed;
-            /* 模糊 */
-            filter: blur(2px);
-            transition: all 1s;
-        }
-
-        .content{
-          background-color: sienna;
-          opacity: 0.8;
-          background-size: cover;
-          color: mintcream;
-          border: 3px solid silver;
-        }
-        table {
-            width: 100%;
-            /* border-collapse: collapse; */
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-        /* th {
-            background-color: #f2f2f2;
-        } */
-        .slt{
-          color: white;
-          }
-        .abstract{
-            background-color: rgba(160, 81, 45, 0.8);
-          border: 3px solid silver;
-        }
-        .world{
-          margin-inline: 20px; 
-          text-indent: 32px; 
-          color: mintcream;
-        }
-
-        .picture{
-          background-color: white; 
-          width: 25%;
-          aspect-ratio: 1/1; 
-          border: 3px solid; 
-          float: right; 
-          margin-right: 1%;
-          margin-top: 100px;
-          display: flex; 
-          justify-content: center; 
-          align-items: center;
-        }
-        .skill_background{
-          background-color: darkgray; 
-          border: 3px double gray;
-        }
-        .skill_content{
-          background-color: burlywood; 
-          border-top: 3px double gray; 
-          border-bottom: 3px double gray;
-        }
-        /* .head{
-          color: mintcream;
-            background-color: rgba(160, 81, 45, 0.8);
-          } */
-    </style>
 </head>
 <body>
     <div style="background-color: #eaeaea; overflow: hidden;">
@@ -188,7 +48,7 @@
             </div>
         </div>
       
-        <div style="display: inline-block;">
+        <div class="table_container">
           <h1 class="head">基础数据</h1>
           <table border="3" style="background-color: gray;">
             <tr style="background-color: darkgray;">
