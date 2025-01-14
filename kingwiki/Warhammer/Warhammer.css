@@ -86,16 +86,16 @@ line-height: 5px;
   color: mintcream;
   border: 3px solid silver;
 }
-.table_container{
+.table_container,table{
   display: inline-block;
   width: 100%;
   overflow-x: auto; 
   -webkit-overflow-scrolling: touch;
 }
-table {
-    width: max-content;
+/* table { */
+    /* width: max-content; */
     /* border-collapse: collapse; */
-}
+/* } */
 th, td {
     border: 1px solid black;
     padding: 8px;
