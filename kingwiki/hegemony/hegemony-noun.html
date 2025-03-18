@@ -5,253 +5,757 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>王国保卫战自创维基|克莱因的个人自创主页|KingDomRush: Hegemony</title>
   <title>Document</title>
+
+  <style>
+    html, body {
+margin: 0;
+padding: 0;
+height: 100%; 
+background-color: mediumblue;
+}
+* {
+box-sizing: border-box;
+}
+.search{
+    margin-top: 30px; 
+    margin-right: 30px; 
+    float: right;
+            input{
+                &:first-child{
+                    box-sizing: border-box;
+                    width: 270px;
+                    height: 32px;
+                    padding: 0 4px;
+                    border: 3px solid #333;
+                }
+                &:last-child{
+                    width: 48px;
+                    height: 32px;
+                    color: #fff;
+                    background-color: #333;
+                    border: none;
+                }
+                &::-webkit-input-placeholder{
+                    color: #333;
+                }
+            }
+}
+
+nav {
+    background-color: #333;
+}  
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+.menu li{
+    float: inline-start;
+}
+.menu li a, .submenu li a ,.menu li span{
+    display: block;
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.menu li a:hover,.menu li span:hover, .dropdown:hover .dropbtn {
+    background-color: #111;
+}
+
+.end{
+background-color: #eaeaea;
+height: 100px;
+margin-top: 10px;
+padding-top: 20px;
+line-height: 5px;
+}
+
+.page, .int{
+  background-color: aliceblue;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+.int i{
+  opacity: 60%;
+}
+
+        #modal{
+            width: 100%;
+            height: 100%;
+            border-color: rgba(0, 0, 0, 0.5);
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: none;
+            overflow: scroll;
+        }
+        #modal .modal_box{
+            width: 30%;
+            padding: 20px;
+            background-color: #fff;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+        .modal_box .modal_title{
+            width: 100%;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .modal_box .modal_wrapper{
+            width: 100%;
+            height: calc(100%-40px);
+            overflow-y: auto;
+        }
+        .modal_wrapper .modal_list{
+            list-style: none;
+        }
+        .modal_list li{
+            width: 100%;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .icon{
+                margin-top: 0;
+            }
+        }
+        .modal_list .name{
+            font-size: 14px;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        #toggleBtn{
+          cursor: pointer; 
+          z-index: 999; 
+          position: fixed;
+          right: 5px;
+          bottom: 5px;
+          font-size: 20px;
+          padding: 16px 6px;
+          background: #007bff;
+          color: white;
+          border: none;
+          border-radius: 4px;
+        }
+        #toggleBtn:hover {
+          background: #0056b3; /* 悬停时加深蓝色 */
+        }
+
+        .special_show{
+          height: 14px;
+        }
+        .special_show .special_fuction{
+          padding-right: 16px;
+        }
+        .special_fuction .bluex{
+          float: right;
+          margin: 3px;
+          width: 16px;
+          height: 16px;
+          background-color: blue;
+          border-radius: 3px;
+          cursor: pointer; 
+          border: 2px solid #eaeaea;
+        }
+        .special_fuction .redx{
+          float: right;
+          margin: 3px;
+          width: 16px;
+          height: 16px;
+          background-color: red;
+          border-radius: 3px;
+          cursor: pointer; 
+          border: 2px solid #eaeaea;
+        }
+        .page{
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+        .page h4{
+          padding-left: 30px;
+        }
+        .page div p{
+          text-indent: 32px; 
+        }
+
+        .tooltip {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .tooltip-box {
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            z-index: 1000;
+            width: 200px;
+        }
+        .tooltip-box .tooltip-arrow {
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid white;
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .tooltip-box .tooltip-content {
+            margin-top: 5px;
+        }
+  </style>
 </head>
 <body>
-  <div class="cata">
-    <p>
-      <button>首页
-      </button>
-      <a href="#" target="_blank">主要页面</a> <a href="#" target="_self">站点工具</a> <a href="#" target="_self">随机页面</a> 
-      <form action="#">
-        <label>搜索</label>
-        <input type="text" placeholder="在这里发现更多宇宙">
-        <input type="submit" value="🔍">
-      </form>
-      <br>
-      <br>
-      <br>
-    </p>
+  <div style="background-color: #eaeaea; overflow: hidden;">
+    <header>
+        <h1 style="float: left;">
+            <a href="#">
+                <img src="../Rushlogo.png" alt="图片无法显示" style="width: 175px; margin: 0 0 0 45px;">
+            </a>
+        </h1>
+        <div class="search">
+            <form  id="IntersearchForm" action="/kingwiki/search" method="get" target="_blank">
+                <input id="IntersearchInput" name="keyword" type="text" placeholder="在WIKI中搜索" maxlength="30">
+                <input type="submit" id="IntersearchInput" value="🔍">
+            </form>
+        </div>
+    </header>
+</div>
+
+<nav>
+  <ul class="menu">
+      <li><a href="/kingwiki/self-creationwiki.html">首页</a></li>
+      <li><a href="/kingwiki/self-creationwiki/hegemony.html">清统自创首页</a></li>
+  </ul>
+</nav>
+  <div class="special_show">
+    <div class="special_fuction">
+      <div class="redx"></div>
+      <div class="bluex"></div>
+      <div class="bluex"></div>
+    </div>
   </div>
+
   <div class="int">
     <center>
       <h2>王国保卫战：清统</h2>
       <h2>KingDomRush: Hegemony</h2>
-      <i style="color: gray;">"人人都有一个帝国梦"</i>
+      <i>"人人都有一个帝国梦"</i>
     </center>
     <hr>
   </div>
-  <div>
-    <h1>设定</h1>
-    <hr>
-    <h2>专有名词</h2>
-    <h3></h3>
-    <strong style="color: blue;">神性</strong>
-    <p></p>
-    <strong style="color: blue;">神格</strong>
-    <p></p>
-    <strong style="color: blue;">算力</strong>
-    <p></p>
-    <strong style="color: blue;">王宴体系</strong>
-    <p>国际公认的算力分配系统，由<strong>科勒斯滕</strong>提出，并在实践中逐渐完善。</p>
-    <strong style="color: blue;">召唤术</strong>
-    <p></p>
-    <strong style="color: blue;">人造人</strong>
-    <p></p>
-    <strong style="color: blue;">种族</strong>
-    <p>种族的界定方式为，进化成人类或人类特征的生物，早期有23种人类。如今，这个世界上仅存3种，分为人类、精灵和兽人。</p>
-    <strong style="color: blue;">意见领袖</strong>
-    <p>是社会某一利益团体的具象化代表。他们一般不会或有待成为行政人员，但他们往往消息灵通、精通时事；或足智多谋，在某方面有出色才干；或有一定人际关系能力而获得所在利益团体的认可。</p>
-    <strong style="color: blue;">舆论领袖</strong>
-    <p>相比意见领袖缺少稳定的利益团体或明确的诉求，他们往往是某一公众事件中对相关内容有更多知识或经验的人，在事件解决或热度降低后消失在公众视野。</p>
-    <strong style="color: blue;">白衣骑士</strong>
-    <p>由<strong>世界信用银行</strong>提出，意在解决现代社会的骑士制度问题。让骑士能够持有友好公司的股份或公司特权，以确保骑士的能力；同时，白衣骑士们也有帮助其资助公司考虑和承担风险的义务。</p>
-    <strong style="color: blue;">武装专职</strong>
-    <p>为适应现代战争环境而生的新兴军种，其中包括武装探险家、武装程序员、武装商人等。</p>
-    <h3>思潮</h3>
-    <strong style="color: blue;">铜权主义</strong>
-    <p>铜权主义，又可称为“军政府儒家主义”或“法治儒家主义”。学说认为当今政治体系是历史问题的积重，应当回归原始帝国主义，甚至不惜武力推翻一切基于此之上的的补丁。<br>君王或者最高领导人需要依法办事、不徇私情；阴晴不定、讳莫难测；一言九鼎、生杀予夺。君王以此稳定等级制度，回归三纲五常的统治。</p>
-    <strong style="color: blue;">韩复光主义</strong>
-    <p>韩复光主义者认为世界已经发展到了最终形态，民主与科学会随着时间推移摧毁强权与暴政，建立“自由王国”。在“历史的终结处”，任何维持旧时代统治形态的人终将灭亡。<br>从今往后的人只需要欲望和理性，不可需要“自我”和自我主张。只有经济与科技才是人应该做的，亦或者将学派思想传播给其他意识形态的地区，同化他们，终结意识形态冲突。</p>
-    <strong style="color: blue;">新韩主义</strong>
-    <p>新韩主义比旧韩额外带有极端爱国、民粹主义和宗教色彩。他们认为，这个世界上只存在两类人，领袖基因占比多的人和占比少的人。一个人成为领袖的真正原因并不是一个人拥有基因的多少，而是那个人是否能够激活领袖基因，多少只决定觉醒的难易。这种高贵的基因最早可以溯源到蚩尤。</p>
-    <strong style="color: blue;">保守主义</strong>
-    <p>保守主义是一种强调既有制度或实践现状的学说。学派认为自身的存在便是社会连续性与稳定性的表现，而他们存在的义务便是遏制政府因诱惑改变社会，或采用更稳妥的方法。</p>
-    <strong style="color: blue;">民粹主义</strong>
-    <p>民粹主义是一种集体专制思想。该流派认为维护集体利益至上，并认为内部矛盾往往是因为外部因素导致，国家比起法律程序，更需要一个能代表集体的“非凡英雄”统治。</p>
-    <strong style="color: blue;">残酷剧场主义</strong>
-    <p>残酷剧场主义是由政治艺术家团体提出的理论。学派将世界当做“舞台”，区分出“美好”和“残酷”的剧目，而只有“残酷”摧毁“美好”却不可反之。人心本恶，世界不值得被拯救，反而应该被摧毁，存活的人比死去的人更痛苦。</p>
-    <strong style="color: blue;">考沃德主义</strong>
-    <p>考沃德主义者致力于培育一个最佳人种的乌托邦。学派以统治阶级为中心，按照职业与地区划分群体，每个群体都有严格的管理要求，包括出生、配种、妊娠、生产等。“毫无优点”的人种则要进行绝育、驱逐或清洗。</p>
-    <h2>势力</h2>
-    <h3>主要国家</h3>
-    <strong style="color: darkblue;">利尼维亚盟约帝国</strong>
-    <p>简称利尼维亚，是世界上典型的多边帝国。帝国的名字源于西方神话中的知名人物“利尼维亚”。位于东半球的西北部，三面环海。帝国东至安普恩山脉<i>（Aperion Area）</i>，
-      西隔水晶海峡<i>（Crystel Strait）</i>与<strong style="color: crimson;">大精灵联邦帝国</strong>相望，北接北极海<i>（Arctic Ocean）</i>,南隔空海<i>（Open Ocean）</i>
-      与<strong style="color: aquamarine;"">南方世界</strong>相望。很少有帝国能像利尼维亚一样，让其居民将其视为整个世界。依靠这片大地古往今来值得歌颂的君王携手，多邦共主，
-      以及百姓邀请异性王统治自己等共同携作发展的故事，整合并公开大陆上各个王国的盟约，建立起世界上第一本帝国宣言。帝国让分裂已久的诸多民族团结起来，并许诺和平与繁荣。即使存在
-      <strong style="color: brown;">北方自由党自治王国</strong>的分裂势力，但谁也不会否认作为利尼维亚公民的身份。</p>
-    <p>利尼维亚并非传统意义上的统一国家，其内部仍存在由<u style="color: rgb(220, 207, 50);">皇室领地</u>、<u style="color: rgb(214, 182, 93);">直辖领</u>、
-      <u style="color: rgb(217, 97, 198);">骑士领</u>、<u style="color: rgb(187, 117, 86);">附庸国</u>、<u style="color: rgb(142, 83, 201);">租雇国</u>、
-      <u style="color: rgb(186, 205, 185);">军事托管区</u>组成的48个特殊区划。利尼维亚的行政区划为辖区制，分为5个<u style="color: rgb(113, 128, 215);">委托辖区</u>
-      与3个<u style="color: rgb(74, 202, 208);">盟护辖区</u>两种辖区，共8个辖区。辖区内为省、省内分为市与乡镇，共59个省，21520个市与乡镇。</p>
-    <br><br>
-    <strong style="color: crimson;">大精灵联邦帝国</strong>
-    <br><br>
-    <strong style="color: gold;">大集域王朝</strong>
-    <br><br>
-    <strong>利尼维亚第二帝国</strong>
-    <br><br>
-    <strong>"南方是我的家"倡议</strong>
-    <br><br>
-    <strong>月弧国际帝国</strong>
-    <br><br>
-    <h3>独立国家</h3>
-    <strong>瓦卡联邦</strong>
-    <br><br>
-    <strong>利芙兰联合省</strong>
-    <br><br>
-    <strong>博格兹克共和国</strong>
-    <br><br>
-    <strong>第弗里茨社团国</strong>
-    <br><br>
-    <strong>蓝血联邦</strong>
-    <br><br>
-    <strong>西塔塔尔汗国</strong>
-    <br><br>
-    <strong>科密彼尔姆共和国</strong>
-    <br><br>
-    <strong>木棉鞑靼共和国</strong>
-    <br><br>
-    <strong>冬河大公国</strong>
-    <br><br>
-    <strong>都涅普罗大公国</strong>
-    <br><br>
-    <strong>科克舍套共和国</strong>
-    <br><br>
-    <strong>汉儿罗刹</strong>
-    <br><br>
-    <strong>沙里阿苏丹国</strong>
-    <br><br>
-    <strong>莱普萨玛民主联邦</strong>
-    <br><br>
-    <strong>东岸人民联盟</strong>
-    <br><br>
-    <strong>神鹫共同体</strong>
-    <br><br>
-    <strong>新人民理想主义国</strong>
-    <br><br>
-    <strong>坎蒂亚科王国</strong>
-    <br><br>
-    <strong>科里乌沃王国</strong>
-    <br><br>
-    <strong>新格林纳达自由领</strong>
-    <br><br>
-    <strong>卫兹南教领</strong>
-    <br><br>
+
+  <div class="page">
+    <h1>专有名词</h1>
+    <div>
+      <h2>设定</h2>
+      <div id="shenxing">
+        <h4>神性</h4>
+        <p></p>
+      </div>
+      <div id="shenge">
+        <h4>神格</h4>
+        <p></p>
+      </div>
+      <div id="suanli">
+        <h4>算力</h4>
+        <p></p>
+      </div>
+      <div id="wangyantixi">
+        <h4>王宴体系</h4>
+        <p>国际公认的算力分配系统，由<strong class="tooltip" data-tooltip="稍等，作者马上完善~">科勒斯滕</strong>提出，并在实践中逐渐完善。</p>
+      </div>
+      <div id="zhaohuanshu">
+        <h4>召唤术</h4>
+        <p></p>
+      </div>
+      <div id="renzaoren">
+        <h4>人造人</h4>
+        <p></p>
+      </div>
+      <div id="zhongzu">
+        <h4>种族</h4>
+        <p>种族的界定方式为，进化成人类或人类特征的生物，早期有23种人类。如今，这个世界上仅存3种，分为人族、精灵和兽人。</p>
+      </div>
+      <div id="yijianlingxiu">
+        <h4>意见领袖</h4>
+        <p>是社会某一利益团体的具象化代表。他们一般不会或有待成为行政人员，但他们往往消息灵通、精通时事；或足智多谋，在某方面有出色才干；或有一定人际关系能力而获得所在利益团体的认可。</p>
+      </div>
+      <div id="yulunlingxiu">
+        <h4>舆论领袖</h4>
+        <p>相比意见领袖缺少稳定的利益团体或明确的诉求，他们往往是某一公众事件中对相关内容有更多知识或经验的人，在事件解决或热度降低后消失在公众视野。</p>
+      </div>
+      <div id="baiyiqishi">
+        <h4>白衣骑士</h4>
+        <p>由世界信用银行提出，意在解决现代社会的骑士制度问题。让骑士能够持有友好公司的股份或公司特权，以确保骑士的能力；同时，白衣骑士们也有帮助其资助公司考虑和承担风险的义务。</p>
+      </div>
+      <div id="wuzhuangzhuanzhi">
+        <h4>武装专职</h4>
+        <p>为适应现代战争环境而生的新兴军种，其中包括武装探险家、武装程序员、武装商人等。</p>
+      </div>
+    </div>
+    <div>
+      <h2>思潮</h2>
+      <div id="tongquan">
+        <h4>铜权主义</h4>
+        <p>
+          铜权主义，又可称为“军政府儒家主义”或“法治儒家主义”。学说认为当今政治体系是历史问题的积重，应当回归原始帝国主义，甚至不惜武力推翻一切基于此之上的的补丁。
+          君王或者最高领导人需要依法办事、不徇私情；阴晴不定、讳莫难测；一言九鼎、生杀予夺。君王以此稳定等级制度，回归三纲五常的统治。
+        </p>
+      </div>
+      <div id="hanfuguang">
+        <h4>韩复光主义</h4>
+        <p>
+          韩复光主义者认为世界已经发展到了最终形态，民主与科学会随着时间推移摧毁强权与暴政，建立“自由王国”。在“历史的终结处”，任何维持旧时代统治形态的人终将灭亡。
+          从今往后的人只需要欲望和理性，不可需要“自我”和自我主张。只有经济与科技才是人应该做的，亦或者将学派思想传播给其他意识形态的地区，同化他们，终结意识形态冲突。
+        </p>
+      </div>
+      <div id="xinhan">
+        <h4>新韩主义</h4>
+        <p>
+          新韩主义比旧韩额外带有极端爱国、民粹主义和宗教色彩。他们认为，这个世界上只存在两类人，领袖基因占比多的人和占比少的人。一个人成为领袖的真正原因并不是一个人拥有基因的多少，而是那个人是否能够激活领袖基因，多少只决定觉醒的难易。这种高贵的基因最早可以溯源到蚩尤。
+        </p>
+      </div>
+      <div id="baoshou">
+        <h4>保守主义</h4>
+        <p>
+          保守主义是一种强调既有制度或实践现状的学说。学派认为自身的存在便是社会连续性与稳定性的表现，而他们存在的义务便是遏制政府因诱惑改变社会，或采用更稳妥的方法。
+        </p>
+      </div>
+      <div id="mincui">
+        <h4>民粹主义</h4>
+        <p>
+          民粹主义是一种集体专制思想。该流派认为维护集体利益至上，并认为内部矛盾往往是因为外部因素导致，国家比起法律程序，更需要一个能代表集体的“非凡英雄”统治。
+        </p>
+      </div>
+      <div id="cankujuchang">
+        <h4>残酷剧场主义</h4>
+        <p>
+          残酷剧场主义是由政治艺术家团体提出的理论。学派将世界当做“舞台”，区分出“美好”和“残酷”的剧目，而只有“残酷”摧毁“美好”却不可反之。人心本恶，世界不值得被拯救，反而应该被摧毁，存活的人比死去的人更痛苦。
+        </p>
+      </div>
+      <div id="kaowode">
+        <h4>考沃德主义</h4>
+        <p>
+          考沃德主义者致力于培育一个最佳人种的乌托邦。学派以统治阶级为中心，按照职业与地区划分群体，每个群体都有严格的管理要求，包括出生、配种、妊娠、生产等。“毫无优点”的人种则要进行绝育、驱逐或清洗。
+        </p>
+      </div>
+    </div>
+    <div>
+      <h2>国家</h2>
+      <h3>主权国家</h3>
+      <div id="liniweiyamengyuediguo">
+        <h4>利尼维亚盟约帝国</h4>
+        <p>
+          简称利尼维亚，是世界上典型的多边帝国。帝国的名字源于西方神话中的知名人物“利尼维亚”。位于东半球的西北部，三面环海。帝国东至安普恩山脉<i>（Aperion Area）</i>，
+          西隔水晶海峡<i>（Crystel Strait）</i>与<strong style="color: crimson;" class="tooltip" data-tooltip="稍等，作者马上完善~">大精灵联邦帝国</strong>相望，北接北极海<i>（Arctic Ocean）</i>,南隔空海<i>（Open Ocean）</i>
+          与<strong style="color: aquamarine;" class="tooltip" data-tooltip="稍等，作者马上完善~">南方世界</strong>相望。很少有帝国能像利尼维亚一样，让其居民将其视为整个世界。依靠这片大地古往今来值得歌颂的君王携手，多邦共主，
+          以及百姓邀请异性王统治自己等共同携作发展的故事，整合并公开大陆上各个王国的盟约，建立起世界上第一本帝国宣言。帝国让分裂已久的诸多民族团结起来，并许诺和平与繁荣。即使存在
+          <strong style="color: brown;" class="tooltip" data-tooltip="稍等，作者马上完善~">北方自由党自治王国</strong>的分裂势力，但谁也不会否认作为利尼维亚公民的身份。
+        </p>
+        <p>
+          利尼维亚的行政区划为辖区制，分为5个<u style="color: rgb(113, 128, 215);">委托辖区</u>与3个<u style="color: rgb(74, 202, 208);">盟护辖区</u>两种辖区，共8个辖区。
+          辖区内为省、省内分为市与乡镇，共59个省，21520个市与乡镇。利尼维亚并非传统意义上的统一国家，其内部仍存在由<u style="color: rgb(220, 207, 50);">皇室领地</u>、<u style="color: rgb(214, 182, 93);">
+            直辖领</u>、<u style="color: rgb(217, 97, 198);">骑士领</u>、<u style="color: rgb(187, 117, 86);">附庸国</u>、<u style="color: rgb(142, 83, 201);">租雇国</u>、
+          <u style="color: rgb(186, 205, 185);">军事托管区</u>组成的48个特殊区划。
+        </p>
+      </div>
+      <div id="dajinglinglianbangdiguo">
+        <h4>大精灵联邦帝国</h4>
+        <p></p>
+      </div>
+      <div id="dajiyuwangchao">
+          <h4>大集域王朝</h4>
+          <p></p>
+      </div>
+      <div id="liniweiyadierdiguo">
+          <h4>利尼维亚第二帝国</h4>
+          <p></p>
+      </div>
+      <div id="nanfangshiwodejia">
+          <h4>"南方是我的家"倡议</h4>
+          <p></p>
+      </div>
+      <div id="yuehuguojijdiguo">
+          <h4>月弧国际帝国</h4>
+          <p></p>
+      </div>
+      <h3>独立国家</h3>
+      <div id="wakalianbang">
+        <h4>瓦卡联邦</h4>
+        <p></p>
+    </div>
+    <div id="lifulanlianhesheng">
+        <h4>利芙兰联合省</h4>
+        <p></p>
+    </div>
+    <div id="bogezikegongheguo">
+        <h4>博格兹克共和国</h4>
+        <p></p>
+    </div>
+    <div id="difulizishetuanguo">
+        <h4>第弗里茨社团国</h4>
+        <p></p>
+    </div>
+    <div id="lanxuelianbang">
+        <h4>蓝血联邦</h4>
+        <p></p>
+    </div>
+    <div id="xitataerhanguo">
+        <h4>西塔塔尔汗国</h4>
+        <p></p>
+    </div>
+    <div id="kemibiermugongheguo">
+        <h4>科密彼尔姆共和国</h4>
+        <p></p>
+    </div>
+    <div id="mumiandadagongheguo">
+        <h4>木棉鞑靼共和国</h4>
+        <p></p>
+    </div>
+    <div id="donghedagongguo">
+        <h4>冬河大公国</h4>
+        <p></p>
+    </div>
+    <div id="duniepuluodagongguo">
+        <h4>都涅普罗大公国</h4>
+        <p></p>
+    </div>
+    <div id="kekeshetaogongheguo">
+        <h4>科克舍套共和国</h4>
+        <p></p>
+    </div>
+    <div id="hanerluocha">
+        <h4>汉儿罗刹</h4>
+        <p></p>
+    </div>
+    <div id="shaliasudanguo">
+        <h4>沙里阿苏丹国</h4>
+        <p></p>
+    </div>
+    <div id="laipusamaminzhulianbang">
+        <h4>莱普萨玛民主联邦</h4>
+        <p></p>
+    </div>
+    <div id="donganrenminlianmeng">
+        <h4>东岸人民联盟</h4>
+        <p></p>
+    </div>
+    <div id="shenjiugongtongti">
+        <h4>神鹫共同体</h4>
+        <p></p>
+    </div>
+    <div id="xinrenminlixiangzhuyiguo">
+        <h4>新人民理想主义国</h4>
+        <p></p>
+    </div>
+    <div id="kandiyakewangguo">
+        <h4>坎蒂亚科王国</h4>
+        <p></p>
+    </div>
+    <div id="keliwuwowangguo">
+        <h4>科里乌沃王国</h4>
+        <p></p>
+    </div>
+    <div id="xingelinnadaziyouling">
+        <h4>新格林纳达自由领</h4>
+        <p></p>
+    </div>
+    <div id="weizinanjiaoling">
+        <h4>卫兹南教领</h4>
+        <p></p>
+    </div>
     <h3>新兴国家</h3>
-    <strong>锡兰王朝</strong>
-    <br><br>
-    <strong>伊利索斯共和国</strong>
-    <br><br>
-    <strong>阿拉巴尼亚共和国</strong>
-    <br><br>
-    <strong>马兰巴基亚共和国</strong>
-    <br><br>
-    <strong>洛佩斯马尔王国</strong>
-    <br><br>
-    <strong>兰基波哈王国</strong>
-    <br><br>
-    <strong>哈米内玛吉王国</strong>
-    <br><br>
-    <strong>声翁林纳王国</strong>
-    <br><br>
-    <strong>列维尔省</strong>
-    <br><br>
-    <strong>波莱谢连省</strong>
-    <br><br>
-    <h3>国际组织</h3>
-    <strong></strong>
-    <p></p>
-    <hr>
-    <h1>数值</h1>
-    <table border="3">
-      <tr>
-        <th>名字</th>
-        <th>图像</th>
-        <th>生命</th>
-        <th>攻击</th>
-        <th>攻速</th>
-        <th>伤害</th>
-        <th>物抗</th>
-        <th>法抗</th>
-        <th>移速</th>
-        <th>代价</th>
-        <th>赏金</th>
-      </tr>
-      <tr>
-        <td>哥布林</td>
-        <td><img src="https://huiji-public.huijistatic.com/kingdomrush/uploads/4/4c/%E5%93%A5%E5%B8%83%E6%9E%97%EF%BC%88%E5%88%9D%E4%BB%A3%E6%95%8C%E4%BA%BA_%E5%B0%8F%EF%BC%89.png" alt="图片无法显示" width="80" height="80"></td>
-        <td>16/20/24</td>
-        <td>1-4</td>
-        <td>1.0</td>
-        <td>物理</td>
-        <td>0</td>
-        <td>0</td>
-        <td>36</td>
-        <td>1</td>
-        <td>3</td>
-      </tr>
-      <tr>
-        <td>沙漠匪徒</td>
-        <td><img src="https://huiji-public.huijistatic.com/kingdomrush/uploads/1/1c/%E6%B2%99%E6%BC%A0%E5%8C%AA%E5%BE%92%EF%BC%88%E5%89%8D%E7%BA%BF%E6%95%8C%E4%BA%BA_%E5%A4%A7%EF%BC%89.png" alt="图片无法显示" width="80" height="80"></td>
-        <td>40/50/60</td>
-        <td>2-6</td>
-        <td>1.0</td>
-        <td>物理</td>
-        <td>0</td>
-        <td>0</td>
-        <td>34.5</td>
-        <td>1</td>
-        <td>5</td>
-      </tr>
-      <tr>
-        <td>豺狼人盗匪</td>
-        <td><img src="https://huiji-public.huijistatic.com/kingdomrush/uploads/a/a8/%E8%B1%BA%E7%8B%BC%E4%BA%BA%E7%9B%97%E5%8C%AA%EF%BC%88%E8%B5%B7%E6%BA%90%E6%95%8C%E4%BA%BA_%E5%A4%A7%EF%BC%89.png" alt="图片无法显示" width="80" height="80"></td>
-        <td>40/50/60/80</td>
-        <td>3-6（4-7）</td>
-        <td>1.0</td>
-        <td>物理</td>
-        <td>0</td>
-        <td>0</td>
-        <td>45</td>
-        <td>1</td>
-        <td>5</td>
-      </tr>
-      <tr>
-        <td>人类伐木工</td>
-        <td><img src="https://huiji-public.huijistatic.com/kingdomrush/uploads/b/b5/%E4%BA%BA%E7%B1%BB%E4%BC%90%E6%9C%A8%E5%B7%A5%EF%BC%88%E5%A4%8D%E4%BB%87%E6%95%8C%E4%BA%BA_%E5%A4%A7%EF%BC%89.png" alt="图片无法显示" width="80" height="80"></td>
-        <td>20/25/30/33</td>
-        <td>1-3</td>
-        <td>1.0</td>
-        <td>物理</td>
-        <td>0</td>
-        <td>0</td>
-        <td>40</td>
-        <td>1</td>
-        <td>5</td>
-      </tr>
-      <tr>
-        <td>猪头兵</td>
-        <td><img src="https://huiji-public.huijistatic.com/kingdomrush/uploads/a/a9/%E7%8C%AA%E5%A4%B4%E5%85%B5%EF%BC%88%E8%81%94%E7%9B%9F%E6%95%8C%E4%BA%BA_%E5%A4%A7%EF%BC%89.png" alt="图片无法显示" width="80" height="80"></td>
-        <td>40/40/48/60</td>
-        <td>2-4</td>
-        <td>1.0</td>
-        <td>物理</td>
-        <td>0</td>
-        <td>0</td>
-        <td>36</td>
-        <td>1</td>
-        <td>5</td>
-      </tr>
-    </table>
+    <div id="xilanwangchao">
+      <h4>锡兰王朝</h4>
+      <p></p>
+  </div>
+  <div id="yilisuosogongheguo">
+      <h4>伊利索斯共和国</h4>
+      <p></p>
+  </div>
+  <div id="alabaniyagongheguo">
+      <h4>阿拉巴尼亚共和国</h4>
+      <p></p>
+  </div>
+  <div id="malanbakiyagongheguo">
+      <h4>马兰巴基亚共和国</h4>
+      <p></p>
+  </div>
+  <div id="luopesimaerwangguo">
+      <h4>洛佩斯马尔王国</h4>
+      <p></p>
+  </div>
+  <div id="lanjibohawangguo">
+      <h4>兰基波哈王国</h4>
+      <p></p>
+  </div>
+  <div id="hamineimajiwangguo">
+      <h4>哈米内玛吉王国</h4>
+      <p></p>
+  </div>
+  <div id="shengwenlinnawangguo">
+      <h4>声翁林纳王国</h4>
+      <p></p>
+  </div>
+  <div id="lieweiersheng">
+      <h4>列维尔省</h4>
+      <p></p>
+  </div>
+  <div id="boleixieliansheng">
+      <h4>波莱谢连省</h4>
+      <p></p>
+  </div>
+    </div>
   </div>
 
+  <div id="tooltip-box" class="tooltip-box">
+    <div class="tooltip-content"></div>
+    <div class="tooltip-arrow"></div>
+</div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const tooltipBox = document.getElementById('tooltip-box');
+    const tooltips = document.querySelectorAll('.tooltip');
+
+    tooltips.forEach(tooltip => {
+        tooltip.addEventListener('mouseenter', function(event) {
+            event.stopPropagation(); // 阻止事件冒泡到外部监听器（虽然在这个场景下可能不是必需的）
+            const tooltipText = this.getAttribute('data-tooltip');
+            tooltipBox.querySelector('.tooltip-content').textContent = tooltipText;
+            const rect = this.getBoundingClientRect();
+            const scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            // 计算注释框的位置，使其位于鼠标悬停元素的下方中央
+            // 注意：这里我们不再使用鼠标的坐标，而是使用元素的坐标
+            const left = `${rect.left - scrollLeft -65}px`;
+            const top = `${rect.bottom + scrollTop + 10}px`; // 10px 是为了有一点间隙
+
+            tooltipBox.style.display = 'block';
+            tooltipBox.style.left = left;
+            tooltipBox.style.top = top;
+        });
+        tooltip.addEventListener('mouseleave', function() {
+            tooltipBox.style.display = 'none';
+        });
+    });
+    // 不再需要全局的点击事件监听器来隐藏注释框
+    // 因为我们现在只在鼠标离开.tooltip元素时隐藏它
+});
+  </script>
+
+  <div id="modal" class="collapse">
+    <div class="modal_box">
+        <div class="modal_title">
+            章节列表
+        </div>
+        <hr>
+        <div class="modal_wrapper">
+            <ul class="modal_list">
+            <h2>设定</h2>
+              <li>
+                <a href="#shenxing">神性</a>
+              </li>
+              <li>
+                <a href="#shenge">神格</a>
+              </li>
+              <li>
+                <a href="#suanli">算力</a>
+              </li>
+              <li>
+                <a href="#wangyantixi">王宴体系</a>
+              </li>
+              <li>
+                <a href="#zhaohuanshu">召唤术</a>
+              </li>
+            <li>
+                <a href="#renzaoren">人造人</a>
+            </li>
+            <li>
+                <a href="#zhongzu">种族</a>
+            </li>
+            <li>
+                <a href="#yijianlingxiu">意见领袖</a>
+            </li>
+            <li>
+                <a href="#yulunlingxiu">舆论领袖</a>
+            </li>
+            <li>
+                <a href="#baiyiqishi">白衣骑士</a>
+            </li>
+            <li>
+                <a href="#wuzhuangzhuanzhi">武装专职</a>
+            </li>
+            <h2>  思潮</h2>
+            <li>
+              <a href="#tongquan">铜权主义</a>
+            </li>
+            <li>
+              <a href="#hanfuguang">韩复光主义</a>
+            </li>
+            <li>
+              <a href="#xinhan">新韩主义</a>
+            </li>
+            <li>
+              <a href="#baoshou">保守主义</a>
+            </li>
+            <li>
+              <a href="#mincui">民粹主义</a>
+            </li>
+            <li>
+              <a href="#cankujuchang">残酷剧场主义</a>
+            </li>
+            <li>
+              <a href="#kaowode">考沃德主义</a>
+            </li>
+            <h2>国家</h2>
+            <li>
+              <a href="#liniweiyamengyuediguo">利尼维亚盟约帝国</a>
+            </li>
+          <li>
+              <a href="#dajinglinglianbangdiguo">大精灵联邦帝国</a>
+          </li>
+          <li>
+              <a href="#dajiyuwangchao">大集域王朝</a>
+          </li>
+          <li>
+              <a href="#liniweiyadierdiguo">利尼维亚第二帝国</a>
+          </li>
+          <li>
+              <a href="#nanfangshiwodejia">“南方是我的家”倡议</a>
+          </li>
+          <li>
+              <a href="#yuehuguojijdiguo">月弧国际帝国</a>
+          </li>
+          <li>
+              <a href="#wakalianbang">瓦卡联邦</a>
+          </li>
+          <li>
+              <a href="#lifulanlianhesheng">利芙兰联合省</a>
+          </li>
+          <li>
+              <a href="#bogezikegongheguo">博格兹克共和国</a>
+          </li>
+          <li>
+              <a href="#difulizishetuanguo">第弗里茨社团国</a>
+          </li>
+          <li>
+              <a href="#lanxuelianbang">蓝血联邦</a>
+          </li>
+          <li>
+              <a href="#xitataerhanguo">西塔塔尔汗国</a>
+          </li>
+          <li>
+              <a href="#kemibiermugongheguo">科密彼尔姆共和国</a>
+          </li>
+          <li>
+              <a href="#mumiandadagongheguo">木棉鞑靼共和国</a>
+          </li>
+          <li>
+              <a href="#donghedagongguo">冬河大公国</a>
+          </li>
+          <li>
+              <a href="#duniepuluodagongguo">都涅普罗大公国</a>
+          </li>
+          <li>
+              <a href="#kekeshetaogongheguo">科克舍套共和国</a>
+          </li>
+          <li>
+              <a href="#hanerluocha">汉儿罗刹</a>
+          </li>
+          <li>
+              <a href="#shaliasudanguo">沙里阿苏丹国</a>
+          </li>
+          <li>
+              <a href="#laipusamaminzhulianbang">莱普萨玛民主联邦</a>
+          </li>
+          <li>
+              <a href="#donganrenminlianmeng">东岸人民联盟</a>
+          </li>
+          <li>
+              <a href="#shenjiugongtongti">神鹫共同体</a>
+          </li>
+          <li>
+              <a href="#xinrenminlixiangzhuyiguo">新人民理想主义国</a>
+          </li>
+          <li>
+              <a href="#kandiyakewangguo">坎蒂亚科王国</a>
+          </li>
+          <li>
+              <a href="#keliwuwowangguo">科里乌沃王国</a>
+          </li>
+          <li>
+              <a href="#xingelinnadaziyouling">新格林纳达自由领</a>
+          </li>
+          <li>
+              <a href="#weizinanjiaoling">卫兹南教领</a>
+          </li>
+          <li>
+              <a href="#boleixieliansheng">波莱谢连省</a>
+          </li>
+          <li>
+              <a href="#xilanwangchao">锡兰王朝</a>
+          </li>
+          <li>
+              <a href="#yilisuosogongheguo">伊利索斯共和国</a>
+          </li>
+          <li>
+              <a href="#alabaniyagongheguo">阿拉巴尼亚共和国</a>
+          </li>
+          <li>
+              <a href="#malanbakiyagongheguo">马兰巴基亚共和国</a>
+          </li>
+          <li>
+              <a href="#luopesimaerwangguo">洛佩斯马尔王国</a>
+          </li>
+          <li>
+              <a href="#lanjibohawangguo">兰基波哈王国</a>
+          </li>
+          <li>
+              <a href="#hamineimajiwangguo">哈米内玛吉王国</a>
+          </li>
+          <li>
+              <a href="#shengwenlinnawangguo">声翁林纳王国</a>
+          </li>
+          <li>
+              <a href="#lieweiersheng">列维尔省</a>
+          </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<button id="toggleBtn">切换目录</button>
+
+<script>
+  document.getElementById('toggleBtn').addEventListener('click', function() {
+    const div = document.getElementById('modal');
+    // 获取当前实际显示的样式（兼容通过CSS类设置的情况）
+    const isHidden = window.getComputedStyle(div).display === 'none';
+    div.style.display = isHidden ? 'block' : 'none';
+    });
+  </script>
 
   <div class="end">
-    <br>
-    <p>演示文本：<b>字体加粗</b>、<i>斜体</i>、<u>下划线</u>、<s>删除线</s></p>
-    <br>
-    <a href="https://kingdomrush.huijiwiki.com/wiki/%E9%A6%96%E9%A1%B5" target="_blank">友情链接</a>
-  </div>
+    <p>友情链接： 
+    <a href="https://kingdomrush.huijiwiki.com/wiki/%E9%A6%96%E9%A1%B5" target="_blank">王国保卫战中文Wiki</a>
+    </p>
+    <p><span style="color: #eaeaea;">友情链接： </span>
+      <a href="https://kingdomrushtd.fandom.com/wiki/Kingdom_Rush_Wiki" target="_blank">王国保卫战英文wiki</a>
+      </p>
+    <p><span style="color: #eaeaea;">友情链接： </span>
+      <a href="https://tieba.baidu.com/f?ie=utf-8&kw=%E7%9A%87%E5%AE%B6%E5%AE%88%E5%8D%AB%E5%86%9B" target="_blank">皇家守卫军吧</a>
+      </p>
+</div>
 </body>
 </html>
