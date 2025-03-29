@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王国保卫战自创维基|克莱因的个人自创主页|KingDomRush: Hegemony</title>
+    <link rel="stylesheet" href="protrait.css">
+</head>
+
+    <style>
+        .resume {
+            flex-wrap: wrap;
+            gap: 10px; /* 按钮之间的间距 */
+            margin-bottom: 20px;
+        }
+        
+        .resume span {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .resume button {
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .resume button.active {
+            background-color: #007bff; /* 选中后的背景颜色 */
+            color: white; /* 选中后的文字颜色 */
+        }
+        
+        .resume button:hover:not(.active) {
+            background-color: #e0e0e0;
+        }
+
+        .search-bar {
+            margin-bottom: 20px;
+        }
+        
+        .search-bar input {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .frame{
+            margin: 60px;
+            overflow: hidden;
+        }
+        .total{
+            height: 220px;
+            width: 120px;
+            z-index: 1;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+            border-radius: 3px;
+            float: left;
+            margin: 10px;
+            text-align: right;
+        }
+        .total:hover {
+            transform: scale(1.1);
+            color: white;
+        }
+        .star{
+            background-color: black;
+            opacity: 75%;
+            height: 60px;
+            width: 100%;
+            transform: skewY(-10deg) translateY(-50px);
+            filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.3));
+        }
+        .stars{
+            color: darkgray;
+            position: absolute;
+            top: -20px;
+            left: 6px;
+            transform: skewY(-3deg) translateY(2px);
+        }
+        .stars p{
+            transition: all 0.3s ease;
+            transform: translateX(-26px);
+        }
+        .pictures{
+            z-index: -1;
+            position: absolute;   
+        }
+        .ribbon{
+            background-color: rgb(191, 15, 21);
+            height: 65px;
+            width: 100%;
+            transform: skewY(30deg) translateY(60px);
+            position: absolute;
+            z-index: 3;
+            box-shadow: 0 15px 15px black; 
+            opacity: 90%;
+        }
+        .longer{
+            color: white;
+            width: 100%;
+            height: 16px;
+                /* 渐变背景设置 */
+            background-image: 
+            linear-gradient(
+                to right, 
+                brown, 
+                rgba(255, 255, 0, 1), 
+                rgba(255, 0, 0, 1)
+            ),
+            linear-gradient(
+                to bottom,                /* 渐变方向：从上到下 */
+                rgba(255, 255, 255, 0.3),     /* 上端透明 */
+                yellow,       /* 中间不透明 */
+                rgba(255, 255, 255, 0.3)      /* 下端透明 */
+            );
+                /* 设置背景混合模式 */
+                background-blend-mode: multiply;
+        }
+        .longer div{
+            position: absolute;
+            top: -22px;
+            opacity: 35%;
+            line-height: 6px;
+        }
+        .name{
+            position: absolute;
+            right: 19px;
+            top: 0px;
+            color: black;
+        }
+        .title{
+            background-color: dimgrey;
+            height: 55px;
+            width: 110px;
+            position: absolute;
+            bottom: 0; 
+            left: 0;
+            z-index: 2;
+            box-shadow: -10px 0 8px 11px dimgrey; 
+        }
+        .picture{
+            position: absolute;
+            bottom: -5px;
+            left: 5px;
+            z-index: 1;
+        }
+    </style>
+
+<body>
+
+    <div style="background-color: #eaeaea; overflow: hidden;">
+        <header>
+            <h1 style="float: left;">
+                <a href="#">
+                    <img src="../Rushlogo.png" alt="图片无法显示" style="width: 175px; margin: 0 0 0 45px;">
+                </a>
+            </h1>
+            <div class="search">
+                <form  id="IntersearchForm" action="/kingwiki/search" method="get" target="_blank">
+                    <input id="IntersearchInput" name="keyword" type="text" placeholder="在WIKI中搜索" maxlength="30">
+                    <input type="submit" id="IntersearchInput" value="🔍">
+                </form>
+            </div>
+        </header>
+    </div>
+    
+    <nav>
+      <ul class="menu">
+          <li><a href="/kingwiki/self-creationwiki.html">首页</a></li>
+          <li><a href="/kingwiki/self-creationwiki/hegemony.html">清统自创首页</a></li>
+      </ul>
+    </nav>
+      <div class="special_show">
+        <div class="special_fuction">
+          <div class="redx"></div>
+          <div class="bluex"></div>
+          <div class="bluex"></div>
+        </div>
+      </div>
+    
+      <div class="int">
+        <center>
+          <h2>王国保卫战：清统</h2>
+          <h2>KingDomRush: Hegemony</h2>
+          <i>"人人都有一个帝国梦"</i>
+        </center>
+        <hr>
+      </div>
+
+<div class="page">
+    <div class="resume">
+        <div class="category">
+            <span>角色分类</span>
+            <div class="button-group">
+                <button class="choose1" data-category="all">全部</button>
+                <button class="choose1" data-category="hero">英雄</button>
+                <button class="choose1" data-category="cmd">指挥官</button>
+                <button class="choose1" data-category="enemy">敌对将领</button>
+                <button class="choose1" data-category="card">册侍</button>
+                <button class="choose1" data-category="NPC">NPC</button>
+            </div>
+        </div>
+        
+        <div class="category">
+            <span>地区分类</span>
+            <div class="button-group">
+                <button class="choose2" data-category="all">全部</button>
+                <button class="choose2" data-category="Linirea">利尼维亚</button>
+                <button class="choose2" data-category="Elf">精灵联邦</button>
+                <button class="choose2" data-category="East">集域王朝</button>
+                <button class="choose2" data-category="other">其他</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="search-bar">
+        <input type="text" id="search" placeholder="搜索角色名称">
+    </div>
+
+        <hr>
+    
+    <div class="frame">
+        
+        <div class="total hero other">
+        <a href="Neon.html">
+            <div class="star">
+            </div>
+            <div class="stars">
+                <p>☆☆☆☆☆☆</p>
+            </div>
+            <div class="pictures">
+                <img src="OC2/Neon.jpg" alt="" width="200px"  style="transform: translateX(-20px) translateY(-40px);">
+            </div>
+            <div class="ribbon">
+                <div class="longer">
+                    <div>
+                        <p>
+                            . . . . . . . . . . . . . .
+                            <br>
+                            . . . . . . . . . . . . . .
+                            <br>
+                            . . . . . . . . . . . . . .
+                        </p>
+                    </div>
+                </div>
+                <div class="name">
+                    <p>
+                        Neon
+                        <br>
+                        讷倚桉
+                    </p>
+                </div>
+            </div>
+            <div class="title">
+                <div class="picture">
+                    <img src="https://media.prts.wiki/3/3a/Logo_乌萨斯学生自治团.png" alt="" width="45px" height="45px">
+                </div>
+            </div>
+            </a>
+        </div>
+
+        <div class="total hero other">
+            <a href="Yayoi.html">
+            <div class="star">
+            </div>
+            <div class="stars">
+                <p>☆☆☆☆☆☆</p>
+            </div>
+            <div class="pictures">
+                <img src="OC2/Yayoi Rei.png" alt="" width="240px"  style="transform: translateX(-50px) translateY(-75px);">
+            </div>
+            <div class="ribbon">
+                <div class="longer">
+                    <div>
+                        <p>
+                            . . . . . . . . . . . . . .
+                            <br>
+                            . . . . . . . . . . . . . .
+                            <br>
+                            . . . . . . . . . . . . . .
+                        </p>
+                    </div>
+                </div>
+                <div class="name">
+                    <p>
+                        Yayoi Rei
+                        <br>
+                        幽乐琳
+                    </p>
+                </div>
+            </div>
+            <div class="title">
+                <div class="picture">
+                    <img src="https://media.prts.wiki/3/3a/Logo_乌萨斯学生自治团.png" alt="" width="45px" height="45px">
+                </div>
+            </div>
+            </a>
+        </div>
+
+        <div class="total hero other">
+            <a href="Kathy.html">
+            <div class="star">
+            </div>
+            <div class="stars">
+                <p>☆☆☆☆☆☆</p>
+            </div>
+            <div class="pictures">
+                <img src="OC2/Kathy Doduo.png" alt="" width="200px"  style="transform: translateX(-40px) translateY(-75px);">
+            </div>
+            <div class="ribbon">
+                <div class="longer">
+                    <div>
+                        <p>
+                            . . . . . . . . . . . . . .
+                            <br>
+                            . . . . . . . . . . . . . .
+                            <br>
+                            . . . . . . . . . . . . . .
+                        </p>
+                    </div>
+                </div>
+                <div class="name">
+                    <p>
+                        Kathy Doduo
+                        <br>
+                        卡多多
+                    </p>
+                </div>
+            </div>
+            <div class="title">
+                <div class="picture">
+                    <img src="https://media.prts.wiki/4/41/Logo_罗德岛.png" alt="" width="45px" height="45px">
+                </div>
+            </div>
+            </a>
+        </div>
+
+        <div class="total hero East">
+            <a href="Frain.html">
+            <div class="star">
+            </div>
+            <div class="stars">
+                <p>☆☆☆☆☆☆</p>
+            </div>
+            <div class="pictures">
+                <img src="OC2/Frain.png" alt="" width="230px"  style="transform: translateX(-25px) translateY(-55px);">
+            </div>
+            <div class="ribbon">
+                <div class="longer">
+                    <div>
+                        <p>
+                            . . . . . . . . . . . . . .
+                            <br>
+                            . . . . . . . . . . . . . .
+                            <br>
+                            . . . . . . . . . . . . . .
+                        </p>
+                    </div>
+                </div>
+                <div class="name">
+                    <p>
+                        Frian
+                        <br>
+                        唐樊鸯
+                    </p>
+                </div>
+            </div>
+            <div class="title">
+                <div class="picture">
+                    <img src="https://media.prts.wiki/c/c3/Logo_龙门近卫局.png" alt="" width="45px" height="45px">
+                </div>
+            </div>
+            </a>
+        </div>
+
+        <div class="total hero other">
+            <a href="Vonlia.html">
+            <div class="star">
+            </div>
+            <div class="stars">
+                <p>☆☆☆☆☆☆</p>
+            </div>
+            <div class="pictures">
+                <img src="OC2/Vonlia.png" alt="" width="470px"  style="transform: translateX(-255px) translateY(-175px);">
+            </div>
+            <div class="ribbon">
+                <div class="longer">
+                    <div>
+                        <p>
+                            . . . . . . . . . . . . . .
+                            <br>
+                            . . . . . . . . . . . . . .
+                            <br>
+                            . . . . . . . . . . . . . .
+                        </p>
+                    </div>
+                </div>
+                <div class="name">
+                    <p>
+                        Vonlia
+                        <br>
+                        莴丽雅
+                    </p>
+                </div>
+            </div>
+            <div class="title">
+                <div class="picture">
+                    <img src="https://media.prts.wiki/3/3a/Logo_乌萨斯学生自治团.png" alt="" width="45px" height="45px">
+                </div>
+            </div>
+            </a>
+        </div>
+
+        <div class="total hero other">
+            <a href="Kcenlia.html">
+            <div class="star">
+            </div>
+            <div class="stars">
+                <p>☆☆☆☆☆☆</p>
+            </div>
+            <div class="pictures">
+                <img src="OC2/Kcenlia.png" alt="" width="230px"  style="transform: translateX(-65px) translateY(-35px);">
+            </div>
+            <div class="ribbon">
+                <div class="longer">
+                    <div>
+                        <p>
+                            . . . . . . . . . . . . . .
+                            <br>
+                            . . . . . . . . . . . . . .
+                            <br>
+                            . . . . . . . . . . . . . .
+                        </p>
+                    </div>
+                </div>
+                <div class="name">
+                    <p>
+                        Kcenlia
+                        <br>
+                        克谢莉娅
+                    </p>
+                </div>
+            </div>
+            <div class="title">
+                <div class="picture">
+                    <img src="https://media.prts.wiki/3/3a/Logo_乌萨斯学生自治团.png" alt="" width="45px" height="45px">
+                </div>
+            </div>
+            </a>
+        </div>
+
+        <div class="total cmd Linirea">
+            <a href="Pioneer.html">
+            <div class="star">
+            </div>
+            <div class="stars">
+                <p>☆☆☆☆☆☆</p>
+            </div>
+            <div class="pictures">
+                <img src="OC2/Pioneer.png" alt="" width="200px"  style="transform: translateX(-65px) translateY(-75px);">
+            </div>
+            <div class="ribbon">
+                <div class="longer">
+                    <div>
+                        <p>
+                            . . . . . . . . . . . . . .
+                            <br>
+                            . . . . . . . . . . . . . .
+                            <br>
+                            . . . . . . . . . . . . . .
+                        </p>
+                    </div>
+                </div>
+                <div class="name">
+                    <p>
+                        Trailblazer
+                        <br>
+                        探历者
+                    </p>
+                </div>
+            </div>
+            <div class="title">
+                <div class="picture">
+                    <img src="https://media.prts.wiki/4/41/Logo_罗德岛.png" alt="" width="45px" height="45px">
+                </div>
+            </div>
+            </a>
+        </div>
+
+        <div class="total cmd East">
+            <a href="hangyang.html">
+            <div class="star">
+            </div>
+            <div class="stars">
+                <p>☆☆☆☆☆☆</p>
+            </div>
+            <div class="pictures">
+                <img src="OC2/hangyang.png" alt="" width="260px"  style="transform: translateX(-55px) translateY(-55px);">
+            </div>
+            <div class="ribbon">
+                <div class="longer">
+                    <div>
+                        <p>
+                            . . . . . . . . . . . . . .
+                            <br>
+                            . . . . . . . . . . . . . .
+                            <br>
+                            . . . . . . . . . . . . . .
+                        </p>
+                    </div>
+                </div>
+                <div class="name">
+                    <p>
+                        HangYang
+                        <br>
+                        行秧
+                    </p>
+                </div>
+            </div>
+            <div class="title">
+                <div class="picture">
+                    <img src="https://media.prts.wiki/c/c3/Logo_龙门近卫局.png" alt="" width="45px" height="45px">
+                </div>
+            </div>
+            </a>
+        </div>
+
+        <div class="total cmd East">
+            <a href="/linglu.html">
+            <div class="star">
+            </div>
+            <div class="stars">
+                <p>☆☆☆☆☆☆</p>
+            </div>
+            <div class="pictures">
+                <img src="OC2/linglu.png" alt="" width="260px"  style="transform: translateX(-45px) translateY(-45px);">
+            </div>
+            <div class="ribbon">
+                <div class="longer">
+                    <div>
+                        <p>
+                            . . . . . . . . . . . . . .
+                            <br>
+                            . . . . . . . . . . . . . .
+                            <br>
+                            . . . . . . . . . . . . . .
+                        </p>
+                    </div>
+                </div>
+                <div class="name">
+                    <p>
+                        LingLu
+                        <br>
+                        钟零露
+                    </p>
+                </div>
+            </div>
+            <div class="title">
+                <div class="picture">
+                    <img src="https://media.prts.wiki/c/c3/Logo_龙门近卫局.png" alt="" width="45px" height="45px">
+                </div>
+            </a>
+            </div>
+        </div>
+
+        <div class="total NPC Linirea">
+            <a href="/Willin.html">
+            <div class="star">
+            </div>
+            <div class="stars">
+                <p>☆☆☆☆☆☆</p>
+            </div>
+            <div class="pictures">
+                <img src="OC2/Willin.png" alt="" width="260px"  style="transform: translateX(-73px) translateY(-65px);">
+            </div>
+            <div class="ribbon">
+                <div class="longer">
+                    <div>
+                        <p>
+                            . . . . . . . . . . . . . .
+                            <br>
+                            . . . . . . . . . . . . . .
+                            <br>
+                            . . . . . . . . . . . . . .
+                        </p>
+                    </div>
+                </div>
+                <div class="name">
+                    <p>
+                        Willin
+                        <br>
+                        维琳
+                    </p>
+                </div>
+            </div>
+            <div class="title">
+                <div class="picture">
+                    <img src="https://media.prts.wiki/4/41/Logo_罗德岛.png" alt="" width="45px" height="45px">
+                </div>
+            </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    window.onload = function() {
+    const totalElements = document.querySelectorAll('.total');
+ 
+    totalElements.forEach(function(totalElement) {
+        const nameElement = totalElement.querySelector('.stars p');
+ 
+        // 原始文字内容
+        const originalText = nameElement.innerHTML;
+ 
+        // 悬停时触发的函数
+        function hoverHandler() {
+            nameElement.innerHTML = '★★★★★★'; // 修改为想要的文字
+        }
+ 
+        // 鼠标移出时恢复原始文字
+        function leaveHandler() {
+            nameElement.innerHTML = originalText;
+        }
+ 
+        // 添加事件监听
+        totalElement.addEventListener('mouseover', hoverHandler);
+        totalElement.addEventListener('mouseout', leaveHandler);
+    });
+};
+</script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const buttons1 = document.querySelectorAll('.choose1');
+        const buttons2 = document.querySelectorAll('.choose2');
+        const items = document.querySelectorAll('.total');
+        const searchInput = document.getElementById('search');
+    
+        let selectedRole = 'all';
+        let selectedRegion = 'all';
+        let searchKeyword = '';
+    
+        function updateDisplay() {
+            items.forEach(item => {
+                const itemClasses = Array.from(item.classList);
+                const matchesRole = selectedRole === 'all' || itemClasses.includes(selectedRole);
+                const matchesRegion = selectedRegion === 'all' || itemClasses.includes(selectedRegion);
+                const matchesSearch = item.querySelector('.name')?.innerText.toLowerCase().includes(searchKeyword.toLowerCase());
+    
+                item.style.display = matchesRole && matchesRegion && matchesSearch ? 'block' : 'none';
+            });
+        }
+    
+        function setupButtons(buttons, selectedCategory, categorySetter) {
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // 移除同组按钮的active类
+                    buttons.forEach(btn => btn.classList.remove('active'));
+    
+                    // 为当前点击的按钮添加active类
+                    button.classList.add('active');
+    
+                    // 更新选中的分类
+                    categorySetter(button.getAttribute('data-category'));
+    
+                    // 更新显示
+                    updateDisplay();
+                });
+            });
+        }
+    
+        setupButtons(buttons1, selectedRole, category => selectedRole = category);
+        setupButtons(buttons2, selectedRegion, category => selectedRegion = category);
+
+        searchInput.addEventListener('input', () => {
+            searchKeyword = searchInput.value;
+            updateDisplay();
+        });
+    
+        // 初始化显示状态
+        updateDisplay();
+    });
+    </script>
+
+<div class="end">
+    <p>友情链接： 
+    <a href="https://kingdomrush.huijiwiki.com/wiki/%E9%A6%96%E9%A1%B5" target="_blank">王国保卫战中文Wiki</a>
+    </p>
+    <p><span style="color: #eaeaea;">友情链接： </span>
+      <a href="https://kingdomrushtd.fandom.com/wiki/Kingdom_Rush_Wiki" target="_blank">王国保卫战英文wiki</a>
+      </p>
+    <p><span style="color: #eaeaea;">友情链接： </span>
+      <a href="https://tieba.baidu.com/f?ie=utf-8&kw=%E7%9A%87%E5%AE%B6%E5%AE%88%E5%8D%AB%E5%86%9B" target="_blank">皇家守卫军吧</a>
+      </p>
+</div>
+
+</body>
+</html>
