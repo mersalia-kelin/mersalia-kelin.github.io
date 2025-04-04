@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王国保卫战同人自创维基|在梦中醒来的主页</title>
+    <link rel="shortcut icon" type="/wikipedia.ico" href="wikipedia.ico">
+
+    <style>
+        body{
+            background-color: rgba(225, 225, 225, 0.7);
+        }
+        .funct{
+            position: fixed;
+            background-color: rgba(255, 255, 255, 0.6);
+            border: 1px solid gray;
+            height: 60px;
+            width: 100%;
+            z-index: 100;
+        }
+        .funct:hover{
+            background-color: white;
+        }
+        .cover{
+            background-color: black;
+            height: 300px;
+        }
+        .head{
+            /* background-color: hwb(from color h w b); */
+            background-color: white;
+            width: 100px;
+            height: 100px;
+            position: relative;
+            left: calc(50% - 50px);
+            top: 100px;
+            display: grid;
+            place-items: center;
+            color: white;
+        }
+        .resume{
+            padding-left: 20px;
+            background-color: white;
+        }
+        .before{
+            width: 275px;
+            height: 150px;
+            background-color: rgba(225, 225, 225, 0.7);
+            /* float: left; */
+            padding-left: 60px;
+            padding-right: 60px;
+            border: 3px double;
+        }
+        .before:hover{
+            border: 4px solid;
+        }
+        .z{
+            font-size: 10px;
+            color: lightslategrey;
+            line-height: 1;
+        }
+        .choose{
+            padding: 0;
+            list-style: none;
+            padding: 3px;
+        }
+        .choose li{
+            display: inline;
+            margin: 10px;
+            padding: 3px;
+            /* border: 1px solid;
+            padding-left: 50px;
+            padding-right: 50px; */
+        }
+        #expand1, #expand2, #expand3{
+            width: 100px;
+            height: 30px;
+        }
+
+        .back{
+            width: 60px; 
+            height: 60px; 
+            border: 0;
+            background-color: rgba(225, 225, 225, 0);
+        }
+        .icon:hover{
+            width: 60px;
+            height: 60px;
+            left: calc(0 - 5px);
+            top: calc(0 - 5px);
+        }
+        .icon{
+            width: 50px; 
+            height: 50px; 
+            background-size: contain;
+            background-repeat: no-repeat; 
+            display: inline-block;
+            margin: 8px 3px 2px 2px;
+            cursor: pointer;
+        }
+        .arrow_back{
+            background-image: url(arrow_back.ico);
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="funct">
+        <div>
+        <button onclick="redirectToPage()" class="back"><span class="arrow_back icon" style="opacity: 30%;"></span></button>
+        </div>
+    </div>
+
+    <script>
+        function redirectToPage(){
+            window.location.href = 'https://mersalia-kelin.github.io/kingwiki/self-creationwiki.html';
+        }
+    </script>
+
+    <div class="cover">
+        <div class="head">
+            <img src="在梦中醒来.jpg" alt="暂无图片" width="100%" height="100%">
+            <span>
+                <p>在梦中醒来</p>
+            </span>
+        </div>
+    </div>
+
+    <div class="resume">
+        <h3>个人简介</h3>
+        <p>神秘用户，暂无简介哦~</p>
+    </div>
+
+    <hr>
+
+    <div class="resume">
+    <ul class="choose">
+        <span>作品类型</span>
+        <li>
+            <select name="expand1" id="expand1">
+                <option value="all">全部</option>
+                <option value="chn">改版作品</option>
+                <option value="txt">文创作品</option>
+            </select>
+        </li>
+        <span>标签类型</span>
+        <li>
+            <select name="expand2" id="expand2">
+                <option value="all">全部</option>
+                <option value="tower">防御塔</option>
+                <option value="hero">英雄</option>
+                <option value="enemy">敌人</option>
+                <option value="level">关卡</option>
+            </select>
+        </li>
+        <span>作品系列</span>
+        <li>
+            <select name="expand3" id="expand3">
+                <option value="all">全部</option>
+            </select>
+        </li>
+    </ul>
+    </div>
+    <hr>
+    </div>
+    <div class="resume">
+        <div class="shop-item txt hero">
+            <span>
+                <a href="/kingwiki/all/bubble.html" style="font-size: 30px;" target="_blank">浮云惊鸿-波宝</a>
+                <p>一只爱吐泡泡的鱼人，长相在族群中相当奇特。</p>
+                <p><a href="/kingwiki/all/bubble.html">https://mersalia-kelin.github.io/kingwiki/all/bubble.html</a></p>
+            </span>
+            <hr>
+        </div>
+        <div class="shop-item txt hero">
+            <span>
+                <a href="/kingwiki/all/Pisto.html" style="font-size: 30px;" target="_blank">寒风边军-皮斯托</a>
+                <p>自称是王国北部边防军的小队长，在利维尼亚陷落后依托雪山地形抵抗，接收到联盟消息时前来归队</p>
+                <p><a href="/kingwiki/all/Pisto.html">https://mersalia-kelin.github.io/kingwiki/all/Pisto.html</a></p>
+            </span>
+            <hr>
+        </div>
+        <div class="shop-item txt hero">
+            <span>
+                <a href="/kingwiki/all/Chen.html" style="font-size: 30px;" target="_blank">辉光-辰</a>
+                <p>来自东方的旅者，旺盛好奇心与充足行动力为他带来了远超常人见识与世所罕见能力的同时，也引起了全视之魔眼的注意。</p>
+                <p><a href="/kingwiki/all/Chen.html">https://mersalia-kelin.github.io/kingwiki/all/Chen.html</a></p>
+            </span>
+            <hr>
+        </div>
+        <div class="shop-item txt hero">
+            <span>
+                <a href="/kingwiki/all/Wofei.html" style="font-size: 30px;" target="_blank">混沌色彩-沃非/非沃</a>
+                <p>以鲜艳明快的色彩搭配和颇有神韵的细节描绘而小有名气的画家，其人颇有灵性，是个有礼貌但容易害羞的女孩子。</p>
+                <p><a href="/kingwiki/all/Wofei.html">https://mersalia-kelin.github.io/kingwiki/all/Wofei.html</a></p>
+            </span>
+            <hr>
+        </div>
+        <div class="shop-item txt hero">
+            <span>
+                <a href="/kingwiki/all/Ugly.html" style="font-size: 30px;" target="_blank">金魔-亚格雷</a>
+                <p>现洛扎贡城商人公会会长，瓦拉杜勒地产有限公司董事长，原威尔伯工业及矮人军事企业最大股东，矮人与北国联合矿业公司董事长，为黑暗军的财政做出了重大贡献。</p>
+                <p><a href="/kingwiki/all/Ugly.html">https://mersalia-kelin.github.io/kingwiki/all/Ugly.html</a></p>
+            </span>
+            <hr>
+        </div>
+        <div class="shop-item txt hero">
+            <span>
+                <a href="/kingwiki/all/Glass.html" style="font-size: 30px;" target="_blank">镜像-格莱丝</a>
+                <p>曾经是利维尼亚的一位普通修女，在教堂中长大。所有亲近的神父与修女在非人的祭祀中痛苦地死去或者成为恶心的怪物时，她发誓要让仇人付出代价。</p>
+                <p><a href="/kingwiki/all/Glass.html">https://mersalia-kelin.github.io/kingwiki/all/Glass.html</a></p>
+            </span>
+            <hr>
+        </div>
+        <div class="shop-item txt hero">
+            <span>
+                <a href="/kingwiki/all/Canas.html" style="font-size: 30px;" target="_blank">旧日腐坏-瑞恩·卡纳斯</a>
+                <p>在瓦拉杜勒尚未变为鬼魂之地时，瑞恩以热心肠和高超的拳法闻名，因为仗义执言被曾经的鬼魂双王关入监牢。</p>
+                <p><a href="/kingwiki/all/Canas.html">https://mersalia-kelin.github.io/kingwiki/all/Canas.html</a></p>
+            </span>
+            <hr>
+        </div>
+        <div class="shop-item txt hero">
+            <span>
+                <a href="/kingwiki/all/Gongzheng.html" style="font-size: 30px;" target="_blank">求恒刚士-龚正</a>
+                <p>家学渊源，冷静理智，似乎是神秘国度某位掌管律法官员的儿子，追求公正胜过一切。</p>
+                <p><a href="/kingwiki/all/Gongzheng.html">https://mersalia-kelin.github.io/kingwiki/all/Gongzheng.html</a></p>
+            </span>
+            <hr>
+        </div>
+        <div class="shop-item txt hero">
+            <span>
+                <a href="/kingwiki/all/Kudos.html" style="font-size: 30px;" target="_blank">荣誉号令-库铎斯</a>
+                <p>起源时期，从灰鸦港口本地卫队中征召的新兵。在狮鹫驿站原总征兵官阵亡后接过征兵令牌，成为总征兵官。</p>
+                <p><a href="/kingwiki/all/Kudos.html">https://mersalia-kelin.github.io/kingwiki/all/Kudos.html</a></p>
+            </span>
+            <hr>
+        </div>
+    </div>
+
+    <script>
+        // 获取所有的下拉列表
+        const selects = document.querySelectorAll('.choose select');
+        // 获取所有内容块
+        const shopItems = document.querySelectorAll('.shop-item');
+        function updateDisplay() {
+        // 存储选中的类名（不包括"all"）
+        const selectedClasses = [];
+        let hasSelection = false; // 标记是否有非"all"的选项被选
+ 
+        // 遍历下拉列表，收集选中的类名
+        selects.forEach(select => {
+            const value = select.value;
+            if (value !== 'all') {
+                hasSelection = true; // 标记有非"all"的选项被选中
+                selectedClasses.push(value); // 添加选中的类名到数组
+            }
+        });
+            
+         // 遍历内容块，根据选中的类名更新显示状态
+        shopItems.forEach(item => {
+            // 如果没有选择任何非"all"的选项，则显示所有内容块
+            if (!hasSelection) {
+                item.style.display = 'block';
+            } else {
+                // 否则，只有当内容块包含所有选中的类名时才显示它
+                const shouldShow = selectedClasses.every(cls => item.classList.contains(cls));
+                item.style.display = shouldShow ? 'block' : 'none';
+            }
+        });
+    }
+ 
+    // 为每个下拉列表添加事件监听器
+    selects.forEach(select => {
+        select.addEventListener('change', updateDisplay);
+    });
+ 
+    // 初始化显示状态（可选，但推荐在页面加载时调用一次以确保正确的初始状态）
+    updateDisplay();
+    </script>
+
+    <div>
+        <center>
+            <p>已经到底了哦~</p>
+        </center>
+    </div>
+
+</body>
+</html>
