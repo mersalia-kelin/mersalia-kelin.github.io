@@ -1,1 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>王国保卫战自创百科</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="1">
+  <div class="theme-switch" role="group" aria-label="主题切换">
+    <button type="button" class="theme-dot active" data-theme="1" title="默认主题" aria-label="默认主题"></button>
+    <button type="button" class="theme-dot" data-theme="2" title="浅色主题" aria-label="浅色主题"></button>
+    <button type="button" class="theme-dot" data-theme="3" title="深色主题" aria-label="深色主题"></button>
+  </div>
 
+  <div class="page">
+    <h1 class="page-title title-center">欢迎来到王国保卫战自创百科</h1>
+
+    <nav class="nav-list" aria-label="分类导航">
+      <a class="nav-btn" data-key="hero" href="/DerivativeWork/list.html?type=hero">
+        <span>英雄</span>
+        <span class="nav-btn-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="nav-btn" data-key="tower" href="/DerivativeWork/list.html?type=tower">
+        <span>防御塔</span>
+        <span class="nav-btn-arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="nav-btn" data-key="enemy" href="/DerivativeWork/list.html?type=enemy">
+        <span>敌人</span>
+        <span class="nav-btn-arrow" aria-hidden="true">→</span>
+      </a>
+      <button type="button" class="nav-btn primary" data-modal-open="creator">
+        <span>创作者工具</span>
+        <span class="nav-btn-arrow" aria-hidden="true">→</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- 创作者工具弹窗 -->
+  <div class="modal-overlay" id="creatorModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="creatorModalTitle">
+      <button type="button" class="modal-close" data-modal-close aria-label="关闭">×</button>
+      <h2 class="modal-title" id="creatorModalTitle">创作者工具</h2>
+      <p class="modal-desc">
+        <strong>HTML 生成器</strong>可按照统一模板快速生成匹配自创百科的条目页面。
+        <strong>Tag 生成器</strong>可一键生成词条标签。
+      </p>
+      <p class="modal-desc">编辑生成的内容需要发送给编辑部，将内容统一上传，可发送到QQ群：<strong>1169576263</strong>；或是我的QQ：<strong>2763874389</strong></p>
+      <div class="modal-actions">
+        <a class="modal-btn" href="/DerivativeWork/html-generator.html">HTML 生成器</a>
+        <a class="modal-btn" href="/DerivativeWork/tag-generator.html">Tag 生成器</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
