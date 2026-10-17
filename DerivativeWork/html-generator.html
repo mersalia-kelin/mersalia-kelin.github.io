@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML生成器</title>
+<style>
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 24px 16px 60px;
+    font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    background: radial-gradient(circle at 15% 10%, #1e293b 0%, #0b1120 45%, #041f1e 100%);
+    color: #e2e8f0;
+  }
+
+  .container { max-width: 900px; margin: 0 auto; }
+
+  .card {
+    padding: 24px;
+    border-radius: 16px;
+    background: rgba(15, 23, 42, 0.78);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(14px);
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    margin: 0 0 6px;
+    font-size: 20px;
+    background: linear-gradient(90deg, #67e8f9, #a78bfa, #34d399);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .sub {
+    margin: 0 0 20px;
+    font-size: 13px;
+    color: #94a3b8;
+    line-height: 1.6;
+  }
+
+  label {
+    display: block;
+    font-size: 13px;
+    color: #94a3b8;
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  input[type="text"], textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    background: #060c18;
+    color: #e2e8f0;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  input[type="text"]:focus, textarea:focus {
+    border-color: rgba(52, 211, 153, 0.55);
+    box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.1);
+  }
+
+  textarea { resize: vertical; line-height: 1.65; min-height: 80px; }
+
+  .field { margin-bottom: 18px; }
+
+  .preset-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+
+  .preset-btn {
+    border: 1px solid rgba(103, 232, 249, 0.28);
+    background: rgba(8, 47, 73, 0.55);
+    color: #a5f3fc;
+    font-size: 13px;
+    padding: 9px 16px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: transform 0.15s, background 0.2s, border-color 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+  }
+
+  .preset-btn:hover {
+    background: rgba(14, 116, 144, 0.5);
+    border-color: rgba(103, 232, 249, 0.65);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(8, 145, 178, 0.25);
+  }
+
+  .preset-btn:active { transform: translateY(0) scale(0.98); }
+
+  .preset-btn.tone-a { border-color: rgba(52,211,153,0.3); color:#a7f3d0; background: rgba(6,78,59,0.45); }
+  .preset-btn.tone-a:hover { background: rgba(5,150,105,0.4); border-color: rgba(52,211,153,0.6); }
+
+  .preset-btn.tone-b { border-color: rgba(251,146,60,0.3); color:#fed7aa; background: rgba(124,45,18,0.4); }
+  .preset-btn.tone-b:hover { background: rgba(194,65,12,0.45); border-color: rgba(251,146,60,0.65); }
+
+  .preset-btn.tone-c { border-color: rgba(167,139,250,0.3); color:#ddd6fe; background: rgba(76,29,149,0.4); }
+  .preset-btn.tone-c:hover { background: rgba(109,40,217,0.5); border-color: rgba(167,139,250,0.65); }
+
+  .attr-list {
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    border-radius: 10px;
+    background: #060c18;
+    overflow: hidden;
+  }
+
+  .attr-row {
+    display: grid;
+    grid-template-columns: minmax(80px, 130px) 1fr 28px 28px 28px;
+    align-items: stretch;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+  }
+
+  .attr-row:last-child { border-bottom: none; }
+
+  .attr-row input {
+    border: none;
+    background: transparent;
+    padding: 10px 12px;
+    font-size: 13.5px;
+    color: #e2e8f0;
+    font-family: inherit;
+    outline: none;
+    width: 100%;
+    border-radius: 0;
+    min-width: 0;
+  }
+
+  .attr-row input::placeholder { color: #475569; }
+
+  .attr-name {
+    color: #67e8f9 !important;
+    font-weight: 600;
+    border-right: 1px solid rgba(148, 163, 184, 0.12) !important;
+    background: rgba(30, 41, 59, 0.5) !important;
+  }
+
+  .attr-row input:focus {
+    background: rgba(52, 211, 153, 0.06);
+    box-shadow: inset 0 0 0 1px rgba(52, 211, 153, 0.25);
+  }
+
+  .attr-move {
+    border: none;
+    background: transparent;
+    color: #64748b;
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 1;
+    padding: 0;
+    font-family: inherit;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .attr-move:hover { background: rgba(56, 189, 248, 0.2); color: #a5f3fc; }
+
+  .attr-del {
+    border: none;
+    background: transparent;
+    color: #64748b;
+    cursor: pointer;
+    font-size: 15px;
+    line-height: 1;
+    padding: 0;
+    transition: background 0.15s, color 0.15s;
+    font-family: inherit;
+  }
+
+  .attr-del:hover { background: rgba(190, 24, 93, 0.45); color: #fff; }
+
+  .table-bar { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+
+  .sub-block {
+    padding: 16px;
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    border-radius: 12px;
+    background: rgba(6, 12, 24, 0.5);
+    margin-bottom: 16px;
+  }
+
+  .block-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+  }
+
+  .block-label {
+    font-size: 12.5px;
+    color: #a78bfa;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .block-del {
+    border: none;
+    background: rgba(190, 24, 93, 0.3);
+    color: #fda4af;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.15s;
+  }
+
+  .block-del:hover { background: rgba(190, 24, 93, 0.65); color: #fff; }
+
+  .sub-part {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed rgba(148, 163, 184, 0.15);
+  }
+
+  .part-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    gap: 8px;
+  }
+
+  .part-label {
+    font-size: 12px;
+    color: #67e8f9;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    flex-shrink: 0;
+  }
+
+  .part-btn-group { display: flex; gap: 4px; align-items: center; flex-shrink: 0; }
+
+  .part-move-btn {
+    width: 26px;
+    height: 26px;
+    border: 1px solid rgba(148, 163, 184, 0.28);
+    background: rgba(51, 65, 85, 0.45);
+    color: #cbd5e1;
+    font-size: 13px;
+    line-height: 1;
+    padding: 0;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.15s;
+  }
+
+  .part-move-btn:hover {
+    background: rgba(71, 85, 105, 0.9);
+    color: #fff;
+    border-color: rgba(148, 163, 184, 0.6);
+    transform: translateY(-1px);
+  }
+
+  .part-move-btn:active { transform: translateY(0) scale(0.95); }
+
+  .part-add-btn {
+    border: 1px solid rgba(103, 232, 249, 0.25);
+    background: rgba(8, 47, 73, 0.4);
+    color: #a5f3fc;
+    font-size: 11.5px;
+    padding: 5px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.15s, border-color 0.15s;
+    white-space: nowrap;
+  }
+
+  .part-add-btn:hover {
+    background: rgba(14, 116, 144, 0.5);
+    border-color: rgba(103, 232, 249, 0.5);
+  }
+
+  .part-list { display: flex; flex-direction: column; gap: 8px; }
+
+  .content-item { display: flex; gap: 6px; align-items: flex-start; }
+
+  .content-item textarea {
+    flex: 1;
+    min-height: 52px;
+    font-size: 13px;
+    padding: 8px 10px;
+    resize: vertical;
+  }
+
+  .subtitle-item {
+    padding: 10px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(148, 163, 184, 0.12);
+    border-radius: 8px;
+  }
+
+  .subtitle-head { display: flex; gap: 6px; margin-bottom: 6px; align-items: center; }
+
+  .subtitle-head input {
+    flex: 1;
+    font-size: 13px;
+    padding: 7px 10px;
+    color: #ddd6fe;
+    font-weight: 600;
+  }
+
+  .subtitle-item textarea { font-size: 13px; padding: 7px 10px; min-height: 52px; }
+
+  .item-del {
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border: none;
+    background: rgba(190, 24, 93, 0.25);
+    color: #fda4af;
+    font-size: 15px;
+    line-height: 1;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    font-family: inherit;
+    padding: 0;
+  }
+
+  .item-del:hover { background: rgba(190, 24, 93, 0.7); color: #fff; }
+
+  .sub-attr-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(148, 163, 184, 0.12);
+    border-radius: 8px;
+    background: rgba(6, 12, 24, 0.4);
+    overflow: hidden;
+  }
+
+  .sub-attr-list .attr-row {
+    grid-template-columns: minmax(70px, 100px) 1fr 26px 26px 26px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+  }
+
+  .sub-attr-list .attr-row:last-child { border-bottom: none; }
+
+  .sub-attr-list .attr-row input { padding: 8px 10px; font-size: 13px; }
+
+  .btn {
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    background: rgba(51, 65, 85, 0.55);
+    color: #e2e8f0;
+    font-size: 13.5px;
+    padding: 9px 18px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
+    font-family: inherit;
+    white-space: nowrap;
+  }
+
+  .btn:hover {
+    background: rgba(71, 85, 105, 0.85);
+    border-color: rgba(148, 163, 184, 0.55);
+    transform: translateY(-1px);
+  }
+
+  .btn:active { transform: translateY(0) scale(0.98); }
+
+  .btn.primary {
+    border: none;
+    background: linear-gradient(135deg, #06b6d4, #7c3aed);
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 8px 24px rgba(56, 189, 248, 0.25);
+  }
+
+  .btn.primary:hover { box-shadow: 0 12px 30px rgba(124, 58, 237, 0.4); }
+
+  .btn.success {
+    border: none;
+    background: linear-gradient(135deg, #059669, #10b981);
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.25);
+  }
+
+  .btn.success:hover { box-shadow: 0 12px 30px rgba(16, 185, 129, 0.4); }
+
+  .btn.danger:hover {
+    background: rgba(190, 24, 93, 0.35);
+    border-color: rgba(244, 114, 182, 0.6);
+  }
+
+  .btn.sm { font-size: 12.5px; padding: 7px 14px; }
+
+  .action-bar {
+    position: sticky;
+    bottom: 16px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 16px 20px;
+    border-radius: 14px;
+    background: rgba(15, 23, 42, 0.92);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    margin-bottom: 20px;
+  }
+
+  .status-text { flex: 1; font-size: 12.5px; color: #64748b; min-width: 110px; }
+
+  .out-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  .counter { font-size: 12.5px; color: #64748b; font-family: ui-monospace, Menlo, Consolas, monospace; }
+
+  #output {
+    height: 320px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New", monospace;
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: #a5f3fc;
+    white-space: pre;
+    overflow: auto;
+    tab-size: 2;
+    caret-color: #34d399;
+  }
+
+  #output::placeholder { color: #475569; }
+
+  .preview-area {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(6, 12, 24, 0.6);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    border-radius: 12px;
+  }
+
+  .preview-area.open { display: block; }
+
+  .preview-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+  }
+
+  .preview-title {
+    font-size: 13px;
+    color: #a78bfa;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  .device-block { margin-bottom: 20px; }
+  .device-block:last-child { margin-bottom: 0; }
+
+  .device-label {
+    font-size: 12.5px;
+    color: #67e8f9;
+    font-weight: 600;
+    margin-bottom: 8px;
+    padding-left: 4px;
+  }
+
+  .phone-wrapper {
+    max-width: 380px;
+    margin: 0 auto;
+    padding: 18px 10px 14px;
+    background: #0f172a;
+    border-radius: 26px;
+    box-shadow: 0 14px 44px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(148, 163, 184, 0.2);
+    position: relative;
+  }
+
+  .phone-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 44px;
+    height: 4px;
+    background: rgba(148, 163, 184, 0.35);
+    border-radius: 2px;
+  }
+
+  .phone-wrapper iframe {
+    width: 100%;
+    height: 520px;
+    border: none;
+    border-radius: 14px;
+    background: #fff;
+    display: block;
+  }
+
+  .pc-wrapper {
+    padding: 22px 10px 10px;
+    background: #0f172a;
+    border-radius: 14px;
+    box-shadow: 0 14px 44px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(148, 163, 184, 0.2);
+    position: relative;
+  }
+
+  .pc-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 64px;
+    height: 4px;
+    background: rgba(148, 163, 184, 0.25);
+    border-radius: 2px;
+  }
+
+  .pc-wrapper iframe {
+    width: 100%;
+    height: 600px;
+    border: none;
+    border-radius: 8px;
+    background: #fff;
+    display: block;
+  }
+
+  #toast {
+    position: fixed;
+    left: 50%;
+    bottom: 100px;
+    transform: translate(-50%, 20px);
+    padding: 10px 22px;
+    border-radius: 999px;
+    background: rgba(15, 118, 110, 0.95);
+    color: #ecfeff;
+    font-size: 14px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s, transform 0.25s;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+    z-index: 99;
+  }
+
+  #toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+  @media (max-width: 600px) {
+    .card { padding: 18px; }
+    .action-bar { padding: 12px 14px; }
+    .action-bar .btn { flex: 1; font-size: 12.5px; padding: 9px 10px; }
+    .status-text { width: 100%; flex: none; order: 10; }
+    .preset-btn { flex: 1 1 calc(50% - 8px); text-align: center; }
+    .attr-row { grid-template-columns: minmax(72px, 100px) 1fr 26px 26px 26px; }
+    .attr-row input { padding: 9px 8px; font-size: 12.5px; }
+    .sub-attr-list .attr-row { grid-template-columns: minmax(60px, 84px) 1fr 24px 24px 24px; }
+    .part-move-btn { width: 24px; height: 24px; font-size: 12px; }
+    .part-add-btn { font-size: 11px; padding: 4px 9px; }
+    .phone-wrapper { max-width: 100%; }
+    .phone-wrapper iframe { height: 460px; }
+    .pc-wrapper iframe { height: 520px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="card">
+    <h1>维基内容编辑器</h1>
+    <p class="sub">填写内容后点击「生成 HTML 内容」，会生成一份完整的网页文件。复制或下载后双击即可打开使用。</p>
+
+    <div class="field">
+      <label>页面标题</label>
+      <input type="text" id="pageTitle" placeholder="例如：火枪要塞">
+    </div>
+
+    <div class="field" style="margin-bottom:0;">
+      <label>正文描述</label>
+      <textarea id="pageDesc" placeholder="输入页面的正文描述，换行会自动分段…" rows="4"></textarea>
+    </div>
+  </div>
+
+  <div class="card">
+    <label>快捷布局</label>
+    <p class="sub" style="margin-bottom:14px;">点击任一类型，自动生成对应的属性与分标题结构。</p>
+    <div class="preset-bar">
+      <button class="preset-btn" type="button" data-preset="tower">防御塔</button>
+      <button class="preset-btn tone-a" type="button" data-preset="barracks">防御塔（兵营）</button>
+      <button class="preset-btn tone-b" type="button" data-preset="enemyMelee">敌人（近战）</button>
+      <button class="preset-btn tone-b" type="button" data-preset="enemyRanged">敌人（远程）</button>
+      <button class="preset-btn tone-b" type="button" data-preset="enemyFlying">敌人（飞行）</button>
+      <button class="preset-btn tone-c" type="button" data-preset="heroMelee">英雄（近战）</button>
+      <button class="preset-btn tone-c" type="button" data-preset="heroRanged">英雄（远程）</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <label>页面信息属性</label>
+    <p class="sub" style="margin-bottom:12px;">每行一个属性：左侧属性名，右侧数值。点击 <b>↑ / ↓</b> 调整顺序。</p>
+    <div class="attr-list" id="attrList"></div>
+    <div class="table-bar">
+      <button class="btn sm" id="addRowBtn" type="button">+ 添加属性</button>
+      <button class="btn sm danger" id="delLastRowBtn" type="button">删除末行</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <label>分标题与内容</label>
+    <p class="sub" style="margin-bottom:12px;">
+      每个分标题内可自由添加：<b style="color:#67e8f9;">内容段落</b>、<b style="color:#c4b5fd;">小标题</b>、
+      <b style="color:#a7f3d0;">信息属性</b>。点击各部分的 <b>↑ / ↓</b> 调整顺序。
+    </p>
+    <div id="subBlocks"></div>
+    <button class="btn sm" id="addBlockBtn" type="button" style="margin-top:4px;">+ 添加分标题</button>
+  </div>
+
+  <div class="action-bar">
+    <button class="btn primary" id="generateBtn" type="button">生成 HTML 内容</button>
+    <button class="btn" id="previewBtn" type="button">预览（双端）</button>
+    <span class="status-text" id="statusText">就绪</span>
+  </div>
+
+  <div class="card" id="outputCard">
+    <div class="out-head">
+      <label style="margin:0;">生成的 HTML 文件内容</label>
+      <span class="counter" id="outCount">0 字符</span>
+    </div>
+
+    <textarea id="output" spellcheck="false"
+      placeholder="点击上方「生成 HTML 内容」按钮，这里会出现完整的网页源码…"></textarea>
+
+    <div class="table-bar" style="margin-top:12px;">
+      <button class="btn success" id="copyOutBtn" type="button">复制 HTML 代码</button>
+      <button class="btn danger" id="clearOutBtn" type="button">清空</button>
+      <button class="btn" id="downloadBtn" type="button">下载为 .html 文件</button>
+    </div>
+
+    <div class="preview-area" id="previewArea">
+      <div class="preview-head">
+        <span class="preview-title">双端预览效果</span>
+        <button class="btn sm danger" id="closePreviewBtn" type="button">关闭预览</button>
+      </div>
+      <div class="device-block">
+        <div class="device-label">📱 移动端竖版（宽度 375px）</div>
+        <div class="phone-wrapper">
+          <iframe id="previewMobile" sandbox="allow-same-origin allow-scripts"></iframe>
+        </div>
+      </div>
+      <div class="device-block">
+        <div class="device-label">💻 PC 端横版（宽屏自适应）</div>
+        <div class="pc-wrapper">
+          <iframe id="previewPc" sandbox="allow-same-origin allow-scripts"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div id="toast"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  function $(id) { return document.getElementById(id); }
+
+  var pageTitle  = $('pageTitle');
+  var pageDesc   = $('pageDesc');
+  var attrList   = $('attrList');
+  var subBlocks  = $('subBlocks');
+  var outputEl   = $('output');
+  var outCount   = $('outCount');
+  var statusEl   = $('statusText');
+  var toastEl    = $('toast');
+  var previewArea  = $('previewArea');
+  var previewMobile = $('previewMobile');
+  var previewPc     = $('previewPc');
+
+  /* ========== 提示 ========== */
+  var toastTimer = null;
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.classList.remove('show'); }, 1800);
+  }
+  function setStatus(msg) { statusEl.textContent = msg; }
+
+  /* ========== 转义 ========== */
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+
+  /* ========== 行移动 ========== */
+  function moveRow(row, dir) {
+    if (dir === 'up') {
+      var prev = row.previousElementSibling;
+      if (!prev) { toast('已经是第一项了'); return; }
+      row.parentNode.insertBefore(row, prev); toast('已上移');
+    } else {
+      var next = row.nextElementSibling;
+      if (!next) { toast('已经是最后一项了'); return; }
+      row.parentNode.insertBefore(next, row); toast('已下移');
+    }
+  }
+
+  /* ========== 页面级属性 ========== */
+  function addAttrRow(name, value) {
+    var row = document.createElement('div');
+    row.className = 'attr-row';
+    var n = document.createElement('input');
+    n.type = 'text'; n.className = 'attr-name'; n.placeholder = '属性名'; n.value = name || '';
+    var v = document.createElement('input');
+    v.type = 'text'; v.className = 'attr-value'; v.placeholder = '数值'; v.value = value || '';
+    var up = document.createElement('button');
+    up.type = 'button'; up.className = 'attr-move'; up.textContent = '↑'; up.title = '上移';
+    up.addEventListener('click', function () { moveRow(row, 'up'); });
+    var down = document.createElement('button');
+    down.type = 'button'; down.className = 'attr-move'; down.textContent = '↓'; down.title = '下移';
+    down.addEventListener('click', function () { moveRow(row, 'down'); });
+    var d = document.createElement('button');
+    d.type = 'button'; d.className = 'attr-del'; d.textContent = '×'; d.title = '删除此属性';
+    d.addEventListener('click', function () {
+      if (attrList.children.length <= 1) { toast('至少保留一项'); return; }
+      row.remove(); toast('已删除该属性');
+    });
+    row.appendChild(n); row.appendChild(v);
+    row.appendChild(up); row.appendChild(down); row.appendChild(d);
+    attrList.appendChild(row);
+  }
+
+  function delLastRow() {
+    if (attrList.children.length <= 1) { toast('至少保留一项'); return; }
+    attrList.removeChild(attrList.lastElementChild); toast('已删除末行');
+  }
+
+  /* ========== 分标题内的子部分 ========== */
+  function movePartUp(part) {
+    var prev = part.previousElementSibling;
+    while (prev && !prev.classList.contains('sub-part')) prev = prev.previousElementSibling;
+    if (!prev) { toast('已经是第一个了'); return; }
+    part.parentNode.insertBefore(part, prev); toast('已上移');
+  }
+  function movePartDown(part) {
+    var next = part.nextElementSibling;
+    while (next && !next.classList.contains('sub-part')) next = next.nextElementSibling;
+    if (!next) { toast('已经是最后一个了'); return; }
+    part.parentNode.insertBefore(next, part); toast('已下移');
+  }
+
+  function addContentItem(list) {
+    var item = document.createElement('div'); item.className = 'content-item';
+    var ta = document.createElement('textarea');
+    ta.className = 'sub-content'; ta.rows = 2;
+    ta.placeholder = '输入内容段落，换行会自动分段…';
+    var d = document.createElement('button');
+    d.type = 'button'; d.className = 'item-del'; d.textContent = '×'; d.title = '删除此段落';
+    d.addEventListener('click', function () { item.remove(); });
+    item.appendChild(ta); item.appendChild(d);
+    list.appendChild(item);
+  }
+
+  function addSubtitleItem(list) {
+    var item = document.createElement('div'); item.className = 'subtitle-item';
+    var head = document.createElement('div'); head.className = 'subtitle-head';
+    var t = document.createElement('input');
+    t.type = 'text'; t.className = 'sub-subtitle'; t.placeholder = '小标题名称';
+    var d = document.createElement('button');
+    d.type = 'button'; d.className = 'item-del'; d.textContent = '×'; d.title = '删除此小标题';
+    d.addEventListener('click', function () { item.remove(); });
+    head.appendChild(t); head.appendChild(d);
+    var c = document.createElement('textarea');
+    c.className = 'sub-subtitle-content'; c.rows = 2;
+    c.placeholder = '小标题内容，换行会自动分段…';
+    item.appendChild(head); item.appendChild(c);
+    list.appendChild(item);
+  }
+
+  function addSubAttrItem(list) {
+    var row = document.createElement('div'); row.className = 'attr-row';
+    var n = document.createElement('input');
+    n.type = 'text'; n.className = 'attr-name'; n.placeholder = '属性名';
+    var v = document.createElement('input');
+    v.type = 'text'; v.className = 'attr-value'; v.placeholder = '数值';
+    var up = document.createElement('button');
+    up.type = 'button'; up.className = 'attr-move'; up.textContent = '↑'; up.title = '上移';
+    up.addEventListener('click', function () { moveRow(row, 'up'); });
+    var down = document.createElement('button');
+    down.type = 'button'; down.className = 'attr-move'; down.textContent = '↓'; down.title = '下移';
+    down.addEventListener('click', function () { moveRow(row, 'down'); });
+    var d = document.createElement('button');
+    d.type = 'button'; d.className = 'attr-del'; d.textContent = '×'; d.title = '删除此属性';
+    d.addEventListener('click', function () { row.remove(); });
+    row.appendChild(n); row.appendChild(v);
+    row.appendChild(up); row.appendChild(down); row.appendChild(d);
+    list.appendChild(row);
+  }
+
+  function createPart(type) {
+    var part = document.createElement('div');
+    part.className = 'sub-part'; part.dataset.partType = type;
+
+    var head = document.createElement('div'); head.className = 'part-head';
+    var label = document.createElement('span'); label.className = 'part-label';
+    var grp = document.createElement('div'); grp.className = 'part-btn-group';
+
+    var up = document.createElement('button');
+    up.type = 'button'; up.className = 'part-move-btn'; up.textContent = '↑'; up.title = '上移';
+    up.addEventListener('click', function () { movePartUp(part); });
+    var down = document.createElement('button');
+    down.type = 'button'; down.className = 'part-move-btn'; down.textContent = '↓'; down.title = '下移';
+    down.addEventListener('click', function () { movePartDown(part); });
+    var add = document.createElement('button');
+    add.type = 'button'; add.className = 'part-add-btn';
+
+    var list = document.createElement('div'); list.className = 'part-list';
+
+    if (type === 'content') {
+      label.textContent = '内容段落'; add.textContent = '+ 添加段落';
+      add.addEventListener('click', function () { addContentItem(list); toast('已添加内容段落'); });
+    } else if (type === 'subtitle') {
+      label.textContent = '小标题'; add.textContent = '+ 添加小标题';
+      add.addEventListener('click', function () { addSubtitleItem(list); toast('已添加小标题'); });
+    } else if (type === 'attr') {
+      label.textContent = '信息属性'; add.textContent = '+ 添加属性';
+      list.classList.add('sub-attr-list');
+      add.addEventListener('click', function () { addSubAttrItem(list); toast('已添加属性'); });
+    }
+
+    grp.appendChild(up); grp.appendChild(down); grp.appendChild(add);
+    head.appendChild(label); head.appendChild(grp);
+    part.appendChild(head); part.appendChild(list);
+    return part;
+  }
+
+  /* ========== 分标题区块 ========== */
+  var blockSeq = 0;
+  function addSubBlock(title) {
+    blockSeq++;
+    var wrap = document.createElement('div'); wrap.className = 'sub-block';
+
+    var head = document.createElement('div'); head.className = 'block-head';
+    var span = document.createElement('span'); span.className = 'block-label';
+    span.textContent = '分标题 #' + blockSeq;
+    var del = document.createElement('button');
+    del.type = 'button'; del.className = 'block-del'; del.textContent = '删除分标题';
+    del.addEventListener('click', function () {
+      wrap.remove(); renumberBlocks(); toast('已删除该分标题');
+    });
+    head.appendChild(span); head.appendChild(del);
+    wrap.appendChild(head);
+
+    var nameField = document.createElement('div');
+    nameField.className = 'field'; nameField.style.marginBottom = '4px';
+    var l = document.createElement('label'); l.textContent = '分标题名称';
+    var nameInput = document.createElement('input');
+    nameInput.type = 'text'; nameInput.className = 'sub-title';
+    nameInput.placeholder = '例如：技能介绍';
+    nameInput.value = title || '';
+    nameField.appendChild(l); nameField.appendChild(nameInput);
+    wrap.appendChild(nameField);
+
+    wrap.appendChild(createPart('content'));
+    wrap.appendChild(createPart('subtitle'));
+    wrap.appendChild(createPart('attr'));
+
+    subBlocks.appendChild(wrap);
+
+    var firstContentList = wrap.querySelector('.sub-part[data-part-type="content"] .part-list');
+    if (firstContentList) addContentItem(firstContentList);
+  }
+
+  function renumberBlocks() {
+    var blocks = subBlocks.querySelectorAll(':scope > .sub-block');
+    Array.prototype.forEach.call(blocks, function (b, i) {
+      var s = b.querySelector(':scope > .block-head > .block-label');
+      if (s) s.textContent = '分标题 #' + (i + 1);
+    });
+  }
+
+  /* ========== 预设 ========== */
+  var PRESETS = {
+    tower: { name: '防御塔', attrs: ['伤害', '伤害类型', '攻速', '射程', '造价'], sections: ['技能一', '技能二'] },
+    barracks: {
+      name: '防御塔（兵营）',
+      attrs: ['生命值', '脱战回血(每秒)', '近战伤害', '攻击间隔', '伤害类型',
+              '护甲值', '人数', '移动速度', '复活时间', '调集范围', '拦截范围', '造价'],
+      sections: []
+    },
+    enemyMelee: {
+      name: '敌人（近战）',
+      attrs: ['生命值', '近战伤害', '攻速', '伤害类型', '护甲', '魔法抗性', '移动速度', '代价', '赏金'],
+      sections: []
+    },
+    enemyRanged: {
+      name: '敌人（远程）',
+      attrs: ['生命值', '近战伤害', '远程伤害', '攻击速度', '伤害类型', '射程',
+              '护甲', '魔法抗性', '移动速度', '代价', '赏金'],
+      sections: []
+    },
+    enemyFlying: {
+      name: '敌人（飞行）',
+      attrs: ['生命值', '护甲', '魔法抗性', '移动速度', '代价', '赏金'],
+      sections: []
+    },
+    heroMelee: {
+      name: '英雄（近战）',
+      attrs: ['生命值', '脱战回血（每秒）', '近战伤害', '攻速', '伤害类型',
+              '护甲', '移速', '复活时间', '拦截范围'],
+      sections: ['技能一', '技能二', '技能三', '技能四', '技能五']
+    },
+    heroRanged: {
+      name: '英雄（远程）',
+      attrs: ['生命值', '脱战回血（每秒）', '近战伤害', '远程伤害', '攻速',
+              '伤害类型', '射程', '护甲', '移速', '复活时间', '拦截范围'],
+      sections: ['技能一', '技能二', '技能三', '技能四', '技能五']
+    }
+  };
+
+  function applyPreset(key) {
+    var p = PRESETS[key];
+    if (!p) return;
+    attrList.innerHTML = '';
+    p.attrs.forEach(function (a) { addAttrRow(a, ''); });
+    subBlocks.innerHTML = '';
+    blockSeq = 0;
+    (p.sections || []).forEach(function (name) { addSubBlock(name); });
+    renumberBlocks();
+    previewArea.classList.remove('open');
+    setStatus('已套用「' + p.name + '」布局');
+    toast('已生成「' + p.name + '」默认布局');
+    var listEl = document.querySelector('.attr-list');
+    if (listEl) listEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  /* ========== 收集数据 ========== */
+  function collectData() {
+    var pairs = [];
+    var rows = attrList.querySelectorAll(':scope > .attr-row');
+    Array.prototype.forEach.call(rows, function (row) {
+      var n = row.querySelector('.attr-name');
+      var v = row.querySelector('.attr-value');
+      pairs.push({ name: n ? n.value.trim() : '', value: v ? v.value.trim() : '' });
+    });
+
+    var sections = [];
+    var blocks = subBlocks.querySelectorAll(':scope > .sub-block');
+    Array.prototype.forEach.call(blocks, function (b) {
+      var titleInput = b.querySelector(':scope > .field > .sub-title');
+      var title = titleInput ? titleInput.value.trim() : '';
+
+      var parts = [];
+      var partEls = b.querySelectorAll(':scope > .sub-part');
+      Array.prototype.forEach.call(partEls, function (part) {
+        var type = part.dataset.partType;
+        if (type === 'content') {
+          var items = [];
+          Array.prototype.forEach.call(part.querySelectorAll('.sub-content'), function (ta) {
+            if (ta.value.trim()) items.push({ text: ta.value });
+          });
+          if (items.length) parts.push({ type: 'content', items: items });
+        } else if (type === 'subtitle') {
+          var items = [];
+          Array.prototype.forEach.call(part.querySelectorAll('.subtitle-item'), function (item) {
+            var t = item.querySelector('.sub-subtitle');
+            var c = item.querySelector('.sub-subtitle-content');
+            var tv = t ? t.value.trim() : '';
+            var cv = c ? c.value.trim() : '';
+            if (tv || cv) items.push({ title: tv, content: c ? c.value : '' });
+          });
+          if (items.length) parts.push({ type: 'subtitle', items: items });
+        } else if (type === 'attr') {
+          var items = [];
+          Array.prototype.forEach.call(part.querySelectorAll('.attr-row'), function (row) {
+            var n = row.querySelector('.attr-name');
+            var v = row.querySelector('.attr-value');
+            var nv = n ? n.value.trim() : '';
+            var vv = v ? v.value.trim() : '';
+            if (nv || vv) items.push({ name: nv, value: vv });
+          });
+          if (items.length) parts.push({ type: 'attr', items: items });
+        }
+      });
+
+      sections.push({ title: title, parts: parts });
+    });
+
+    return {
+      title: pageTitle.value.trim(),
+      desc: pageDesc.value.trim(),
+      pairs: pairs,
+      sections: sections
+    };
+  }
+
+  /* ============================================================
+     生成 HTML 里用到的 CSS（内联在 <style> 中）
+     与用户 styles.css 一致，含三套主题 + PC 媒体查询
+     ============================================================ */
+  var PAGE_CSS = [
+    '/* ===== 基础 ===== */',
+    '*, *::before, *::after { box-sizing: border-box; }',
+    'body {',
+    '  margin: 0;',
+    '  padding: 56px 10px 40px;',
+    '  font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;',
+    '  background: #f4f7fb;',
+    '  color: #1e293b;',
+    '  line-height: 1.75;',
+    '  font-size: 15px;',
+    '  transition: background-color .2s ease;',
+    '}',
+    '.page {',
+    '  max-width: 100%;',
+    '  margin: 0 auto;',
+    '  background: #ffffff;',
+    '  border-radius: 10px;',
+    '  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);',
+    '  padding: 24px 18px 32px;',
+    '  transition: background-color .2s ease;',
+    '}',
+    '.page-title {',
+    '  margin: 0 0 16px;',
+    '  font-size: 22px;',
+    '  line-height: 1.35;',
+    '  color: #0f172a;',
+    '  padding-bottom: 14px;',
+    '  border-bottom: 2px solid #e2e8f0;',
+    '}',
+    '.desc p { margin: 0 0 12px; color: #334155; }',
+    '.desc p:last-child { margin-bottom: 0; }',
+    '',
+    '/* ===== 左上角主题切换圆圈 ===== */',
+    '.theme-switch {',
+    '  position: fixed;',
+    '  top: 12px;',
+    '  left: 12px;',
+    '  display: flex;',
+    '  gap: 8px;',
+    '  z-index: 999;',
+    '}',
+    '.theme-dot {',
+    '  width: 22px;',
+    '  height: 22px;',
+    '  padding: 0;',
+    '  border-radius: 50%;',
+    '  border: 1px solid rgba(15, 23, 42, 0.18);',
+    '  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.18);',
+    '  cursor: pointer;',
+    '  -webkit-tap-highlight-color: transparent;',
+    '  transition: transform .15s ease, box-shadow .15s ease, border-color .2s ease;',
+    '}',
+    '.theme-dot[data-theme="1"] { background: #ffffff; }',
+    '.theme-dot[data-theme="2"] { background: #e9e2d5; }',
+    '.theme-dot[data-theme="3"] { background: #172035; }',
+    '.theme-dot:hover { transform: scale(1.12); }',
+    '.theme-dot.active {',
+    '  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #64748b;',
+    '}',
+    '',
+    '/* ===== 信息属性（竖版：一行一个属性） ===== */',
+    '.info-grid {',
+    '  display: flex;',
+    '  flex-wrap: wrap;',
+    '  margin: 22px 0 8px;',
+    '  border: 1px solid #e2e8f0;',
+    '  border-radius: 10px;',
+    '  overflow: hidden;',
+    '  background: #fff;',
+    '}',
+    '.info-item {',
+    '  display: flex;',
+    '  width: 100%;',
+    '  border-bottom: 1px solid #e2e8f0;',
+    '  min-height: 42px;',
+    '}',
+    '.info-name {',
+    '  flex-shrink: 0;',
+    '  width: 110px;',
+    '  padding: 9px 12px;',
+    '  background: #f1f5f9;',
+    '  font-weight: 600;',
+    '  color: #0f172a;',
+    '  font-size: 13.5px;',
+    '  border-right: 1px solid #e2e8f0;',
+    '  display: flex;',
+    '  align-items: center;',
+    '  word-break: break-word;',
+    '  line-height: 1.5;',
+    '}',
+    '.info-value {',
+    '  flex: 1;',
+    '  padding: 9px 12px;',
+    '  color: #334155;',
+    '  font-size: 13.5px;',
+    '  display: flex;',
+    '  align-items: center;',
+    '  word-break: break-word;',
+    '  min-width: 0;',
+    '  line-height: 1.5;',
+    '}',
+    '',
+    '/* ===== 分标题区块 ===== */',
+    '.wiki-section { margin-top: 28px; }',
+    '.wiki-section h2 {',
+    '  margin: 0 0 14px;',
+    '  font-size: 17px;',
+    '  color: #1e3a5f;',
+    '  padding-bottom: 8px;',
+    '  border-bottom: 1px solid #e2e8f0;',
+    '}',
+    '.wiki-section h3 {',
+    '  margin: 20px 0 10px;',
+    '  font-size: 15px;',
+    '  color: #2d4a6b;',
+    '  font-weight: 600;',
+    '}',
+    '.wiki-section p { margin: 0 0 12px; color: #334155; }',
+    '.wiki-section p:last-child { margin-bottom: 0; }',
+    '.wiki-section .info-grid { margin: 14px 0 18px; }',
+    '',
+    '/* ================= 主题二 ================= */',
+    'body[data-theme="2"] { background: #e9e2d5; }',
+    'body[data-theme="2"] .page { background: #ffffff; }',
+    'body[data-theme="2"] .page-title { color: #0f172a; border-bottom-color: #d3cdc2; }',
+    'body[data-theme="2"] .desc p,',
+    'body[data-theme="2"] .wiki-section p { color: #333333; }',
+    'body[data-theme="2"] .wiki-section h2 { color: #1e3a5f; border-bottom-color: #d3cdc2; }',
+    'body[data-theme="2"] .wiki-section h3 { color: #2d4a6b; }',
+    'body[data-theme="2"] .info-grid { background: #e8edf2; border-color: #d3cdc2; }',
+    'body[data-theme="2"] .info-item { border-color: #d3cdc2; }',
+    'body[data-theme="2"] .info-name { background: #e8edf2; color: #222222; border-color: #d3cdc2; }',
+    'body[data-theme="2"] .info-value { background: #e9e2d5; color: #333333; }',
+    '',
+    '/* ================= 主题三 ================= */',
+    'body[data-theme="3"] { background: #0f1624; color: #949cb0; }',
+    'body[data-theme="3"] .page { background: #172035; box-shadow: 0 6px 28px rgba(0, 0, 0, 0.5); }',
+    'body[data-theme="3"] .page-title { color: #75f0ff; border-bottom-color: #263046; }',
+    'body[data-theme="3"] .desc p,',
+    'body[data-theme="3"] .wiki-section p { color: #b0b8cc; }',
+    'body[data-theme="3"] .wiki-section h2 { color: #75f0ff; border-bottom-color: #263046; }',
+    'body[data-theme="3"] .wiki-section h3 { color: #b0b8cc; }',
+    'body[data-theme="3"] .info-grid { background: #0f1727; border-color: #263046; }',
+    'body[data-theme="3"] .info-item { border-color: #263046; }',
+    'body[data-theme="3"] .info-name { background: #1b263d; color: #75f0ff; border-color: #263046; }',
+    'body[data-theme="3"] .info-value { background: #0f1727; color: #949cb0; }',
+    'body[data-theme="3"] .theme-dot { border-color: #3a465e; }',
+    'body[data-theme="3"] .theme-dot.active { box-shadow: 0 0 0 2px #0f1624, 0 0 0 4px #75f0ff; }',
+    '',
+    '/* ================= PC 端（横版，>= 768px） ================= */',
+    '@media (min-width: 768px) {',
+    '  body { padding: 60px 16px 64px; font-size: 16px; }',
+    '  .theme-switch { top: 16px; left: 16px; gap: 10px; }',
+    '  .theme-dot { width: 24px; height: 24px; }',
+    '  .page {',
+    '    max-width: 860px;',
+    '    border-radius: 14px;',
+    '    box-shadow: 0 6px 28px rgba(15, 23, 42, 0.08);',
+    '    padding: 40px 44px 52px;',
+    '  }',
+    '  .page-title { font-size: 27px; margin-bottom: 20px; padding-bottom: 16px; }',
+    '  .info-item { width: 50%; border-right: 1px solid #e2e8f0; }',
+    '  .info-item:nth-child(2n) { border-right: none; }',
+    '  .info-name { width: 130px; padding: 11px 16px; font-size: 14.5px; }',
+    '  .info-value { padding: 11px 16px; font-size: 14.5px; }',
+    '  .wiki-section { margin-top: 34px; }',
+    '  .wiki-section h2 { font-size: 19px; padding-bottom: 9px; }',
+    '  .wiki-section h3 { margin: 22px 0 10px; font-size: 16px; }',
+    '  .wiki-section p { margin-bottom: 14px; }',
+    '}'
+  ].join('\n');
+
+  /* ============================================================
+     生成 HTML 里用到的 JS（内联在 <script> 中）
+     ============================================================ */
+  var PAGE_JS = [
+    '(function () {',
+    '  var dots = document.querySelectorAll(\'.theme-dot\');',
+    '  dots.forEach(function (dot) {',
+    '    dot.addEventListener(\'click\', function () {',
+    '      var theme = dot.getAttribute(\'data-theme\');',
+    '      document.body.setAttribute(\'data-theme\', theme);',
+    '      dots.forEach(function (d) {',
+    '        d.classList.toggle(\'active\', d === dot);',
+    '      });',
+    '    });',
+    '  });',
+    '})();'
+  ].join('\n');
+
+  /* ========== 渲染信息属性 ========== */
+  function renderAttrGrid(pairs, indent) {
+    var pad = indent || '    ';
+    var valid = pairs.filter(function (p) { return p.name || p.value; });
+    if (!valid.length) return '';
+    var html = pad + '<div class="info-grid">\n';
+    valid.forEach(function (p) {
+      html += pad + '  <div class="info-item">\n';
+      html += pad + '    <div class="info-name">' + esc(p.name || '—') + '</div>\n';
+      html += pad + '    <div class="info-value">' + esc(p.value || '') + '</div>\n';
+      html += pad + '  </div>\n';
+    });
+    html += pad + '</div>\n';
+    return html;
+  }
+
+  /* ========== 生成完整 HTML ========== */
+  function buildPageHtml(data) {
+    var title = data.title || '未命名页面';
+
+    var descLines = data.desc ? data.desc.split('\n') : [];
+    var descInner = descLines.map(function (l) {
+      return l.trim() ? '      <p>' + esc(l) + '</p>' : '';
+    }).filter(Boolean).join('\n');
+    if (!descInner) descInner = '      <p></p>';
+
+    var pageAttrHtml = renderAttrGrid(data.pairs, '    ');
+
+    var sectionsHtml = '';
+    data.sections.forEach(function (s) {
+      var hasAny = s.parts && s.parts.some(function (p) { return p.items && p.items.length; });
+      if (!s.title && !hasAny) return;
+
+      sectionsHtml += '\n    <section class="wiki-section">\n';
+      sectionsHtml += '      <h2>' + esc(s.title || '未命名分标题') + '</h2>\n';
+
+      (s.parts || []).forEach(function (part) {
+        if (!part.items || !part.items.length) return;
+
+        if (part.type === 'content') {
+          part.items.forEach(function (item) {
+            item.text.split('\n').forEach(function (line) {
+              if (line.trim()) {
+                sectionsHtml += '      <p>' + esc(line.trim()) + '</p>\n';
+              }
+            });
+          });
+        } else if (part.type === 'attr') {
+          sectionsHtml += renderAttrGrid(part.items, '      ');
+        } else if (part.type === 'subtitle') {
+          part.items.forEach(function (st) {
+            sectionsHtml += '      <h3>' + esc(st.title || '未命名小标题') + '</h3>\n';
+            if (st.content && st.content.trim()) {
+              st.content.split('\n').forEach(function (line) {
+                if (line.trim()) {
+                  sectionsHtml += '      <p>' + esc(line.trim()) + '</p>\n';
+                }
+              });
+            }
+          });
+        }
+      });
+
+      sectionsHtml += '    </section>\n';
+    });
+
+    return '<!DOCTYPE html>\n' +
+      '<html lang="zh-CN">\n' +
+      '<head>\n' +
+      '  <meta charset="UTF-8">\n' +
+      '  <meta name="viewport" content="width=device-width, initial-scale=1.0">\n' +
+      '  <title>' + esc(title) + '</title>\n' +
+      '  <style>\n' + PAGE_CSS + '\n  </style>\n' +
+      '</head>\n' +
+      '<body data-theme="1">\n' +
+      '  <div class="theme-switch" role="group" aria-label="主题切换">\n' +
+      '    <button type="button" class="theme-dot active" data-theme="1" title="默认主题" aria-label="默认主题"></button>\n' +
+      '    <button type="button" class="theme-dot" data-theme="2" title="浅色主题" aria-label="浅色主题"></button>\n' +
+      '    <button type="button" class="theme-dot" data-theme="3" title="深色主题" aria-label="深色主题"></button>\n' +
+      '  </div>\n' +
+      '\n' +
+      '  <div class="page">\n' +
+      '    <h1 class="page-title">' + esc(title) + '</h1>\n' +
+      '\n' +
+      '    <div class="desc">\n' + descInner + '\n    </div>\n' +
+      pageAttrHtml +
+      sectionsHtml +
+      '  </div>\n' +
+      '\n' +
+      '  <script>\n' + PAGE_JS + '\n  <\/script>\n' +
+      '</body>\n' +
+      '</html>\n';
+  }
+
+  /* ========== 输出 ========== */
+  function updateOutCount() {
+    outCount.textContent = outputEl.value.length + ' 字符';
+  }
+
+  function generate() {
+    var data = collectData();
+    if (!data.title && !data.desc && !data.sections.length) {
+      toast('请至少填写标题或描述');
+      return;
+    }
+    outputEl.value = buildPageHtml(data);
+    updateOutCount();
+    setStatus('已生成 · ' + new Date().toLocaleTimeString());
+    toast('HTML 内容已生成，可复制或下载 ✓');
+    $('outputCard').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  /* ========== 复制 / 下载 ========== */
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function (resolve, reject) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed'; ta.style.top = '-9999px';
+      document.body.appendChild(ta); ta.select();
+      try {
+        var ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        ok ? resolve() : reject(new Error('fail'));
+      } catch (e) {
+        document.body.removeChild(ta); reject(e);
+      }
+    });
+  }
+
+  function downloadFile() {
+    var text = outputEl.value;
+    if (!text) { toast('请先生成内容'); return; }
+    var name = (pageTitle.value.trim() || 'wiki-page').replace(/[\\/:*?"<>|]/g, '_');
+    var blob = new Blob([text], { type: 'text/html;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = name + '.html';
+    document.body.appendChild(a); a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 1500);
+    toast('已开始下载 .html 文件');
+  }
+
+  /* ========== 双端预览 ========== */
+  function openPreview() {
+    var data = collectData();
+    var html = buildPageHtml(data);
+    if (!outputEl.value) {
+      outputEl.value = html;
+      updateOutCount();
+    }
+    previewMobile.srcdoc = html;
+    previewPc.srcdoc = html;
+    previewArea.classList.add('open');
+    previewArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    toast('已展开双端预览');
+  }
+  function closePreview() {
+    previewArea.classList.remove('open');
+    previewMobile.srcdoc = '';
+    previewPc.srcdoc = '';
+    toast('预览已关闭');
+  }
+
+  /* ========== 事件绑定 ========== */
+  $('addRowBtn').addEventListener('click', function () { addAttrRow('', ''); toast('已添加一项属性'); });
+  $('delLastRowBtn').addEventListener('click', delLastRow);
+  $('addBlockBtn').addEventListener('click', function () { addSubBlock(''); toast('已添加分标题'); });
+
+  Array.prototype.forEach.call(document.querySelectorAll('.preset-btn'), function (btn) {
+    btn.addEventListener('click', function () { applyPreset(btn.getAttribute('data-preset')); });
+  });
+
+  $('generateBtn').addEventListener('click', generate);
+
+  $('previewBtn').addEventListener('click', function () {
+    if (previewArea.classList.contains('open')) closePreview();
+    else openPreview();
+  });
+
+  $('closePreviewBtn').addEventListener('click', closePreview);
+
+  $('copyOutBtn').addEventListener('click', function () {
+    var text = outputEl.value;
+    if (!text) { toast('请先点击「生成 HTML 内容」'); return; }
+    copyText(text).then(function () {
+      setStatus('已复制 HTML 代码 · ' + new Date().toLocaleTimeString());
+      toast('HTML 代码已复制到剪贴板 ✓');
+    }).catch(function () {
+      outputEl.focus(); outputEl.select();
+      toast('复制失败，已为你全选，请按 Ctrl+C');
+    });
+  });
+
+  $('clearOutBtn').addEventListener('click', function () {
+    if (!outputEl.value) { toast('内容已经是空的'); return; }
+    outputEl.value = '';
+    updateOutCount();
+    closePreview();
+    setStatus('已清空');
+    toast('已清空');
+  });
+
+  $('downloadBtn').addEventListener('click', downloadFile);
+
+  outputEl.addEventListener('input', updateOutCount);
+
+  /* ========== 初始化 ========== */
+  applyPreset('tower');
+  updateOutCount();
+  setStatus('就绪 · 已套用「防御塔」布局');
+})();
+</script>
+</body>
+</html>

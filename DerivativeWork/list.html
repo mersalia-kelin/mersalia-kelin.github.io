@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>王国保卫战自创百科</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-theme="1">
+  <div class="theme-switch" role="group" aria-label="主题切换">
+    <button type="button" class="theme-dot active" data-theme="1" title="默认主题" aria-label="默认主题"></button>
+    <button type="button" class="theme-dot" data-theme="2" title="浅色主题" aria-label="浅色主题"></button>
+    <button type="button" class="theme-dot" data-theme="3" title="深色主题" aria-label="深色主题"></button>
+  </div>
+
+  <div class="page">
+    <h1 class="page-title title-center" id="pageTitle">词条列表</h1>
+
+    <form class="search-bar" id="searchForm" role="search">
+      <input class="search-input" id="searchInput" type="search"
+             placeholder="输入标题或 Tag 关键词…" autocomplete="off" aria-label="搜索关键词">
+      <button class="search-btn" type="submit">搜索</button>
+      <button class="search-reset" id="resetBtn" type="button">重置</button>
+    </form>
+
+    <div class="search-modes" role="group" aria-label="搜索模式">
+      <button type="button" class="mode-btn active" data-mode="title">标题相关度</button>
+      <button type="button" class="mode-btn" data-mode="tag">Tag 匹配</button>
+    </div>
+
+    <div class="result-bar">
+      <div class="result-info" id="resultInfo">共 0 条</div>
+    </div>
+
+    <ul class="entry-list" id="entryList"></ul>
+    <p class="empty-state" id="emptyState" hidden></p>
+
+    <nav class="pager" id="pager" aria-label="分页">
+      <div class="pager-pages">
+        <button class="pager-btn" id="prevBtn" type="button">上一页</button>
+        <span class="pager-info" id="pagerInfo">第 1 / 1 页</span>
+        <button class="pager-btn" id="nextBtn" type="button">下一页</button>
+      </div>
+      <label class="pager-size">
+        每页
+        <select class="pager-select" name="results-in-page" aria-label="每页条数">
+          <option value="ten">10</option>
+          <option value="twenty" selected>20</option>
+          <option value="fifty">50</option>
+          <option value="onehundred">100</option>
+        </select>
+      </label>
+    </nav>
+  </div>
+
+  <script src="entries.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
