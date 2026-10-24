@@ -1,561 +1,340 @@
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HTML生成器</title>
+<title>HTML生成器（支持导入回填）</title>
 <style>
   * { box-sizing: border-box; }
-
   body {
-    margin: 0;
-    min-height: 100vh;
-    padding: 24px 16px 60px;
+    margin: 0; min-height: 100vh; padding: 24px 16px 60px;
     font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
     background: radial-gradient(circle at 15% 10%, #1e293b 0%, #0b1120 45%, #041f1e 100%);
     color: #e2e8f0;
   }
-
   .container { max-width: 900px; margin: 0 auto; }
-
   .card {
-    padding: 24px;
-    border-radius: 16px;
+    padding: 24px; border-radius: 16px;
     background: rgba(15, 23, 42, 0.78);
     border: 1px solid rgba(148, 163, 184, 0.18);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(14px);
     margin-bottom: 20px;
   }
-
   h1 {
-    margin: 0 0 6px;
-    font-size: 20px;
+    margin: 0 0 6px; font-size: 20px;
     background: linear-gradient(90deg, #67e8f9, #a78bfa, #34d399);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
   }
-
-  .sub {
-    margin: 0 0 20px;
-    font-size: 13px;
-    color: #94a3b8;
-    line-height: 1.6;
-  }
-
-  label {
-    display: block;
-    font-size: 13px;
-    color: #94a3b8;
-    margin-bottom: 6px;
-    font-weight: 500;
-  }
-
+  .sub { margin: 0 0 20px; font-size: 13px; color: #94a3b8; line-height: 1.6; }
+  .sub:last-child { margin-bottom: 0; }
+  label { display: block; font-size: 13px; color: #94a3b8; margin-bottom: 6px; font-weight: 500; }
   input[type="text"], textarea {
-    width: 100%;
-    padding: 11px 14px;
-    border-radius: 10px;
+    width: 100%; padding: 11px 14px; border-radius: 10px;
     border: 1px solid rgba(148, 163, 184, 0.22);
-    background: #060c18;
-    color: #e2e8f0;
-    font-family: inherit;
-    font-size: 14px;
-    outline: none;
+    background: #060c18; color: #e2e8f0;
+    font-family: inherit; font-size: 14px; outline: none;
     transition: border-color 0.2s, box-shadow 0.2s;
   }
-
   input[type="text"]:focus, textarea:focus {
     border-color: rgba(52, 211, 153, 0.55);
     box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.1);
   }
-
   textarea { resize: vertical; line-height: 1.65; min-height: 80px; }
-
   .field { margin-bottom: 18px; }
-
   .preset-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
-
   .preset-btn {
     border: 1px solid rgba(103, 232, 249, 0.28);
-    background: rgba(8, 47, 73, 0.55);
-    color: #a5f3fc;
-    font-size: 13px;
-    padding: 9px 16px;
-    border-radius: 9px;
-    cursor: pointer;
-    font-family: inherit;
+    background: rgba(8, 47, 73, 0.55); color: #a5f3fc;
+    font-size: 13px; padding: 9px 16px; border-radius: 9px;
+    cursor: pointer; font-family: inherit; white-space: nowrap;
     transition: transform 0.15s, background 0.2s, border-color 0.2s, box-shadow 0.2s;
-    white-space: nowrap;
   }
-
   .preset-btn:hover {
     background: rgba(14, 116, 144, 0.5);
     border-color: rgba(103, 232, 249, 0.65);
     transform: translateY(-1px);
     box-shadow: 0 6px 18px rgba(8, 145, 178, 0.25);
   }
-
   .preset-btn:active { transform: translateY(0) scale(0.98); }
-
   .preset-btn.tone-a { border-color: rgba(52,211,153,0.3); color:#a7f3d0; background: rgba(6,78,59,0.45); }
   .preset-btn.tone-a:hover { background: rgba(5,150,105,0.4); border-color: rgba(52,211,153,0.6); }
-
   .preset-btn.tone-b { border-color: rgba(251,146,60,0.3); color:#fed7aa; background: rgba(124,45,18,0.4); }
   .preset-btn.tone-b:hover { background: rgba(194,65,12,0.45); border-color: rgba(251,146,60,0.65); }
-
   .preset-btn.tone-c { border-color: rgba(167,139,250,0.3); color:#ddd6fe; background: rgba(76,29,149,0.4); }
   .preset-btn.tone-c:hover { background: rgba(109,40,217,0.5); border-color: rgba(167,139,250,0.65); }
 
   .attr-list {
     border: 1px solid rgba(148, 163, 184, 0.18);
-    border-radius: 10px;
-    background: #060c18;
-    overflow: hidden;
+    border-radius: 10px; background: #060c18; overflow: hidden;
   }
-
   .attr-row {
     display: grid;
     grid-template-columns: minmax(80px, 130px) 1fr 28px 28px 28px;
     align-items: stretch;
     border-bottom: 1px solid rgba(148, 163, 184, 0.12);
   }
-
   .attr-row:last-child { border-bottom: none; }
-
   .attr-row input {
-    border: none;
-    background: transparent;
-    padding: 10px 12px;
-    font-size: 13.5px;
-    color: #e2e8f0;
-    font-family: inherit;
-    outline: none;
-    width: 100%;
-    border-radius: 0;
-    min-width: 0;
+    border: none; background: transparent;
+    padding: 10px 12px; font-size: 13.5px;
+    color: #e2e8f0; font-family: inherit; outline: none;
+    width: 100%; border-radius: 0; min-width: 0;
   }
-
   .attr-row input::placeholder { color: #475569; }
-
   .attr-name {
-    color: #67e8f9 !important;
-    font-weight: 600;
+    color: #67e8f9 !important; font-weight: 600;
     border-right: 1px solid rgba(148, 163, 184, 0.12) !important;
     background: rgba(30, 41, 59, 0.5) !important;
   }
-
   .attr-row input:focus {
     background: rgba(52, 211, 153, 0.06);
     box-shadow: inset 0 0 0 1px rgba(52, 211, 153, 0.25);
   }
-
   .attr-move {
-    border: none;
-    background: transparent;
-    color: #64748b;
-    cursor: pointer;
-    font-size: 13px;
-    line-height: 1;
-    padding: 0;
-    font-family: inherit;
-    transition: background 0.15s, color 0.15s;
+    border: none; background: transparent; color: #64748b;
+    cursor: pointer; font-size: 13px; line-height: 1; padding: 0;
+    font-family: inherit; transition: background 0.15s, color 0.15s;
   }
-
   .attr-move:hover { background: rgba(56, 189, 248, 0.2); color: #a5f3fc; }
-
   .attr-del {
-    border: none;
-    background: transparent;
-    color: #64748b;
-    cursor: pointer;
-    font-size: 15px;
-    line-height: 1;
-    padding: 0;
-    transition: background 0.15s, color 0.15s;
-    font-family: inherit;
+    border: none; background: transparent; color: #64748b;
+    cursor: pointer; font-size: 15px; line-height: 1; padding: 0;
+    transition: background 0.15s, color 0.15s; font-family: inherit;
   }
-
   .attr-del:hover { background: rgba(190, 24, 93, 0.45); color: #fff; }
-
-  .table-bar { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+  .table-bar { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; align-items: center; }
 
   .sub-block {
-    padding: 16px;
-    border: 1px solid rgba(148, 163, 184, 0.18);
-    border-radius: 12px;
-    background: rgba(6, 12, 24, 0.5);
+    padding: 16px; border: 1px solid rgba(148, 163, 184, 0.18);
+    border-radius: 12px; background: rgba(6, 12, 24, 0.5);
     margin-bottom: 16px;
   }
-
   .block-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 14px;
-    padding-bottom: 10px;
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 14px; padding-bottom: 10px;
     border-bottom: 1px solid rgba(148, 163, 184, 0.12);
   }
-
-  .block-label {
-    font-size: 12.5px;
-    color: #a78bfa;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-  }
-
+  .block-label { font-size: 12.5px; color: #a78bfa; font-weight: 700; letter-spacing: 0.5px; }
   .block-del {
-    border: none;
-    background: rgba(190, 24, 93, 0.3);
-    color: #fda4af;
-    font-size: 12px;
-    padding: 4px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-family: inherit;
-    transition: background 0.15s;
+    border: none; background: rgba(190, 24, 93, 0.3); color: #fda4af;
+    font-size: 12px; padding: 4px 12px; border-radius: 6px;
+    cursor: pointer; font-family: inherit; transition: background 0.15s;
   }
-
   .block-del:hover { background: rgba(190, 24, 93, 0.65); color: #fff; }
 
   .sub-part {
-    margin-top: 14px;
-    padding-top: 12px;
+    margin-top: 14px; padding-top: 12px;
     border-top: 1px dashed rgba(148, 163, 184, 0.15);
   }
-
   .part-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 8px;
-    gap: 8px;
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 8px; gap: 8px;
   }
-
   .part-label {
-    font-size: 12px;
-    color: #67e8f9;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    flex-shrink: 0;
+    font-size: 12px; color: #67e8f9; font-weight: 600;
+    letter-spacing: 0.5px; flex-shrink: 0;
   }
-
   .part-btn-group { display: flex; gap: 4px; align-items: center; flex-shrink: 0; }
-
   .part-move-btn {
-    width: 26px;
-    height: 26px;
+    width: 26px; height: 26px;
     border: 1px solid rgba(148, 163, 184, 0.28);
-    background: rgba(51, 65, 85, 0.45);
-    color: #cbd5e1;
-    font-size: 13px;
-    line-height: 1;
-    padding: 0;
-    border-radius: 6px;
-    cursor: pointer;
-    font-family: inherit;
+    background: rgba(51, 65, 85, 0.45); color: #cbd5e1;
+    font-size: 13px; line-height: 1; padding: 0; border-radius: 6px;
+    cursor: pointer; font-family: inherit;
     transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.15s;
   }
-
   .part-move-btn:hover {
-    background: rgba(71, 85, 105, 0.9);
-    color: #fff;
-    border-color: rgba(148, 163, 184, 0.6);
-    transform: translateY(-1px);
+    background: rgba(71, 85, 105, 0.9); color: #fff;
+    border-color: rgba(148, 163, 184, 0.6); transform: translateY(-1px);
   }
-
   .part-move-btn:active { transform: translateY(0) scale(0.95); }
-
   .part-add-btn {
     border: 1px solid rgba(103, 232, 249, 0.25);
-    background: rgba(8, 47, 73, 0.4);
-    color: #a5f3fc;
-    font-size: 11.5px;
-    padding: 5px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-family: inherit;
+    background: rgba(8, 47, 73, 0.4); color: #a5f3fc;
+    font-size: 11.5px; padding: 5px 12px; border-radius: 6px;
+    cursor: pointer; font-family: inherit; white-space: nowrap;
     transition: background 0.15s, border-color 0.15s;
-    white-space: nowrap;
   }
-
   .part-add-btn:hover {
     background: rgba(14, 116, 144, 0.5);
     border-color: rgba(103, 232, 249, 0.5);
   }
-
   .part-list { display: flex; flex-direction: column; gap: 8px; }
 
   .content-item { display: flex; gap: 6px; align-items: flex-start; }
-
   .content-item textarea {
-    flex: 1;
-    min-height: 52px;
-    font-size: 13px;
-    padding: 8px 10px;
-    resize: vertical;
+    flex: 1; min-height: 52px; font-size: 13px;
+    padding: 8px 10px; resize: vertical;
   }
-
   .subtitle-item {
-    padding: 10px;
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid rgba(148, 163, 184, 0.12);
-    border-radius: 8px;
+    padding: 10px; background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(148, 163, 184, 0.12); border-radius: 8px;
   }
-
   .subtitle-head { display: flex; gap: 6px; margin-bottom: 6px; align-items: center; }
-
   .subtitle-head input {
-    flex: 1;
-    font-size: 13px;
-    padding: 7px 10px;
-    color: #ddd6fe;
-    font-weight: 600;
+    flex: 1; font-size: 13px; padding: 7px 10px;
+    color: #ddd6fe; font-weight: 600;
   }
-
   .subtitle-item textarea { font-size: 13px; padding: 7px 10px; min-height: 52px; }
-
   .item-del {
-    flex-shrink: 0;
-    width: 26px;
-    height: 26px;
-    border: none;
-    background: rgba(190, 24, 93, 0.25);
-    color: #fda4af;
-    font-size: 15px;
-    line-height: 1;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.15s, color 0.15s;
-    font-family: inherit;
-    padding: 0;
+    flex-shrink: 0; width: 26px; height: 26px;
+    border: none; background: rgba(190, 24, 93, 0.25); color: #fda4af;
+    font-size: 15px; line-height: 1; border-radius: 6px;
+    cursor: pointer; transition: background 0.15s, color 0.15s;
+    font-family: inherit; padding: 0;
   }
-
   .item-del:hover { background: rgba(190, 24, 93, 0.7); color: #fff; }
-
   .sub-attr-list {
-    display: flex;
-    flex-direction: column;
+    display: flex; flex-direction: column;
     border: 1px solid rgba(148, 163, 184, 0.12);
-    border-radius: 8px;
-    background: rgba(6, 12, 24, 0.4);
+    border-radius: 8px; background: rgba(6, 12, 24, 0.4);
     overflow: hidden;
   }
-
   .sub-attr-list .attr-row {
     grid-template-columns: minmax(70px, 100px) 1fr 26px 26px 26px;
     border-bottom: 1px solid rgba(148, 163, 184, 0.1);
   }
-
   .sub-attr-list .attr-row:last-child { border-bottom: none; }
-
   .sub-attr-list .attr-row input { padding: 8px 10px; font-size: 13px; }
 
   .btn {
     border: 1px solid rgba(148, 163, 184, 0.3);
-    background: rgba(51, 65, 85, 0.55);
-    color: #e2e8f0;
-    font-size: 13.5px;
-    padding: 9px 18px;
-    border-radius: 9px;
-    cursor: pointer;
+    background: rgba(51, 65, 85, 0.55); color: #e2e8f0;
+    font-size: 13.5px; padding: 9px 18px; border-radius: 9px;
+    cursor: pointer; font-family: inherit; white-space: nowrap;
     transition: transform 0.15s, box-shadow 0.2s, background 0.2s, border-color 0.2s;
-    font-family: inherit;
-    white-space: nowrap;
   }
-
   .btn:hover {
     background: rgba(71, 85, 105, 0.85);
     border-color: rgba(148, 163, 184, 0.55);
     transform: translateY(-1px);
   }
-
   .btn:active { transform: translateY(0) scale(0.98); }
-
   .btn.primary {
-    border: none;
-    background: linear-gradient(135deg, #06b6d4, #7c3aed);
-    color: #fff;
-    font-weight: 600;
+    border: none; background: linear-gradient(135deg, #06b6d4, #7c3aed);
+    color: #fff; font-weight: 600;
     box-shadow: 0 8px 24px rgba(56, 189, 248, 0.25);
   }
-
   .btn.primary:hover { box-shadow: 0 12px 30px rgba(124, 58, 237, 0.4); }
-
   .btn.success {
-    border: none;
-    background: linear-gradient(135deg, #059669, #10b981);
-    color: #fff;
-    font-weight: 600;
+    border: none; background: linear-gradient(135deg, #059669, #10b981);
+    color: #fff; font-weight: 600;
     box-shadow: 0 8px 24px rgba(16, 185, 129, 0.25);
   }
-
   .btn.success:hover { box-shadow: 0 12px 30px rgba(16, 185, 129, 0.4); }
-
   .btn.danger:hover {
     background: rgba(190, 24, 93, 0.35);
     border-color: rgba(244, 114, 182, 0.6);
   }
-
   .btn.sm { font-size: 12.5px; padding: 7px 14px; }
 
   .action-bar {
-    position: sticky;
-    bottom: 16px;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    align-items: center;
-    padding: 16px 20px;
-    border-radius: 14px;
+    position: sticky; bottom: 16px;
+    display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+    padding: 16px 20px; border-radius: 14px;
     background: rgba(15, 23, 42, 0.92);
     border: 1px solid rgba(148, 163, 184, 0.2);
     backdrop-filter: blur(14px);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-    z-index: 10;
-    margin-bottom: 20px;
+    z-index: 10; margin-bottom: 20px;
   }
-
   .status-text { flex: 1; font-size: 12.5px; color: #64748b; min-width: 110px; }
-
   .out-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: flex; align-items: center; justify-content: space-between;
     margin-bottom: 10px;
   }
-
-  .counter { font-size: 12.5px; color: #64748b; font-family: ui-monospace, Menlo, Consolas, monospace; }
-
+  .counter {
+    font-size: 12.5px; color: #64748b;
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+  }
   #output {
     height: 320px;
     font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Courier New", monospace;
-    font-size: 12.5px;
-    line-height: 1.6;
-    color: #a5f3fc;
-    white-space: pre;
-    overflow: auto;
-    tab-size: 2;
+    font-size: 12.5px; line-height: 1.6; color: #a5f3fc;
+    white-space: pre; overflow: auto; tab-size: 2;
     caret-color: #34d399;
   }
-
   #output::placeholder { color: #475569; }
 
   .preview-area {
-    display: none;
-    margin-top: 20px;
-    padding: 20px;
+    display: none; margin-top: 20px; padding: 20px;
     background: rgba(6, 12, 24, 0.6);
-    border: 1px solid rgba(148, 163, 184, 0.18);
-    border-radius: 12px;
+    border: 1px solid rgba(148, 163, 184, 0.18); border-radius: 12px;
   }
-
   .preview-area.open { display: block; }
-
   .preview-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 16px;
-    padding-bottom: 10px;
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 16px; padding-bottom: 10px;
     border-bottom: 1px solid rgba(148, 163, 184, 0.15);
   }
-
-  .preview-title {
-    font-size: 13px;
-    color: #a78bfa;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-  }
-
+  .preview-title { font-size: 13px; color: #a78bfa; font-weight: 600; letter-spacing: 0.5px; }
   .device-block { margin-bottom: 20px; }
   .device-block:last-child { margin-bottom: 0; }
-
   .device-label {
-    font-size: 12.5px;
-    color: #67e8f9;
-    font-weight: 600;
-    margin-bottom: 8px;
-    padding-left: 4px;
+    font-size: 12.5px; color: #67e8f9; font-weight: 600;
+    margin-bottom: 8px; padding-left: 4px;
   }
-
   .phone-wrapper {
-    max-width: 380px;
-    margin: 0 auto;
-    padding: 18px 10px 14px;
-    background: #0f172a;
-    border-radius: 26px;
+    max-width: 380px; margin: 0 auto; padding: 18px 10px 14px;
+    background: #0f172a; border-radius: 26px;
     box-shadow: 0 14px 44px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(148, 163, 184, 0.2);
     position: relative;
   }
-
   .phone-wrapper::before {
-    content: '';
-    position: absolute;
-    top: 7px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 44px;
-    height: 4px;
-    background: rgba(148, 163, 184, 0.35);
-    border-radius: 2px;
+    content: ''; position: absolute; top: 7px; left: 50%;
+    transform: translateX(-50%); width: 44px; height: 4px;
+    background: rgba(148, 163, 184, 0.35); border-radius: 2px;
   }
-
   .phone-wrapper iframe {
-    width: 100%;
-    height: 520px;
-    border: none;
-    border-radius: 14px;
-    background: #fff;
-    display: block;
+    width: 100%; height: 520px; border: none; border-radius: 14px;
+    background: #fff; display: block;
   }
-
   .pc-wrapper {
-    padding: 22px 10px 10px;
-    background: #0f172a;
-    border-radius: 14px;
+    padding: 22px 10px 10px; background: #0f172a; border-radius: 14px;
     box-shadow: 0 14px 44px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(148, 163, 184, 0.2);
     position: relative;
   }
-
   .pc-wrapper::before {
-    content: '';
-    position: absolute;
-    top: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 64px;
-    height: 4px;
-    background: rgba(148, 163, 184, 0.25);
-    border-radius: 2px;
+    content: ''; position: absolute; top: 8px; left: 50%;
+    transform: translateX(-50%); width: 64px; height: 4px;
+    background: rgba(148, 163, 184, 0.25); border-radius: 2px;
+  }
+  .pc-wrapper iframe {
+    width: 100%; height: 600px; border: none; border-radius: 8px;
+    background: #fff; display: block;
   }
 
-  .pc-wrapper iframe {
-    width: 100%;
-    height: 600px;
-    border: none;
-    border-radius: 8px;
-    background: #fff;
-    display: block;
+  /* 导入区文件选择 */
+  input[type="file"] {
+    width: 100%; padding: 11px 14px; border-radius: 10px;
+    border: 1px dashed rgba(148, 163, 184, 0.4);
+    background: #060c18; color: #94a3b8;
+    font-family: inherit; font-size: 13.5px; cursor: pointer;
+    transition: border-color 0.2s;
+  }
+  input[type="file"]:hover { border-color: rgba(103, 232, 249, 0.5); }
+  input[type="file"]::file-selector-button {
+    border: 1px solid rgba(103, 232, 249, 0.3);
+    background: rgba(8, 47, 73, 0.6); color: #a5f3fc;
+    font-family: inherit; font-size: 13px;
+    padding: 6px 14px; border-radius: 6px;
+    margin-right: 12px; cursor: pointer;
+  }
+  .import-hint {
+    font-size: 12px; color: #64748b; margin-top: 6px; line-height: 1.6;
   }
 
   #toast {
-    position: fixed;
-    left: 50%;
-    bottom: 100px;
+    position: fixed; left: 50%; bottom: 100px;
     transform: translate(-50%, 20px);
-    padding: 10px 22px;
-    border-radius: 999px;
-    background: rgba(15, 118, 110, 0.95);
-    color: #ecfeff;
-    font-size: 14px;
-    opacity: 0;
-    pointer-events: none;
+    padding: 10px 22px; border-radius: 999px;
+    background: rgba(15, 118, 110, 0.95); color: #ecfeff;
+    font-size: 14px; opacity: 0; pointer-events: none;
     transition: opacity 0.25s, transform 0.25s;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
-    z-index: 99;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45); z-index: 99;
   }
-
   #toast.show { opacity: 1; transform: translate(-50%, 0); }
 
   @media (max-width: 600px) {
@@ -579,6 +358,7 @@
 
 <div class="container">
 
+  <!-- ========== 基本信息 ========== -->
   <div class="card">
     <h1>维基内容编辑器</h1>
     <p class="sub">填写内容后点击「生成 HTML 内容」，会生成一份完整的网页文件。复制或下载后双击即可打开使用。</p>
@@ -594,6 +374,7 @@
     </div>
   </div>
 
+  <!-- ========== 快捷布局 ========== -->
   <div class="card">
     <label>快捷布局</label>
     <p class="sub" style="margin-bottom:14px;">点击任一类型，自动生成对应的属性与分标题结构。</p>
@@ -608,6 +389,30 @@
     </div>
   </div>
 
+  <!-- ========== 导入区 ========== -->
+  <div class="card">
+    <h1>导入已编辑的 HTML</h1>
+    <p class="sub">选择或粘贴一个已经生成的 HTML 文件（可以是写到一半的半成品），工具会自动解析出标题、描述、属性、分标题等内容，并回填到下方编辑器里，方便继续修改。</p>
+
+    <div class="field">
+      <label>选择 .html 文件</label>
+      <input type="file" id="importFile" accept=".html,text/html">
+    </div>
+
+    <div class="field" style="margin-bottom:0;">
+      <label>或粘贴 HTML 源码</label>
+      <textarea id="importText" rows="3" placeholder="把 HTML 源码粘贴到这里，然后点「导入并回填」……"></textarea>
+    </div>
+
+    <div class="table-bar">
+      <button class="btn primary" id="importBtn" type="button">导入并回填</button>
+      <button class="btn danger" id="clearImportBtn" type="button">清空导入区</button>
+      <span class="status-text" id="importStatus">就绪 · 选择文件或粘贴内容</span>
+    </div>
+    <div class="import-hint">本工具会识别 <code>.page-title</code>、<code>.desc</code>、<code>.info-grid</code>、<code>.wiki-section</code> 等结构，普通 HTML 也能尝试导入。</div>
+  </div>
+
+  <!-- ========== 页面级属性 ========== -->
   <div class="card">
     <label>页面信息属性</label>
     <p class="sub" style="margin-bottom:12px;">每行一个属性：左侧属性名，右侧数值。点击 <b>↑ / ↓</b> 调整顺序。</p>
@@ -618,6 +423,7 @@
     </div>
   </div>
 
+  <!-- ========== 分标题 ========== -->
   <div class="card">
     <label>分标题与内容</label>
     <p class="sub" style="margin-bottom:12px;">
@@ -628,12 +434,14 @@
     <button class="btn sm" id="addBlockBtn" type="button" style="margin-top:4px;">+ 添加分标题</button>
   </div>
 
+  <!-- ========== 操作栏 ========== -->
   <div class="action-bar">
     <button class="btn primary" id="generateBtn" type="button">生成 HTML 内容</button>
     <button class="btn" id="previewBtn" type="button">预览（双端）</button>
     <span class="status-text" id="statusText">就绪</span>
   </div>
 
+  <!-- ========== 输出区 ========== -->
   <div class="card" id="outputCard">
     <div class="out-head">
       <label style="margin:0;">生成的 HTML 文件内容</label>
@@ -686,6 +494,7 @@
   var outputEl   = $('output');
   var outCount   = $('outCount');
   var statusEl   = $('statusText');
+  var importStatusEl = $('importStatus');
   var toastEl    = $('toast');
   var previewArea  = $('previewArea');
   var previewMobile = $('previewMobile');
@@ -700,6 +509,7 @@
     toastTimer = setTimeout(function () { toastEl.classList.remove('show'); }, 1800);
   }
   function setStatus(msg) { statusEl.textContent = msg; }
+  function setImportStatus(msg) { importStatusEl.textContent = msg; }
 
   /* ========== 转义 ========== */
   function esc(s) {
@@ -721,7 +531,7 @@
     }
   }
 
-  /* ========== 页面级属性 ========== */
+  /* ========== 页面级属性行 ========== */
   function addAttrRow(name, value) {
     var row = document.createElement('div');
     row.className = 'attr-row';
@@ -751,7 +561,7 @@
     attrList.removeChild(attrList.lastElementChild); toast('已删除末行');
   }
 
-  /* ========== 分标题内的子部分 ========== */
+  /* ========== 分标题内子部分：移动 ========== */
   function movePartUp(part) {
     var prev = part.previousElementSibling;
     while (prev && !prev.classList.contains('sub-part')) prev = prev.previousElementSibling;
@@ -765,23 +575,30 @@
     part.parentNode.insertBefore(next, part); toast('已下移');
   }
 
-  function addContentItem(list) {
+  /* ========== 分标题内：内容段落 ========== */
+  function createContentItem(text) {
     var item = document.createElement('div'); item.className = 'content-item';
     var ta = document.createElement('textarea');
     ta.className = 'sub-content'; ta.rows = 2;
     ta.placeholder = '输入内容段落，换行会自动分段…';
+    ta.value = text || '';
     var d = document.createElement('button');
     d.type = 'button'; d.className = 'item-del'; d.textContent = '×'; d.title = '删除此段落';
     d.addEventListener('click', function () { item.remove(); });
     item.appendChild(ta); item.appendChild(d);
-    list.appendChild(item);
+    return item;
+  }
+  function addContentItem(list) {
+    list.appendChild(createContentItem(''));
   }
 
-  function addSubtitleItem(list) {
+  /* ========== 分标题内：小标题 ========== */
+  function createSubtitleItem(title, content) {
     var item = document.createElement('div'); item.className = 'subtitle-item';
     var head = document.createElement('div'); head.className = 'subtitle-head';
     var t = document.createElement('input');
     t.type = 'text'; t.className = 'sub-subtitle'; t.placeholder = '小标题名称';
+    t.value = title || '';
     var d = document.createElement('button');
     d.type = 'button'; d.className = 'item-del'; d.textContent = '×'; d.title = '删除此小标题';
     d.addEventListener('click', function () { item.remove(); });
@@ -789,16 +606,21 @@
     var c = document.createElement('textarea');
     c.className = 'sub-subtitle-content'; c.rows = 2;
     c.placeholder = '小标题内容，换行会自动分段…';
+    c.value = content || '';
     item.appendChild(head); item.appendChild(c);
-    list.appendChild(item);
+    return item;
+  }
+  function addSubtitleItem(list) {
+    list.appendChild(createSubtitleItem('', ''));
   }
 
-  function addSubAttrItem(list) {
+  /* ========== 分标题内：属性 ========== */
+  function createSubAttrRow(name, value) {
     var row = document.createElement('div'); row.className = 'attr-row';
     var n = document.createElement('input');
-    n.type = 'text'; n.className = 'attr-name'; n.placeholder = '属性名';
+    n.type = 'text'; n.className = 'attr-name'; n.placeholder = '属性名'; n.value = name || '';
     var v = document.createElement('input');
-    v.type = 'text'; v.className = 'attr-value'; v.placeholder = '数值';
+    v.type = 'text'; v.className = 'attr-value'; v.placeholder = '数值'; v.value = value || '';
     var up = document.createElement('button');
     up.type = 'button'; up.className = 'attr-move'; up.textContent = '↑'; up.title = '上移';
     up.addEventListener('click', function () { moveRow(row, 'up'); });
@@ -810,9 +632,13 @@
     d.addEventListener('click', function () { row.remove(); });
     row.appendChild(n); row.appendChild(v);
     row.appendChild(up); row.appendChild(down); row.appendChild(d);
-    list.appendChild(row);
+    return row;
+  }
+  function addSubAttrItem(list) {
+    list.appendChild(createSubAttrRow('', ''));
   }
 
+  /* ========== 创建一个子部分（内容/小标题/属性） ========== */
   function createPart(type) {
     var part = document.createElement('div');
     part.className = 'sub-part'; part.dataset.partType = type;
@@ -850,9 +676,9 @@
     return part;
   }
 
-  /* ========== 分标题区块 ========== */
+  /* ========== 分标题区块外壳（不含子部分） ========== */
   var blockSeq = 0;
-  function addSubBlock(title) {
+  function createBlockShell(title) {
     blockSeq++;
     var wrap = document.createElement('div'); wrap.className = 'sub-block';
 
@@ -877,10 +703,14 @@
     nameField.appendChild(l); nameField.appendChild(nameInput);
     wrap.appendChild(nameField);
 
+    return wrap;
+  }
+
+  function addSubBlock(title) {
+    var wrap = createBlockShell(title);
     wrap.appendChild(createPart('content'));
     wrap.appendChild(createPart('subtitle'));
     wrap.appendChild(createPart('attr'));
-
     subBlocks.appendChild(wrap);
 
     var firstContentList = wrap.querySelector('.sub-part[data-part-type="content"] .part-list');
@@ -950,6 +780,157 @@
     if (listEl) listEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 
+  /* ============================================================
+     导入：解析 HTML → 数据
+     ============================================================ */
+  function parseInfoGrid(grid) {
+    var items = [];
+    Array.prototype.forEach.call(grid.querySelectorAll('.info-item'), function (item) {
+      var n = item.querySelector('.info-name');
+      var v = item.querySelector('.info-value');
+      items.push({
+        name: n ? n.textContent.trim() : '',
+        value: v ? v.textContent.trim() : ''
+      });
+    });
+    return items;
+  }
+
+  function parseHtmlToData(html) {
+    var doc = new DOMParser().parseFromString(html, 'text/html');
+
+    /* 标题 */
+    var titleEl = doc.querySelector('.page-title');
+    var title = titleEl ? titleEl.textContent.trim() : '';
+    if (!title) title = (doc.title || '').trim();
+
+    /* 描述 */
+    var descLines = [];
+    var descEl = doc.querySelector('.desc');
+    if (descEl) {
+      Array.prototype.forEach.call(descEl.querySelectorAll('p'), function (p) {
+        var t = p.textContent.trim();
+        if (t) descLines.push(t);
+      });
+    }
+    var desc = descLines.join('\n');
+
+    /* 页面级属性（只取 .page 的直接子级 .info-grid） */
+    var pairs = [];
+    var pageEl = doc.querySelector('.page');
+    if (pageEl) {
+      Array.prototype.forEach.call(pageEl.children, function (child) {
+        if (child.classList && child.classList.contains('info-grid')) {
+          pairs = pairs.concat(parseInfoGrid(child));
+        }
+      });
+    }
+
+    /* 分标题 */
+    var sections = [];
+    var secEls = doc.querySelectorAll('.wiki-section');
+    Array.prototype.forEach.call(secEls, function (sec) {
+      var h2El = sec.querySelector('h2');
+      var sectionTitle = h2El ? h2El.textContent.trim() : '';
+
+      var parts = [];
+      var currentPart = null;
+
+      var children = Array.prototype.slice.call(sec.children);
+      for (var i = 0; i < children.length; i++) {
+        var child = children[i];
+        if (child.tagName === 'H2') continue;
+
+        if (child.classList && child.classList.contains('info-grid')) {
+          var attrItems = parseInfoGrid(child);
+          if (!attrItems.length) continue;
+          if (!currentPart || currentPart.type !== 'attr') {
+            currentPart = { type: 'attr', items: [] };
+            parts.push(currentPart);
+          }
+          currentPart.items = currentPart.items.concat(attrItems);
+
+        } else if (child.tagName === 'P') {
+          var text = child.textContent.trim();
+          if (!text) continue;
+          if (!currentPart || currentPart.type !== 'content') {
+            currentPart = { type: 'content', items: [] };
+            parts.push(currentPart);
+          }
+          currentPart.items.push({ text: text });
+
+        } else if (child.tagName === 'H3') {
+          var subTitle = child.textContent.trim();
+          var subContent = [];
+          var j = i + 1;
+          while (j < children.length && children[j].tagName === 'P') {
+            var t = children[j].textContent.trim();
+            if (t) subContent.push(t);
+            j++;
+          }
+          if (!currentPart || currentPart.type !== 'subtitle') {
+            currentPart = { type: 'subtitle', items: [] };
+            parts.push(currentPart);
+          }
+          currentPart.items.push({ title: subTitle, content: subContent.join('\n') });
+          i = j - 1;
+        }
+      }
+
+      sections.push({ title: sectionTitle, parts: parts });
+    });
+
+    return {
+      title: title,
+      desc: desc,
+      pairs: pairs,
+      sections: sections
+    };
+  }
+
+  /* ============================================================
+     回填：数据 → 编辑区
+     ============================================================ */
+  function loadDataToEditor(data) {
+    /* 基本信息 */
+    pageTitle.value = data.title || '';
+    pageDesc.value = data.desc || '';
+
+    /* 页面级属性 */
+    attrList.innerHTML = '';
+    if (!data.pairs.length) {
+      addAttrRow('', '');
+    } else {
+      data.pairs.forEach(function (p) { addAttrRow(p.name, p.value); });
+    }
+
+    /* 分标题 */
+    subBlocks.innerHTML = '';
+    blockSeq = 0;
+
+    (data.sections || []).forEach(function (sec) {
+      var wrap = createBlockShell(sec.title);
+      (sec.parts || []).forEach(function (part) {
+        var partEl = createPart(part.type);
+        var list = partEl.querySelector('.part-list');
+        (part.items || []).forEach(function (item) {
+          if (part.type === 'content') {
+            list.appendChild(createContentItem(item.text));
+          } else if (part.type === 'subtitle') {
+            list.appendChild(createSubtitleItem(item.title, item.content));
+          } else if (part.type === 'attr') {
+            list.appendChild(createSubAttrRow(item.name, item.value));
+          }
+        });
+        wrap.appendChild(partEl);
+      });
+      subBlocks.appendChild(wrap);
+    });
+
+    renumberBlocks();
+    previewArea.classList.remove('open');
+  }
+
   /* ========== 收集数据 ========== */
   function collectData() {
     var pairs = [];
@@ -1011,8 +992,7 @@
   }
 
   /* ============================================================
-     生成 HTML 里用到的 CSS（内联在 <style> 中）
-     与用户 styles.css 一致，含三套主题 + PC 媒体查询
+     生成 HTML 里用到的 CSS
      ============================================================ */
   var PAGE_CSS = [
     '/* ===== 基础 ===== */',
@@ -1188,7 +1168,7 @@
   ].join('\n');
 
   /* ============================================================
-     生成 HTML 里用到的 JS（内联在 <script> 中）
+     生成 HTML 里用到的 JS
      ============================================================ */
   var PAGE_JS = [
     '(function () {',
@@ -1372,7 +1352,63 @@
     toast('预览已关闭');
   }
 
-  /* ========== 事件绑定 ========== */
+  /* ========== 导入事件 ========== */
+  function doImport(text, sourceName) {
+    if (!text || !text.trim()) { toast('内容为空，无法导入'); return; }
+
+    var data;
+    try {
+      data = parseHtmlToData(text);
+    } catch (err) {
+      setImportStatus('解析失败：' + (err && err.message ? err.message : '未知错误'));
+      toast('解析失败，请检查 HTML 内容');
+      return;
+    }
+
+    if (!data.title && !data.desc && !data.sections.length && !data.pairs.length) {
+      setImportStatus('未识别到任何内容');
+      toast('没有解析到可回填的内容');
+      return;
+    }
+
+    loadDataToEditor(data);
+
+    var secCount = data.sections.length;
+    var attrCount = data.pairs.filter(function (p) { return p.name || p.value; }).length;
+    setImportStatus('已导入' + (sourceName ? '：' + sourceName : '') + ' · 属性×' + attrCount + ' · 分标题×' + secCount);
+    toast('已回填编辑区 ✓');
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  $('importFile').addEventListener('change', function (e) {
+    var file = e.target.files && e.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function (ev) {
+      doImport(ev.target.result, file.name);
+    };
+    reader.onerror = function () {
+      setImportStatus('文件读取失败');
+      toast('文件读取失败');
+    };
+    reader.readAsText(file, 'utf-8');
+    e.target.value = '';
+  });
+
+  $('importBtn').addEventListener('click', function () {
+    var text = $('importText').value;
+    if (!text.trim()) { toast('请先粘贴 HTML 或选择文件'); return; }
+    doImport(text, '');
+  });
+
+  $('clearImportBtn').addEventListener('click', function () {
+    $('importText').value = '';
+    setImportStatus('就绪 · 选择文件或粘贴内容');
+    toast('已清空导入区');
+  });
+
+  /* ========== 原有事件绑定 ========== */
   $('addRowBtn').addEventListener('click', function () { addAttrRow('', ''); toast('已添加一项属性'); });
   $('delLastRowBtn').addEventListener('click', delLastRow);
   $('addBlockBtn').addEventListener('click', function () { addSubBlock(''); toast('已添加分标题'); });
