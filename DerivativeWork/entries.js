@@ -7,6 +7,7 @@ window.WIKI_ENTRIES = [
   { title: "测试", tags: ["测试", "系统测试"], category: "hero", time: "1999-12-31" },
 
   /* ===== 防御塔 ===== */
+  { title: "哭罪圣母像", tags: ["蓝脉", "冷门传说FringeFable", "宗教", "辅助", "控制", "召唤"], category: "tower", time: "2025-10-25" },
   { title: "测试", tags: ["测试", "系统测试"], category: "tower", time: "1999-12-31" },
 
   /* ===== 敌人 ===== */
